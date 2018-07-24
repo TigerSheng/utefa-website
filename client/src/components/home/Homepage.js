@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {NavBar} from './NavBar'
+import {NavBar} from '../NavBar'
 import {MainPane} from './MainPane';
 import {AboutUs} from './AboutUs';
 import {OurTeam} from './OurTeam';
@@ -11,7 +11,10 @@ export class Homepage extends Component {
   render(){
     return(
       <div>
-        <NavBar />
+        <NavBar
+          isAuthenticated={this.props.isAuthenticated}
+          userHasAuthenticated={this.props.userHasAuthenticated}
+        />
         <MainPane />
         <div className="break"></div>
         <AboutUs />

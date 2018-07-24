@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Login.css";
+import {NavBar} from '../NavBar';
+import {Auth} from 'aws-amplify';
 
 export default class Login extends Component {
   constructor(props) {
@@ -22,40 +24,55 @@ export default class Login extends Component {
     });
   }
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault();
+    try {
+      await Auth.signIn(this.state.email, this.state.password);
+      this.props.userHasAuthenticated(true);
+    } catch (e) {
+      alert(e.message);
+    }
   }
 
   render() {
     return (
-      <div className="Login">
-        <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" bsSize="large">
-            <ControlLabel>Email</ControlLabel>
-            <FormControl
-              autoFocus
-              type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
+      <div>
+        {this.props.isAuthenticated
+          ? <NavBar
+              isAuthenticated={this.props.isAuthenticated}
+              userHasAuthenticated={this.props.userHasAuthenticated}
             />
-          </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
-            <ControlLabel>Password</ControlLabel>
-            <FormControl
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-            />
-          </FormGroup>
-          <Button
-            block
-            bsSize="large"
-            disabled={!this.validateForm()}
-            type="submit"
-          >
-            Login
-          </Button>
-        </form>
+          : null
+        }
+        <div className="Login">
+          <form onSubmit={this.handleSubmit}>
+            <FormGroup controlId="email" bsSize="large">
+              <ControlLabel>Email</ControlLabel>
+              <FormControl
+                autoFocus
+                type="email"
+                value={this.state.email}
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            <FormGroup controlId="password" bsSize="large">
+              <ControlLabel>Password</ControlLabel>
+              <FormControl
+                value={this.state.password}
+                onChange={this.handleChange}
+                type="password"
+              />
+            </FormGroup>
+            <Button
+              block
+              bsSize="large"
+              disabled={!this.validateForm()}
+              type="submit"
+            >
+              Login
+            </Button>
+          </form>
+        </div>
       </div>
     );
   }
