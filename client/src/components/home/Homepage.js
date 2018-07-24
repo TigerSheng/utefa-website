@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 
-import {Topbar} from './Topbar';
-import {NavBar} from './NavBar';
+import {NavBar} from './NavBar'
 import {MainPane} from './MainPane';
 import {AboutUs} from './AboutUs';
 import {OurTeam} from './OurTeam';
@@ -12,7 +11,6 @@ export class Homepage extends Component {
   render(){
     return(
       <div>
-        <Topbar />
         <NavBar />
         <MainPane />
         <div className="break"></div>

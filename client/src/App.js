@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {Homepage} from './components/home/Homepage';
+import Routes from './Routes';
+
+import {Topbar} from './components/header/Topbar'
 
 class App extends Component {
   render() {
     return (
-      <Homepage />
+      <div>
+        <Topbar />
+        <Routes />
+      </div>
     );
   }
 }
