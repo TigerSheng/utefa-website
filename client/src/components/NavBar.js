@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import { Link } from "react-router-dom";
+import {Auth} from 'aws-amplify';
 
 export class NavBar extends Component {
   constructor(props){
@@ -7,7 +8,8 @@ export class NavBar extends Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
 
-  handleLogout(e) {
+  handleLogout = async (event) => {
+    await Auth.signOut();
     this.props.userHasAuthenticated(false);
   }
 
@@ -16,7 +18,7 @@ export class NavBar extends Component {
       <div className="animated fadeInLeft" id='cssmenu'>
         <ul>
           {this.props.isAuthenticated
-            ? <li><a onClick={this.handleLogout}>Log Out</a></li>
+            ? <li><Link to='/' onClick={this.handleLogout}>Log Out</Link></li>
             : <Fragment>
                 <li><a className="" href='#about'><span>About</span></a></li>
                 <li><a className="" href='#team'><span>Team</span></a></li>

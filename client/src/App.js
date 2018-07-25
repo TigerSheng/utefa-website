@@ -2,15 +2,30 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Routes from './Routes';
-
+import {Auth} from 'aws-amplify';
 import {Topbar} from './components/header/Topbar'
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      isAuthenticated: false
+      isAuthenticated: false,
+      isAuthenticating: true
     };
+  }
+
+  async componentDidMount(){
+    try{
+      if (await Auth.currentSession()) {
+        this.userHasAuthenticated(true);
+      }
+    }
+    catch(e) {
+      if (e !== 'No current user') {
+        alert(e);
+      }
+    }
+    this.setState({ isAuthenticating: false });
   }
 
   userHasAuthenticated = authenticated => {
@@ -26,6 +41,7 @@ class App extends Component {
     };
 
     return (
+      !this.state.isAuthenticating &&
       <div>
         <Topbar />
         <Routes childProps={childProps}/>
