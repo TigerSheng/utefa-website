@@ -4,8 +4,11 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "aws-sdk": "^2.280.1",
     "aws-serverless-express": "^3.2.0",
-    "express": "^4.16.3"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "claudia": "^5.1.0"
