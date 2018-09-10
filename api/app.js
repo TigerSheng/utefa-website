@@ -45,7 +45,9 @@ app.post('/notes', (req, res, next) => {
       userId: "1",
       noteId: uuid(),
       content: req.body.content,
-      pinned: req.body.pinned
+      attachment: req.body.attachment,
+      pinned: req.body.pinned,
+      postedAt: Date.now()
     }
   };
   dynamoDB.put(params, (err, data) => {
