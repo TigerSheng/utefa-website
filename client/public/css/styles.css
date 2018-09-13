@@ -99,8 +99,9 @@ body{
 	margin:20px;
 	height:460px;
 	top:25px;
-
 }
+
+
 /*Resources*/
 #resources{
 	background-color: #d9d9d9;
@@ -560,7 +561,7 @@ input:focus, textarea:focus {
 	width:60%;
 }
 #email{
-	width:60%;
+	width:100%;
 }
 #message{
 	width:100%;

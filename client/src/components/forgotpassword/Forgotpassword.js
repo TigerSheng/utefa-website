@@ -7,6 +7,7 @@ import {
 } from "react-bootstrap";
 import {NavBar} from '../NavBar';
 import {Auth} from 'aws-amplify';
+import {Footer} from '../home/Footer';
 import LoaderButton from '../LoaderButton';
 import "./Forgotpassword.css"
 
@@ -159,10 +160,14 @@ export default class Forgotpassword extends Component {
 
  render() {
    return(
+     <div>
+     <NavBar/>
       <div className="Forgotpassword">
         {this.state.userExist === null
           ? this.renderForm()
           : this.renderConfirmationForm()}
+      </div>
+      <Footer/>
       </div>
    );
  }

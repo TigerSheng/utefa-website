@@ -3,8 +3,16 @@
     padding: 60px 0;
   }
 
+
+  .help-block{
+    color: #337ab7 !important;
+  }
+
   .Login form {
     margin: 0 auto;
     max-width: 320px;
+  }
+  .control-label{
+    margin-bottom: 5px !important;
   }
 }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { HelpBlock, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Login.css";
 import {NavBar} from '../NavBar';
+import {Footer} from '../home/Footer';
 import {Auth} from 'aws-amplify';
 import LoaderButton from '../LoaderButton';
 
@@ -102,7 +103,7 @@ export default class Login extends Component {
               type="password"
             />
             <a href='/forgot-password'>
-              <HelpBlock>Forgot?</HelpBlock>
+              <HelpBlock>Forgot password?</HelpBlock>
             </a>
           </FormGroup>
           <LoaderButton
@@ -163,9 +164,11 @@ export default class Login extends Component {
   render() {
     return (
       <div>
+      <NavBar/>
         {this.state.newUser === null
           ? this.renderLoginPage()
           : this.renderResetPassword()}
+          <Footer/>
       </div>
     );
   }

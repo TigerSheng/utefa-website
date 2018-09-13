@@ -11,6 +11,7 @@ export class Homepage extends Component {
   render(){
     return(
       <div>
+      <div class = "body">
         <NavBar
           isAuthenticated={this.props.isAuthenticated}
           userHasAuthenticated={this.props.userHasAuthenticated}
@@ -23,6 +24,7 @@ export class Homepage extends Component {
         <div className="break"></div>
         <OurAlumni />
         <div className="break"></div>
+        </div>
         <Footer />
       </div>
     );
