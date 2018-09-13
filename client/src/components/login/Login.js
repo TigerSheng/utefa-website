@@ -54,7 +54,7 @@ export default class Login extends Component {
             });
           }else{
             this.props.userHasAuthenticated(true);
-            this.props.history.push('/');
+            this.props.history.push('/dashboard');
           }
         });
     } catch (e) {
@@ -74,7 +74,7 @@ export default class Login extends Component {
       ).then(() => {
           Auth.signIn(this.state.email, this.state.newPassword);
           this.props.userHasAuthenticated(true);
-          this.props.history.push('/');
+          this.props.history.push('/dashboard');
       });
     }catch(e){
       alert(e.message);
