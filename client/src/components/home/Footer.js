@@ -6,6 +6,7 @@ export class Footer extends Component {
     return(
       <div className="footer">
         <div className="bot-nav">
+          <a href="/">Home</a>|
           <a href="/#about">About</a>|
           <a href="/#team">Team</a>|
           <a href="/#alumni">Alumni</a>|

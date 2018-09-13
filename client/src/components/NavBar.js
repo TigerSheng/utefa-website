@@ -19,12 +19,14 @@ export class NavBar extends Component {
         <ul>
           {this.props.isAuthenticated
             ?  <Fragment>
+                <li><a className="" href='/'><span>Home</span></a></li>
                 <li><a className="" href='/#about'><span>About</span></a></li>
                 <li><a className="" href='/#team'><span>Team</span></a></li>
                 <li><a className="" href='/#alumni'><span>Alumni</span></a></li>
                 <li><Link to='/' onClick={this.handleLogout}>Log Out</Link></li>
               </Fragment>
             : <Fragment>
+                <li><a className="" href='/'><span>Home</span></a></li>
                 <li><a className="" href='/#about'><span>About</span></a></li>
                 <li><a className="" href='/#team'><span>Team</span></a></li>
                 <li><a className="" href='/#alumni'><span>Alumni</span></a></li>
