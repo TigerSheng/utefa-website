@@ -4,6 +4,7 @@ import {Auth} from 'aws-amplify';
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleLogout = async (event) => {
@@ -14,7 +15,7 @@ export default class Dashboard extends Component {
   render(){
     return(
       <div>
-        <a href='/' onCLick={this.handleLogout}>Log Out</a>
+        <a href='/' onClick={this.handleLogout}>Log Out</a>
       </div>
     );
   }
