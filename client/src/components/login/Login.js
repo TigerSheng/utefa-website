@@ -125,7 +125,7 @@ export default class Login extends Component {
   renderResetPassword(){
     return(
       <div className="Login">
-        <p>Please change your password on your first sign-in.</p>
+        <p className="change-password-title">Please change your password on your first sign-in.</p>
         <form onSubmit={this.handleNewPasswordSubmit}>
           <FormGroup controlId="newPassword" bsSize="large">
             <ControlLabel>New Password</ControlLabel>
