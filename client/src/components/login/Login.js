@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { HelpBlock, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import {
+  HelpBlock,
+  FormGroup,
+  FormControl,
+  ControlLabel,
+  Alert
+} from "react-bootstrap";
 import "./Login.css";
 import {NavBar} from '../NavBar';
 import {Footer} from '../home/Footer';
@@ -16,12 +22,14 @@ export default class Login extends Component {
       isLoading: false,
       newPassword: "",
       confirmNewPassword: "",
-      newUser: null
+      newUser: null,
+      isCorrectPassword: null,
+      isCorrectEmail: null
     };
   }
 
   validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
+    return this.state.email.length > 0 && this.state.password.length >= 8;
   }
 
   validateChangePasswordForm() {
@@ -34,7 +42,9 @@ export default class Login extends Component {
 
   handleChange = event => {
     this.setState({
-      [event.target.id]: event.target.value
+      [event.target.id]: event.target.value,
+      isCorrectEmail: null,
+      isCorrectPassword: null
     });
   }
 
@@ -58,7 +68,16 @@ export default class Login extends Component {
           }
         });
     } catch (e) {
-      alert(e.message);
+      console.log(e);
+      //handle wrong credential error
+      if(e.code === "NotAuthorizedException"){
+        this.setState({
+          isCorrectEmail: "warning",
+          isCorrectPassword: "error"
+        });
+      }else{
+        alert(e.message);
+      }
       this.setState({isLoading: false});
     }
   }
@@ -85,23 +104,33 @@ export default class Login extends Component {
   renderLoginPage(){
     return(
       <div className="Login">
+        {this.state.isCorrectPassword !== null
+          ? <Alert id="Alert" bsStyle='danger'>
+              The email or password is incorrect.
+            </Alert>
+          : null}
         <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" bsSize="large">
+          <FormGroup controlId="email" bsSize="large"
+            validationState={this.state.isCorrectEmail}>
             <ControlLabel>Email</ControlLabel>
             <FormControl
               autoFocus
               type="email"
               value={this.state.email}
               onChange={this.handleChange}
+              placeholder="Enter email"
             />
+            <FormControl.Feedback />
           </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
+          <FormGroup controlId="password" bsSize="large"
+            validationState={this.state.isCorrectPassword}>
             <ControlLabel>Password</ControlLabel>
             <FormControl
               value={this.state.password}
               onChange={this.handleChange}
               type="password"
             />
+            <FormControl.Feedback />
             <a href='/forgot-password'>
               <HelpBlock>Forgot password?</HelpBlock>
             </a>
@@ -164,11 +193,11 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-      <NavBar/>
+        <NavBar/>
         {this.state.newUser === null
           ? this.renderLoginPage()
           : this.renderResetPassword()}
-          <Footer/>
+        <Footer/>
       </div>
     );
   }

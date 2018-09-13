@@ -11,7 +11,7 @@ export class Homepage extends Component {
   render(){
     return(
       <div>
-      <div class = "body">
+      <div className = "body">
         <NavBar
           isAuthenticated={this.props.isAuthenticated}
           userHasAuthenticated={this.props.userHasAuthenticated}
