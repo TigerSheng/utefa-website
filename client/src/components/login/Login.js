@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { HelpBlock, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Login.css";
 import {NavBar} from '../NavBar';
 import {Auth} from 'aws-amplify';
-import LoaderButton from './LoaderButton';
+import LoaderButton from '../LoaderButton';
 
 export default class Login extends Component {
   constructor(props) {
@@ -30,7 +30,8 @@ export default class Login extends Component {
     event.preventDefault();
     this.setState({isLoading: true});
     try {
-      await Auth.signIn(this.state.email, this.state.password);
+      const user = await Auth.signIn(this.state.email, this.state.password)
+        .then(user => console.log(user));
       this.props.userHasAuthenticated(true);
       this.props.history.push('/');
     } catch (e) {
@@ -67,6 +68,9 @@ export default class Login extends Component {
                 onChange={this.handleChange}
                 type="password"
               />
+              <a href='/forgot-password'>
+                <HelpBlock>Forgot?</HelpBlock>
+              </a>
             </FormGroup>
             <LoaderButton
               block
