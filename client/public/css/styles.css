@@ -8,6 +8,10 @@ body{
 	margin:0;
 	padding:0;
 }
+html,body{
+	height: 100%;
+	position: relative;
+}
 .emphasis{
 	width:96%;
 	font-family: 'Crimson Text', serif;
