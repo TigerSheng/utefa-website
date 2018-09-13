@@ -4,7 +4,9 @@ import {
   FormGroup,
   FormControl,
   ControlLabel,
-  Alert
+  Alert,
+  Popover,
+  OverlayTrigger
 } from "react-bootstrap";
 import "./Login.css";
 import {NavBar} from '../NavBar';
@@ -24,7 +26,9 @@ export default class Login extends Component {
       confirmNewPassword: "",
       newUser: null,
       isCorrectPassword: null,
-      isCorrectEmail: null
+      isCorrectEmail: null,
+      isValidNewPassword: null,
+      invalidPasswordErrMsg: ""
     };
   }
 
@@ -34,8 +38,8 @@ export default class Login extends Component {
 
   validateChangePasswordForm() {
     return (
-      this.state.newPassword.length > 0
-      && this.state.confirmNewPassword.length > 0
+      this.state.newPassword.length >= 8
+      && this.state.confirmNewPassword.length >= 8
       && this.state.newPassword === this.state.confirmNewPassword
     );
   }
@@ -44,7 +48,8 @@ export default class Login extends Component {
     this.setState({
       [event.target.id]: event.target.value,
       isCorrectEmail: null,
-      isCorrectPassword: null
+      isCorrectPassword: null,
+      isValidNewPassword: null
     });
   }
 
@@ -96,16 +101,26 @@ export default class Login extends Component {
           this.props.history.push('/dashboard');
       });
     }catch(e){
-      alert(e.message);
+      console.log(e);
+      //catch password not complying to policy
+      if(e.code === "InvalidPasswordException"){
+        this.setState({
+          isValidNewPassword: "warning",
+          invalidPasswordErrMsg: e.message
+        });
+      }else{
+        alert(e.message);
+      }
       this.setState({isLoading: false});
     }
   }
 
-  renderLoginPage(){
+  //normal login page
+  renderLoginPage() {
     return(
       <div className="Login">
         {this.state.isCorrectPassword !== null
-          ? <Alert id="Alert" bsStyle='danger'>
+          ? <Alert className="Alert" bsStyle='danger'>
               The email or password is incorrect.
             </Alert>
           : null}
@@ -151,28 +166,70 @@ export default class Login extends Component {
     );
   }
 
-  renderResetPassword(){
+  //first sign-in new password page
+  renderResetPassword() {
+    const passwordPolicy = (
+      <Popover id="password-policy">
+        Password has to be a minimum of 8 characters long
+        and must include numbers, lowercase and uppercase letters.
+      </Popover>
+    );
+    const passwordMatch = (
+      <Popover id="password-match">
+        Password should match the one above.
+      </Popover>
+    );
+
     return(
       <div className="Login">
-        <p className="change-password-title">Please change your password on your first sign-in.</p>
+        <Alert className="Alert" bsStyle="warning">
+          Please change your password on your first sign-in.
+        </Alert>
+        {this.state.isValidNewPassword !== null
+          ? <Alert className="Alert" bsStyle="danger">
+              {this.state.invalidPasswordErrMsg}
+            </Alert>
+          : null}
         <form onSubmit={this.handleNewPasswordSubmit}>
-          <FormGroup controlId="newPassword" bsSize="large">
+          <FormGroup controlId="newPassword" bsSize="large"
+            validationState={this.state.isValidNewPassword}>
             <ControlLabel>New Password</ControlLabel>
-            <FormControl
-              autoFocus
-              type="password"
-              value={this.state.newPassword}
-              onChange={this.handleChange}
-            />
+            <OverlayTrigger
+              trigger={['hover','focus']}
+              placement='right'
+              overlay={passwordPolicy}
+            >
+              <FormControl
+                autoFocus
+                type="password"
+                value={this.state.newPassword}
+                onChange={this.handleChange}
+              />
+            </OverlayTrigger>
+            <FormControl.Feedback />
           </FormGroup>
           <FormGroup controlId="confirmNewPassword" bsSize="large">
             <ControlLabel>Confirm New Password</ControlLabel>
-            <FormControl
-              autoFocus
-              type="password"
-              value={this.state.confirmNewPassword}
-              onChange={this.handleChange}
-            />
+            {this.validateChangePasswordForm()
+              ? <FormControl
+                type="password"
+                value={this.state.confirmNewPassword}
+                onChange={this.handleChange}
+                placeholder="Must match the one above"
+                />
+              : <OverlayTrigger
+                trigger={['hover', 'focus']}
+                placement="right"
+                overlay={passwordMatch}
+                >
+                  <FormControl
+                    type="password"
+                    value={this.state.confirmNewPassword}
+                    onChange={this.handleChange}
+                    placeholder="Must match the one above"
+                  />
+                </OverlayTrigger>
+              }
           </FormGroup>
           <LoaderButton
             block
