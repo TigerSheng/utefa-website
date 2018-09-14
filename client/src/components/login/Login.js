@@ -29,7 +29,7 @@ export default class Login extends Component {
       isCorrectEmail: null,
       isValidNewPassword: null,
       invalidPasswordErrMsg: ""
-    };
+      };
   }
 
   validateForm() {
@@ -50,7 +50,7 @@ export default class Login extends Component {
       isCorrectEmail: null,
       isCorrectPassword: null,
       isValidNewPassword: null
-    });
+      });
   }
 
   handleSubmit = async event => {
@@ -74,8 +74,12 @@ export default class Login extends Component {
         });
     } catch (e) {
       console.log(e);
+      //handle user does not exist
+      if(e.code === "UserNotFoundException"){
+        this.setState({isCorrectEmail: "error"});
+      }
       //handle wrong credential error
-      if(e.code === "NotAuthorizedException"){
+      else if(e.code === "NotAuthorizedException"){
         this.setState({
           isCorrectEmail: "warning",
           isCorrectPassword: "error"
@@ -122,6 +126,11 @@ export default class Login extends Component {
         {this.state.isCorrectPassword !== null
           ? <Alert className="Alert" bsStyle='danger'>
               The email or password is incorrect.
+            </Alert>
+          : null}
+        {this.state.isCorrectEmail === "error"
+          ? <Alert className="Alert" bsStyle='danger'>
+              No user is associated with that email.
             </Alert>
           : null}
         <form onSubmit={this.handleSubmit}>
