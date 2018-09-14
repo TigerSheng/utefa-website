@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Auth} from 'aws-amplify';
+import {LeftNav} from './LeftNav'
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -15,8 +16,9 @@ export default class Dashboard extends Component {
   render(){
     return(
       <div>
-        <a href='/' onClick={this.handleLogout}>Log Out</a>
+      <LeftNav/>
       </div>
+
     );
   }
 }

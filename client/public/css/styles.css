@@ -258,6 +258,15 @@ html,body{
 	margin-top:15px;
 	margin-bottom:15px;
 }
+#leftNavLogo{
+	display:block;
+	width:125px;
+	position:relative;
+	z-index:2;
+	/*margin: 0 auto;*/
+	margin-top:15px;
+	margin-bottom:15px;
+}
 .container{
 	display:none;
 	width:98%;
