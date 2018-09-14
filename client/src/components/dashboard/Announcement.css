@@ -1,0 +1,28 @@
+.announcement-container{
+  background-color: white;
+  min-width: 200px;
+  border:.1em solid grey;
+  padding: 1em;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.announcement-title{
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.announcement-content{
+  margin-bottom: 10px;
+}
+.announcement-creation-info{
+  display:flex;
+  /* background-color: black;
+  color: white; */
+}
+.announcement-date{
+  margin-right: 10px;
+  font-size: 12px;
+}
+.announcement-owner{
+  font-size: 12px;
+  margin-left: auto;
+}
