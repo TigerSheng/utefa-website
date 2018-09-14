@@ -64,6 +64,7 @@ export default class Dashboard extends Component {
     ] })
   }
   toggleAnnouncementView = async event => {
+    //potentially call the updateData function to refresh the data incase of changes (empty->not empty)
     this.setState({announcementsIsHidden:!this.state.announcementsIsHidden})
   }
 
