@@ -144,6 +144,7 @@ export default class Login extends Component {
               value={this.state.password}
               onChange={this.handleChange}
               type="password"
+              placeholder="Enter password"
             />
             <FormControl.Feedback />
             <a href='/forgot-password'>
@@ -196,7 +197,7 @@ export default class Login extends Component {
             <ControlLabel>New Password</ControlLabel>
             <OverlayTrigger
               trigger={['hover','focus']}
-              placement='right'
+              placement="right"
               overlay={passwordPolicy}
             >
               <FormControl
@@ -204,6 +205,7 @@ export default class Login extends Component {
                 type="password"
                 value={this.state.newPassword}
                 onChange={this.handleChange}
+                placeholder="Enter new password"
               />
             </OverlayTrigger>
             <FormControl.Feedback />
@@ -215,7 +217,7 @@ export default class Login extends Component {
                 type="password"
                 value={this.state.confirmNewPassword}
                 onChange={this.handleChange}
-                placeholder="Must match the one above"
+                placeholder="Re-enter new password"
                 />
               : <OverlayTrigger
                 trigger={['hover', 'focus']}
@@ -226,7 +228,7 @@ export default class Login extends Component {
                     type="password"
                     value={this.state.confirmNewPassword}
                     onChange={this.handleChange}
-                    placeholder="Must match the one above"
+                    placeholder="Re-enter new password"
                   />
                 </OverlayTrigger>
               }

@@ -101,6 +101,8 @@ export default class Forgotpassword extends Component {
            type="tel"
            value={this.state.confirmationCode}
            onChange={this.handleChange}
+           placeholder="Enter confirmation code"
+
          />
          <HelpBlock>Please check your email for the code.</HelpBlock>
        </FormGroup>
@@ -109,6 +111,8 @@ export default class Forgotpassword extends Component {
         <FormControl
           type="password"
           value={this.state.password}
+
+          placeholder="Enter new password"
           onChange={this.handleChange}
         />
       </FormGroup>
@@ -118,6 +122,8 @@ export default class Forgotpassword extends Component {
           value={this.state.confirmPassword}
           onChange={this.handleChange}
           type="password"
+
+          placeholder="Re-enter new password"
         />
       </FormGroup>
       <LoaderButton
@@ -143,6 +149,8 @@ export default class Forgotpassword extends Component {
            type="email"
            value={this.state.email}
            onChange={this.handleChange}
+
+           placeholder="Enter email"
          />
        </FormGroup>
        <LoaderButton

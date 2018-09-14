@@ -3,7 +3,9 @@
     margin:20px 0;
   }
 
-
+.alert{
+  margin-bottom: 20px!important;
+}
   .help-block{
     color: #337ab7 !important;
   }
