@@ -113,8 +113,6 @@ export default class Login extends Component {
     }
   }
 
-
-
   render() {
     const loginFormProps = {
       isCorrectPassword: this.state.isCorrectPassword,

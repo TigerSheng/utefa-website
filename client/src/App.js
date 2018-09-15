@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Routes from './Routes';
 import {Auth} from 'aws-amplify';
+import {withRouter} from 'react-router-dom';
 
 class App extends Component {
   constructor(props){
@@ -16,6 +17,7 @@ class App extends Component {
     try{
       if (await Auth.currentSession()) {
         this.userHasAuthenticated(true);
+        this.props.history.push('/dashboard');
       }
     }
     catch(e) {
@@ -41,10 +43,10 @@ class App extends Component {
     return (
       !this.state.isAuthenticating &&
       <div>
-        <Routes childProps={childProps}/>
+        <Routes childProps={childProps} auth={this.state.isAuthenticated}/>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
