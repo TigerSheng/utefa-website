@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Routes from './Routes';
 import {Auth} from 'aws-amplify';
-import {Topbar} from './components/header/Topbar'
 
 class App extends Component {
   constructor(props){
@@ -42,7 +41,6 @@ class App extends Component {
     return (
       !this.state.isAuthenticating &&
       <div>
-        <Topbar />
         <Routes childProps={childProps}/>
       </div>
     );

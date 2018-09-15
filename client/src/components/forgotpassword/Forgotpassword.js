@@ -4,6 +4,8 @@ import {Auth} from 'aws-amplify';
 import {Footer} from '../home/Footer';
 import EmailForm from './EmailForm';
 import NewPasswordForm from './NewPasswordForm';
+import {Topbar} from '../header/Topbar';
+import "./Forgotpassword.css"
 
 export default class Forgotpassword extends Component {
   constructor(props){
@@ -140,13 +142,14 @@ export default class Forgotpassword extends Component {
 
    return(
      <div>
-     <NavBar/>
-      <div className="Forgotpassword">
-        {this.state.userExist === null
-          ? <EmailForm {...emailFormProps}/>
-          : <NewPasswordForm {...pwFormProps}/>}
-      </div>
-      <Footer/>
+       <Topbar />
+       <NavBar/>
+        <div className="Forgotpassword">
+          {this.state.userExist === null
+            ? <EmailForm {...emailFormProps}/>
+            : <NewPasswordForm {...pwFormProps}/>}
+        </div>
+        <Footer/>
       </div>
    );
  }

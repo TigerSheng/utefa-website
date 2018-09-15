@@ -4,6 +4,7 @@ import {Footer} from '../home/Footer';
 import {Auth} from 'aws-amplify';
 import LoginForm from './LoginForm';
 import ResetPasswordForm from './ResetPasswordForm';
+import {Topbar} from '../header/Topbar'
 
 export default class Login extends Component {
   constructor(props) {
@@ -139,6 +140,7 @@ export default class Login extends Component {
 
     return (
       <div>
+        <Topbar />
         <NavBar/>
         {this.state.newUser === null
           ? <LoginForm {...loginFormProps}/>

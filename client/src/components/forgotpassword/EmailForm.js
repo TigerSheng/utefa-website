@@ -9,7 +9,6 @@ import {
   OverlayTrigger
 } from "react-bootstrap";
 import LoaderButton from '../LoaderButton';
-import "./Forgotpassword.css"
 
 //form with username
 export default class EmailForm extends Component {

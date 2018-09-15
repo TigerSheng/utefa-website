@@ -9,7 +9,6 @@ import {
   OverlayTrigger
 } from "react-bootstrap";
 import LoaderButton from '../LoaderButton';
-import "./Forgotpassword.css";
 
 const passwordPolicy = (
   <Popover id="password-policy">
