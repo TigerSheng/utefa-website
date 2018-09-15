@@ -1,18 +1,9 @@
 import React, { Component } from "react";
-import {
-  HelpBlock,
-  FormGroup,
-  FormControl,
-  ControlLabel,
-  Alert,
-  Popover,
-  OverlayTrigger
-} from "react-bootstrap";
-import "./Login.css";
 import {NavBar} from '../NavBar';
 import {Footer} from '../home/Footer';
 import {Auth} from 'aws-amplify';
-import LoaderButton from '../LoaderButton';
+import LoginForm from './LoginForm';
+import ResetPasswordForm from './ResetPasswordForm';
 
 export default class Login extends Component {
   constructor(props) {
@@ -30,6 +21,8 @@ export default class Login extends Component {
       isValidNewPassword: null,
       invalidPasswordErrMsg: ""
       };
+      this.validateChangePasswordForm = this.validateChangePasswordForm.bind(this);
+      this.validateForm = this.validateForm.bind(this);
   }
 
   validateForm() {
@@ -119,152 +112,37 @@ export default class Login extends Component {
     }
   }
 
-  //normal login page
-  renderLoginPage() {
-    return(
-      <div className="Login">
-        {this.state.isCorrectPassword !== null
-          ? <Alert className="Alert" bsStyle='danger'>
-              The email or password is incorrect.
-            </Alert>
-          : null}
-        {this.state.isCorrectEmail === "error"
-          ? <Alert className="Alert" bsStyle='danger'>
-              No user is associated with that email.
-            </Alert>
-          : null}
-        <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" bsSize="large"
-            validationState={this.state.isCorrectEmail}>
-            <ControlLabel>Email</ControlLabel>
-            <FormControl
-              autoFocus
-              type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-              placeholder="Enter email"
-            />
-            <FormControl.Feedback />
-          </FormGroup>
-          <FormGroup controlId="password" bsSize="large"
-            validationState={this.state.isCorrectPassword}>
-            <ControlLabel>Password</ControlLabel>
-            <FormControl
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-              placeholder="Enter password"
-            />
-            <FormControl.Feedback />
-            <a href='/forgot-password'>
-              <HelpBlock>Forgot password?</HelpBlock>
-            </a>
-          </FormGroup>
-          <LoaderButton
-            block
-            bsSize="large"
-            disabled={!this.validateForm()}
-            type="submit"
-            isLoading={this.state.isLoading}
-            text="Login"
-            loadingText="Logging in..."
-          >
-            Login
-          </LoaderButton>
-        </form>
-      </div>
-    );
-  }
 
-  //first sign-in new password page
-  renderResetPassword() {
-    const passwordPolicy = (
-      <Popover id="password-policy">
-        Password has to be a minimum of 8 characters long
-        and must include numbers, lowercase and uppercase letters.
-      </Popover>
-    );
-    const passwordMatch = (
-      <Popover id="password-match">
-        Password should match the one above.
-      </Popover>
-    );
-
-    return(
-      <div className="Login">
-        <Alert className="Alert" bsStyle="warning">
-          Please change your password on your first sign-in.
-        </Alert>
-        {this.state.isValidNewPassword !== null
-          ? <Alert className="Alert" bsStyle="danger">
-              {this.state.invalidPasswordErrMsg}
-            </Alert>
-          : null}
-        <form onSubmit={this.handleNewPasswordSubmit}>
-          <FormGroup controlId="newPassword" bsSize="large"
-            validationState={this.state.isValidNewPassword}>
-            <ControlLabel>New Password</ControlLabel>
-            <OverlayTrigger
-              trigger={['hover','focus']}
-              placement="right"
-              overlay={passwordPolicy}
-            >
-              <FormControl
-                autoFocus
-                type="password"
-                value={this.state.newPassword}
-                onChange={this.handleChange}
-                placeholder="Enter new password"
-              />
-            </OverlayTrigger>
-            <FormControl.Feedback />
-          </FormGroup>
-          <FormGroup controlId="confirmNewPassword" bsSize="large">
-            <ControlLabel>Confirm New Password</ControlLabel>
-            {this.validateChangePasswordForm()
-              ? <FormControl
-                type="password"
-                value={this.state.confirmNewPassword}
-                onChange={this.handleChange}
-                placeholder="Re-enter new password"
-                />
-              : <OverlayTrigger
-                trigger={['hover', 'focus']}
-                placement="right"
-                overlay={passwordMatch}
-                >
-                  <FormControl
-                    type="password"
-                    value={this.state.confirmNewPassword}
-                    onChange={this.handleChange}
-                    placeholder="Re-enter new password"
-                  />
-                </OverlayTrigger>
-              }
-          </FormGroup>
-          <LoaderButton
-            block
-            bsSize="large"
-            disabled={!this.validateChangePasswordForm()}
-            type="submit"
-            isLoading={this.state.isLoading}
-            text="Change Password"
-            loadingText="Logging in..."
-          >
-            Change Password
-          </LoaderButton>
-        </form>
-      </div>
-    );
-  }
 
   render() {
+    const loginFormProps = {
+      isCorrectPassword: this.state.isCorrectPassword,
+      isCorrectEmail: this.state.isCorrectEmail,
+      handleSubmit: this.handleSubmit,
+      email: this.state.email,
+      password: this.state.password,
+      validateForm: this.validateForm,
+      isLoading: this.state.isLoading,
+      handleChange: this.handleChange
+    };
+
+    const resetFormProps = {
+      isValidNewPassword: this.state.isValidNewPassword,
+      invalidPasswordErrMsg: this.state.invalidPasswordErrMsg,
+      handleNewPasswordSubmit: this.handleNewPasswordSubmit,
+      newPassword: this.state.newPassword,
+      handleChange: this.handleChange,
+      validateChangePasswordForm: this.validateChangePasswordForm,
+      confirmNewPassword: this.state.confirmNewPassword,
+      isLoading: this.state.isLoading
+    };
+
     return (
       <div>
         <NavBar/>
         {this.state.newUser === null
-          ? this.renderLoginPage()
-          : this.renderResetPassword()}
+          ? <LoginForm {...loginFormProps}/>
+          : <ResetPasswordForm {...resetFormProps}/>}
         <Footer/>
       </div>
     );

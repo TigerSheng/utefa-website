@@ -74,7 +74,7 @@ export default class NewPasswordForm extends Component {
         </FormGroup>
         <FormGroup controlId="confirmPassword" bsSize="large">
           <ControlLabel>Confirm New Password</ControlLabel>
-          {this.props.validateConfirmationForm
+          {this.props.validateConfirmationForm()
             ? <FormControl
               type="password"
               value={this.props.confirmPassword}
@@ -97,7 +97,7 @@ export default class NewPasswordForm extends Component {
         <LoaderButton
           block
           bsSize="large"
-          disabled={!this.props.validateConfirmationForm}
+          disabled={!this.props.validateConfirmationForm()}
           type="submit"
           isLoading={this.props.isLoading}
           text="Change Password"

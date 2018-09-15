@@ -21,6 +21,9 @@ export default class Forgotpassword extends Component {
       isValidNewPassword: null,
       invalidPasswordErrMsg: ""
     };
+
+    this.validateForm = this.validateForm.bind(this);
+    this.validateConfirmationForm = this.validateConfirmationForm.bind(this);
   }
 
   validateForm() {

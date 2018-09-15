@@ -41,7 +41,7 @@ export default class EmailForm extends Component {
         <LoaderButton
           block
           bsSize="large"
-          disabled={!this.props.validateForm}
+          disabled={!this.props.validateForm()}
           type="submit"
           isLoading={this.props.isLoading}
           text="Forgot Password"
