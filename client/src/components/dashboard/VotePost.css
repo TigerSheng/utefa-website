@@ -1,0 +1,38 @@
+.voting-container{
+  background-color: white;
+  min-width: 200px;
+  max-width: 750px;
+  border:.1em solid grey;
+  padding: 1em;
+  margin: 0 auto;
+  margin-bottom: 10px
+}
+.voting-yes-no-vote{
+  text-align: center;
+  color: white;
+}
+.voters-yes{
+  background-color: green;
+  padding: 5px;
+}
+.vote-yes{
+  background-color: green;
+}
+.vote-no{
+  background-color: red;
+}
+
+.voters-no{
+  background-color: red;
+  padding: 5px;
+}
+.vote-bar{
+  display:flex;
+  height:auto;
+  text-align: center;
+  color:white;
+
+}
+.voting-stock-title{
+  margin-bottom: 15px;
+}
