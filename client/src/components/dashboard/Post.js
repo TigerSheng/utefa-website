@@ -4,6 +4,8 @@ import {Auth} from 'aws-amplify';
 import {LeftNav} from './LeftNav'
 import {AnnouncementPostForm} from './AnnouncementPostForm'
 
+import {VotePostForm} from './VotePostForm'
+
 export default class  Post extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +13,10 @@ export default class  Post extends Component {
       title: "",
       content: "",
       isLoading: false,
-      attachment: ""
+      attachment: "",
+      stock:"",
+      ticker:"",
+      pitchAttachment:""
     }
   }
 
@@ -34,6 +39,25 @@ export default class  Post extends Component {
     console.log(this.state)
       this.setState({isLoading: false});
     }
+    handleVotePostFormChange = event => {
+      this.setState({
+        [event.target.id]: event.target.value
+        });
+    }
+
+
+    handleVotePostFormSubmit = async event => {
+      event.preventDefault();
+      this.setState({isLoading: true});
+      this.setState({
+        stock:this.state.stock,
+        ticker:this.state.ticker,
+        pitchAttachment:this.state.pitchAttachment
+      });
+
+      console.log(this.state)
+        this.setState({isLoading: false});
+      }
 
   render() {
     const announcementPostFormProps = {
@@ -44,12 +68,23 @@ export default class  Post extends Component {
       handleAnnouncementPostFormSubmit:this.handleAnnouncementPostFormSubmit,
       handleAnnouncementPostChange:this.handleAnnouncementPostChange
     };
+    const votePostFormProps = {
+      stock:this.state.stock,
+      ticker:this.state.ticker,
+      pitchAttachment:this.state.pitchAttachment,
+      isLoading: this.state.isLoading,
+      handleVotePostFormSubmit:this.handleVotePostFormSubmit,
+      handleVotePostChange:this.handleVotePostFormChange
+    };
     return(
       <div>
       <LeftNav/>
       <div className="post-view">
       <div className="announcement-post-container">
         <AnnouncementPostForm {...announcementPostFormProps}/>
+      </div>
+      <div className="vote-post-container">
+        <VotePostForm {...votePostFormProps}/>
       </div>
       </div>
       </div>
