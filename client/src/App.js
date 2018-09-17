@@ -4,6 +4,7 @@ import Routes from './Routes';
 import {Auth} from 'aws-amplify';
 import {withRouter} from 'react-router-dom';
 
+const authReqPages = ['/dashboard','/post','/vote'];
 class App extends Component {
   constructor(props){
     super(props);
@@ -17,7 +18,9 @@ class App extends Component {
     try{
       if (await Auth.currentSession()) {
         this.userHasAuthenticated(true);
-        this.props.history.push('/dashboard');
+        if(!authReqPages.includes(this.props.history.location.pathname)){
+          this.props.history.push('/dashboard');
+        }
       }
     }
     catch(e) {

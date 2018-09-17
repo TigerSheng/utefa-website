@@ -30,6 +30,16 @@ export class  LeftNav extends Component {
             <p>Home</p>
           </div>
           </a>
+          <a href="/vote">
+          <div className="LeftNav-Item">
+            <p>Vote</p>
+          </div>
+          </a>
+          <a href="/post">
+          <div className="LeftNav-Item">
+            <p>Post</p>
+          </div>
+          </a>
           <a href="/">
           <div className="LeftNav-Item" onClick={this.handleLogout}>
             <p>Log Out</p>
