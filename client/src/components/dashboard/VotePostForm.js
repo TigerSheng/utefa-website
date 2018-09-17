@@ -27,7 +27,7 @@ export class VotePostForm extends Component {
             type="Text"
             onChange={this.props.handleVotePostChange}
             value={this.props.stock}
-            placeholder="Stock name (ex. Apple)"
+            placeholder="Ex. Apple Inc."
           />
           <FormControl.Feedback />
         </FormGroup>
@@ -38,7 +38,7 @@ export class VotePostForm extends Component {
             type="Text"
             onChange={this.props.handleVotePostChange}
             value={this.props.ticker}
-            placeholder="Stock ticker (ex. APPL)"
+            placeholder="Ex. APPL"
           />
           <FormControl.Feedback />
         </FormGroup>
