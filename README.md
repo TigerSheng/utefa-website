@@ -1,6 +1,20 @@
 # UTEFA Website
 Backend API and frontend client for our website. Here are instructions on how to init and run the project after pulling this repo.
 
+## Table of Contents
+- [Prerequisites](#prerequisites)
+  - [Create an IAM User](#create-an-iam-user)
+  - [Configure AWS Credentials Locally](#configure-aws-credentials-locally)
+- [API](#API)
+  - [Installing Dependencies](#installing-dependencies)
+  - [Create DynamoDB Table](#create-dynamodb-table)
+  - [Testing API](#testing-api)
+  - [Deployment with Claudia](#deployment-with-claudia)
+  - [Testing API Authorizations](#testing-api-authorizations)
+- [Client](#client)
+  - [Configure AWS Cognito](#congigure-cognito)
+  - [Testing Client](#testing-client)
+
 ## Prerequisites
 Since our app was built on AWS, an AWS account is needed for setting up the test environment.
 
@@ -58,6 +72,11 @@ Any routes will be appended after http://localhost:3001. Please note that you wi
 Deploying on Claudia can be as easy as [this](https://claudiajs.com/tutorials/serverless-express.html).
 
 After deployment, the API will serve in the form of a Lambda function on AWS, and you will be able to access it from a Lambda url.
+
+**Note:** Authorizations settings under "ANY" method has to be set to "AWS_IAM" to secure the API.
+
+### Testing API Authorizations
+After deployed on AWS API Gateway and set up the IAM authorizations, we can test our API using either POSTMAN or npm package [aws-api-gateway-cli-test](https://www.npmjs.com/package/aws-api-gateway-cli-test).
 
 ## Client
 Our Client is written in React.js with identification support from AWS Cognito. The following instructions will help to set up a local testing environment.
