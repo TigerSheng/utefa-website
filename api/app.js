@@ -7,6 +7,15 @@ const bodyParser = require('body-parser');
 const uuid = require('uuid/v1');
 
 app.use(bodyParser.json());
+//handle CORS response headers
+app.use((req, res, next) => {
+    res.set({
+      'Access-Control-Allow-Origin': '*',
+      "Access-Control-Allow-Credentials": true
+    });
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, X-Amz-Security-Token, x-amz-date, Authorization")
+    next();
+});
 
 //functions to check if certain element exists
 app.param('userId', (req, res, next, id) => {
@@ -42,7 +51,7 @@ app.post('/notes', (req, res, next) => {
   const params = {
     TableName: 'notes',
     Item: {
-      userId: "1",
+      userId: req.body.userId,
       noteId: uuid(),
       content: req.body.content,
       attachment: req.body.attachment,
@@ -64,7 +73,7 @@ app.get('/notes', (req, res, next) => {
     if(err)
       return next(err);
     if(data)
-      res.send(data.Items);
+      res.status(200).send(data.Items);
     else {
       res.send("nothing");
     }
