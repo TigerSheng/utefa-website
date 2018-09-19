@@ -7,65 +7,18 @@ export default class AnnouncementBlock extends Component {
   constructor(props){
     super(props);
     this.state = {
-      announcementData:[
-        {
-          title:"this is the title",
-          date:"2018-09-12",
-          time:"12:30 PM",
-          content:"this will be all the content that you could ever want and more. I wonder what the limt will be.",
-          owner:"Amr Mahmoud"
-        },
-        {
-          title:"this is the other title",
-          date:"2018-09-02",
-          time:"11:30 PM",
-          content:"this will be all the content that you could ever want and more. I wonder what the limt will be.",
-          owner:"John Mahmoud"
-        }
+      announcements:[
       ]
     };
   }
 
   async componentDidMount() {
-    // this.setState({
-    //   announcementsIsHidden:false,
-    //   announcementData: [
-    //     {
-    //       title:"this is the title",
-    //       date:"2018-09-12",
-    //       time:"12:30 PM",
-    //       content:"this will be all the content that you could ever want and more. I wonder what the limt will be.",
-    //       owner:"Amr Mahmoud"
-    //     },
-    //     {
-    //       title:"this is the other title",
-    //       date:"2018-09-02",
-    //       time:"11:30 PM",
-    //       content:"this will be all the content that you could ever want and more. I wonder what the limt will be.",
-    //       owner:"John Mahmoud"
-    //     },
-    //     {
-    //       title:"this is the other title",
-    //       date:"2018-09-02",
-    //       time:"11:30 PM",
-    //       content:"this will be all the content that you could ever want and more. I wonder what the limt will be.",
-    //       owner:"John Mahmoud"
-    //     }
-    //   ]
-    // });
-
-
     try{
-      window.LOG_LEVEL = 'DEBUG'
-      const init = {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        }
-      }
-      const notes = await API.get('notes', '/notes', init);
-      console.log(notes);
+
+      const announcements = await this.updateData();
+      console.log(announcements);
       this.setState({
-        announcementData: notes,
+        announcements,
         announcementsIsHidden: false
       });
     }catch(e){
@@ -81,25 +34,37 @@ export default class AnnouncementBlock extends Component {
     });
   }
 
+  updateData(){
+    const init = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      }
+    }
+    return API.get('notes', '/notes', init)
+  }
+
   render(){
     return(
       <div>
-        <div className="banner" onClick={this.toggleAnnouncementView.bind(this)}>Announcements</div>
+        <div className="banner" onClick={this.toggleAnnouncementView.bind(this)}>
+          Announcements
+        </div>
         <div className={this.state.announcementsIsHidden ? 'hidden' : ''}>
           {
-            this.state.announcementData.map((index, i) => {
-              if(this.state.announcementData[i]
-                && this.state.announcementData[i].owner !== "") {
+            this.state.announcements.map((index, i) => {
+              if(this.state.announcements[i]) {
                 return(
                   <div key={i}>
-                    <Announcement announcementData={this.state.announcementData[i]}/>
+                    <Announcement announcementData={this.state.announcements[i]}/>
                   </div>
                 )
               }else return(null);
             })
           }
           <div className="button-container">
-            <button onClick= {this.updateData}>Load More</button>
+            <button onClick= {this.updateData}>
+              Load More
+            </button>
           </div>
         </div>
       </div>
