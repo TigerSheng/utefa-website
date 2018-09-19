@@ -5,7 +5,8 @@
   border:.1em solid grey;
   padding: 1em;
   margin: 0 auto;
-  margin-bottom: 10px
+  margin-bottom: 25px;
+  box-shadow: 2px 5px #888888;
 }
 .voting-yes-no-vote{
   text-align: center;
@@ -16,23 +17,32 @@
   padding: 5px;
 }
 .vote-yes{
-  background-color: green;
+  width: 100px;
 }
 .vote-no{
-  background-color: red;
+    width: 100px;
 }
 
 .voters-no{
+
   background-color: red;
   padding: 5px;
 }
 .vote-bar{
-  display:flex;
+  /* display:flex; */
   height:auto;
   text-align: center;
   color:white;
-
+  margin-bottom: 10px;
 }
 .voting-stock-title{
   margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.voting-download-label{
+  margin-bottom:20px;
+}
+.voting-download-link{
+  color: blue;
 }
