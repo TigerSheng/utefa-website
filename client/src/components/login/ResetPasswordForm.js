@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  HelpBlock,
   FormGroup,
   FormControl,
   ControlLabel,
@@ -24,10 +23,6 @@ const passwordMatch = (
 );
 
 export default class ResetPasswordForm extends Component {
-  constructor(props){
-    super(props);
-  }
-
   //first sign-in new password page
   render() {
     return(

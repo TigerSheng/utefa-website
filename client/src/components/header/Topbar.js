@@ -7,7 +7,7 @@ export class Topbar extends Component {
     return (<div id="top" className="top1">
     <div className="logo-container">
       <Link to='/'>
-        <img id="logo" className="animated fadeInDown" src='./images/UTEFA_LOGO.png'/>
+        <img alt="logo" id="logo" className="animated fadeInDown" src='./images/UTEFA_LOGO.png'/>
       </Link>
       </div>
     </div>);

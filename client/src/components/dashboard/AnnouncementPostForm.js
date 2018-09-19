@@ -1,21 +1,13 @@
 import React, { Component } from "react";
 import {
-  HelpBlock,
   FormGroup,
   FormControl,
-  ControlLabel,
-  Alert,
-  Popover,
-  OverlayTrigger
+  ControlLabel
 } from "react-bootstrap";
 import LoaderButton from '../LoaderButton';
 import "./AnnouncementPostForm.css";
 
 export class AnnouncementPostForm extends Component {
-  constructor(props){
-    super(props);
-  }
-
   render() {
     return(
       <div>
@@ -35,7 +27,7 @@ export class AnnouncementPostForm extends Component {
           <ControlLabel>Content</ControlLabel>
           <FormControl componentClass="textarea"
           onChange={this.props.handleAnnouncementPostChange}
-           placeholder="Place content here..." 
+           placeholder="Place content here..."
            value={this.props.content}/>
           <FormControl.Feedback />
         </FormGroup>

@@ -31,7 +31,7 @@ export class OurAlumni extends Component {
       <div className="wow fadeIn" data-wow-delay="0.4s" id="alumni">
         <div className="border-w">
           <div className="line"></div>
-          <div className="key"><img src="css/key2.png"/></div>
+          <div className="key"><img alt="placeholder" src="css/key2.png"/></div>
           <div className="heading">Our Alumni</div>
           <div className="emphasis">
             Check out where our alumni can be found.

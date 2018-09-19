@@ -23,10 +23,6 @@ const passwordMatch = (
 );
 
 export default class NewPasswordForm extends Component {
-  constructor(props){
-    super(props);
-  }
-
   //form with new password
   render() {
     return (

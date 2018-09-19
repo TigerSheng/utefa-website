@@ -4,18 +4,12 @@ import {
   FormGroup,
   FormControl,
   ControlLabel,
-  Alert,
-  Popover,
-  OverlayTrigger
+  Alert
 } from "react-bootstrap";
 import LoaderButton from '../LoaderButton';
 import "./Login.css";
 
 export default class LoginForm extends Component {
-  constructor(props){
-    super(props);
-  }
-
   //normal login page
   render() {
     return(

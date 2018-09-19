@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Post.css'
-import {Auth} from 'aws-amplify';
 import {LeftNav} from './LeftNav'
 import {AnnouncementPostForm} from './AnnouncementPostForm'
 

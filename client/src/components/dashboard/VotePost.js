@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import './VotePost.css'
 
 export class  VotePost extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-
-
   render(){
     return(
       <div className="voting-container">

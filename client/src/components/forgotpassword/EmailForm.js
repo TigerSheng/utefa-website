@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
 import {
-  HelpBlock,
   FormGroup,
   FormControl,
   ControlLabel,
-  Alert,
-  Popover,
-  OverlayTrigger
+  Alert
 } from "react-bootstrap";
 import LoaderButton from '../LoaderButton';
 
 //form with username
 export default class EmailForm extends Component {
-  constructor(props){
-    super(props);
-  }
-
   render() {
     return (
       <form onSubmit={this.props.handleSubmit}>

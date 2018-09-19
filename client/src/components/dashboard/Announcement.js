@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import './Announcement.css'
 
 export class  Announcement extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-
-
   render(){
     return(
       <div className="announcement-container">

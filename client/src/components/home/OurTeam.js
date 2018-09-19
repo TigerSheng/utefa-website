@@ -28,7 +28,7 @@ export class OurTeam extends Component {
       <div className="wow fadeIn" data-wow-delay="0.4s"  id="team">
         <div className="border-g">
           <div className="line-g"></div>
-          <div className="key3"><img src="css/key3.png"/></div>
+          <div className="key3"><img alt='placeholder' src="css/key3.png"/></div>
           <div className="heading-w">Our Team</div>
           <div className="emphasis-b">Meet our team of executives for 2018-2019.</div>
           <div className="t-cont">

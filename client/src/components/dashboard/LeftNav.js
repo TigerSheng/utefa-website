@@ -21,7 +21,7 @@ export class  LeftNav extends Component {
       <div className="LeftNav">
       <div className="side-logo-container">
         <Link to='/dashboard'>
-          <img id="leftNavLogo" className="animated fadeInLeft" src='./images/UTEFA_LOGO.png'/>
+          <img id="leftNavLogo" alt="logo" className="animated fadeInLeft" src='./images/UTEFA_LOGO.png'/>
         </Link>
         </div>
         <div className="LeftNav-Container">

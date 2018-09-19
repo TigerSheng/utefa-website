@@ -1,21 +1,13 @@
 import React, { Component } from "react";
 import {
-  HelpBlock,
   FormGroup,
   FormControl,
-  ControlLabel,
-  Alert,
-  Popover,
-  OverlayTrigger
+  ControlLabel
 } from "react-bootstrap";
 import LoaderButton from '../LoaderButton';
 import "./VotePostForm.css";
 
 export class VotePostForm extends Component {
-  constructor(props){
-    super(props);
-  }
-
   render() {
     return(
       <div>

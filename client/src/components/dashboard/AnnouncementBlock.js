@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Auth, API} from 'aws-amplify';
+import {API} from 'aws-amplify';
 import {Announcement} from './Announcement';
 import './Dashboard.css';
 
@@ -89,13 +89,13 @@ export default class AnnouncementBlock extends Component {
           {
             this.state.announcementData.map((index, i) => {
               if(this.state.announcementData[i]
-                && this.state.announcementData[i].owner != "") {
+                && this.state.announcementData[i].owner !== "") {
                 return(
                   <div key={i}>
                     <Announcement announcementData={this.state.announcementData[i]}/>
                   </div>
                 )
-              }
+              }else return(null);
             })
           }
           <div className="button-container">
