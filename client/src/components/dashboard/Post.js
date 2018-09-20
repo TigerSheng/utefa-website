@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Post.css'
+import {Auth, API} from 'aws-amplify';
 import {LeftNav} from './LeftNav'
 import {AnnouncementPostForm} from './AnnouncementPostForm'
 
@@ -19,6 +20,12 @@ export default class  Post extends Component {
     }
   }
 
+  componentDidMount(){
+    const a = Auth.currentAuthenticatedUser();
+    const b = a.username;
+    console.log(b);
+  }
+
   handleAnnouncementPostChange = event => {
     this.setState({
       [event.target.id]: event.target.value
@@ -29,34 +36,59 @@ export default class  Post extends Component {
   handleAnnouncementPostFormSubmit = async event => {
     event.preventDefault();
     this.setState({isLoading: true});
+
+    try {
+      await this.sendAnnouncement(
+        this.state.content
+      );
+    } catch (e) {
+      alert(e);
+    }
+    this.setState({ isLoading: false });
+  }
+
+  sendAnnouncement(content){
+    Auth.currentAuthenticatedUser().then(user => {
+      API.post('notes', '/notes', {
+        header: {
+          "Content-Type": "application/json"
+        },
+        body: {
+          "userId": user.username,
+          "content": content,
+          "attachment": null,
+          "pinned": false
+        }
+      }).then(response => {
+        console.log(response);
+        return
+      })
+      .catch(error => {
+        console.log(error)
+        return
+      })
+    });
+  }
+
+  handleVotePostFormChange = event => {
     this.setState({
-      title:this.state.title,
-      content:this.state.content,
-      attachment:this.state.attachment
+      [event.target.id]: event.target.value
+      });
+  }
+
+
+  handleVotePostFormSubmit = async event => {
+    event.preventDefault();
+    this.setState({isLoading: true});
+    this.setState({
+      stock:this.state.stock,
+      ticker:this.state.ticker,
+      pitchAttachment:this.state.pitchAttachment
     });
 
     console.log(this.state)
       this.setState({isLoading: false});
     }
-    handleVotePostFormChange = event => {
-      this.setState({
-        [event.target.id]: event.target.value
-        });
-    }
-
-
-    handleVotePostFormSubmit = async event => {
-      event.preventDefault();
-      this.setState({isLoading: true});
-      this.setState({
-        stock:this.state.stock,
-        ticker:this.state.ticker,
-        pitchAttachment:this.state.pitchAttachment
-      });
-
-      console.log(this.state)
-        this.setState({isLoading: false});
-      }
 
   render() {
     const announcementPostFormProps = {
