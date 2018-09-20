@@ -4,6 +4,7 @@ import {Auth, API} from 'aws-amplify';
 import {LeftNav} from './LeftNav'
 import {AnnouncementPostForm} from './AnnouncementPostForm'
 import {VotePostForm} from './VotePostForm'
+import { s3Upload } from "../../libs/awsLib";
 
 export default class  Post extends Component {
   constructor(props) {
@@ -12,7 +13,6 @@ export default class  Post extends Component {
       title: "",
       content: "",
       isLoading: false,
-      attachment: "",
       stock:"",
       ticker:"",
       pitchAttachment:""
@@ -30,15 +30,23 @@ export default class  Post extends Component {
       });
   }
 
+  handleAnnouncementFileChange = event => {
+    this.file = event.target.files[0];
+  }
 
   handleAnnouncementPostFormSubmit = async event => {
     event.preventDefault();
     this.setState({isLoading: true});
 
     try {
+      const attachment = this.file
+            ? await s3Upload(this.file)
+            : null;
+
       await this.sendAnnouncement(
         this.state.title,
-        this.state.content
+        this.state.content,
+        attachment
       );
     } catch (e) {
       alert(e);
@@ -55,7 +63,7 @@ export default class  Post extends Component {
   //   pinned: req.body.pinned
   // }
 
-  sendAnnouncement(title, content){
+  sendAnnouncement(title, content, attachment){
     Auth.currentAuthenticatedUser().then(user => {
       API.post('notes', '/notes', {
         header: {
@@ -66,7 +74,7 @@ export default class  Post extends Component {
           "title": title,
           "author": user.attributes.name,
           "content": content,
-          "attachment": null,
+          "attachment": attachment,
           "pinned": false
         }
       }).then(response => {
@@ -103,7 +111,8 @@ export default class  Post extends Component {
       isLoading: this.state.isLoading,
       attachment: this.state.attachment,
       handleAnnouncementPostFormSubmit:this.handleAnnouncementPostFormSubmit,
-      handleAnnouncementPostChange:this.handleAnnouncementPostChange
+      handleAnnouncementPostChange:this.handleAnnouncementPostChange,
+      handleAnnouncementFileChange: this.handleAnnouncementFileChange
     };
     const votePostFormProps = {
       stock:this.state.stock,

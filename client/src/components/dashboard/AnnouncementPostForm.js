@@ -35,8 +35,8 @@ export class AnnouncementPostForm extends Component {
           <ControlLabel>File</ControlLabel>
           <FormControl
           type="file"
-          onChange={this.props.handleAnnouncementPostChange}
-          value={this.props.attachment}/>
+          onChange={this.props.handleAnnouncementFileChange}
+          />
           <FormControl.Feedback />
         </FormGroup>
         <LoaderButton
