@@ -54,6 +54,7 @@ export default class  Post extends Component {
   //   attachment: req.body.attachment,
   //   pinned: req.body.pinned
   // }
+
   sendAnnouncement(title, content){
     Auth.currentAuthenticatedUser().then(user => {
       API.post('notes', '/notes', {
@@ -70,10 +71,6 @@ export default class  Post extends Component {
         }
       }).then(response => {
         console.log(response);
-        return
-      })
-      .catch(error => {
-        console.log(error)
         return
       })
     });

@@ -6,7 +6,7 @@ export class  Announcement extends Component {
     return(
       <div className="announcement-container">
         <p className="announcement-title">
-
+          {this.props.announcementData.title}
         </p>
         <p className="announcement-content">
           {this.props.announcementData.content}
@@ -19,7 +19,7 @@ export class  Announcement extends Component {
             {new Date(this.props.announcementData.postedAt).toLocaleString()}
           </p>
           <p className="announcement-owner">
-            By : {this.props.announcementData.userId}
+            By : {this.props.announcementData.author}
           </p>
         </div>
       </div>
