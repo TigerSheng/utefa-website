@@ -14,7 +14,7 @@ input[type=file] {
 }
 #root{
   min-height: 100vh; /* will cover the 100% of viewport */
- overflow: hidden;
+ /* overflow: hidden; */
  display: block;
  position: relative;
  padding-bottom: 117px; /* height of your footer */
