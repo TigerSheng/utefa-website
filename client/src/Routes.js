@@ -12,6 +12,7 @@ import Forgotpassword from './components/forgotpassword/Forgotpassword';
 import Dashboard from './components/dashboard/Dashboard';
 import Post from './components/dashboard/Post';
 import Vote from './components/dashboard/Vote';
+import LearningContent from './components/dashboard/LearningContent';
 
 export default ({childProps, auth}) =>
   <Switch>
@@ -24,6 +25,8 @@ export default ({childProps, auth}) =>
     <PrivateRoute path='/post' exact component={Post}
     props={childProps} auth={auth}/>
     <PrivateRoute path='/vote' exact component={Vote}
+    props={childProps} auth={auth}/>
+    <PrivateRoute path='/learningcontent' exact component={LearningContent}
     props={childProps} auth={auth}/>
     <Route component={NotFound} />
   </Switch>;

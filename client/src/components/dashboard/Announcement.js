@@ -50,7 +50,8 @@ export class  Announcement extends Component {
             >
               {this.formatFilename(this.props.announcementData.attachment)}
             </a>
-          </div>}
+          </div>
+        }
         <div className="announcement-creation-info">
           <p className="announcement-date">
             {new Date(this.props.announcementData.postedAt).toLocaleString()}
