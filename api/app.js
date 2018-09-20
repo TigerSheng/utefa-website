@@ -53,6 +53,8 @@ app.post('/notes', (req, res, next) => {
     Item: {
       userId: req.body.userId,
       noteId: uuid(),
+      title: req.body.title,
+      author: req.body.author,
       content: req.body.content,
       attachment: req.body.attachment,
       pinned: req.body.pinned,

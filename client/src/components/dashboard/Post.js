@@ -3,7 +3,6 @@ import './Post.css'
 import {Auth, API} from 'aws-amplify';
 import {LeftNav} from './LeftNav'
 import {AnnouncementPostForm} from './AnnouncementPostForm'
-
 import {VotePostForm} from './VotePostForm'
 
 export default class  Post extends Component {
@@ -22,8 +21,7 @@ export default class  Post extends Component {
 
   componentDidMount(){
     const a = Auth.currentAuthenticatedUser();
-    const b = a.username;
-    console.log(b);
+    console.log(a);
   }
 
   handleAnnouncementPostChange = event => {
@@ -39,6 +37,7 @@ export default class  Post extends Component {
 
     try {
       await this.sendAnnouncement(
+        this.state.title,
         this.state.content
       );
     } catch (e) {
@@ -47,7 +46,15 @@ export default class  Post extends Component {
     this.setState({ isLoading: false });
   }
 
-  sendAnnouncement(content){
+  // note body: {
+  //   userId: req.body.userId,
+  //   title: req.body.title,
+  //   author: req.body.author,
+  //   content: req.body.content,
+  //   attachment: req.body.attachment,
+  //   pinned: req.body.pinned
+  // }
+  sendAnnouncement(title, content){
     Auth.currentAuthenticatedUser().then(user => {
       API.post('notes', '/notes', {
         header: {
@@ -55,6 +62,8 @@ export default class  Post extends Component {
         },
         body: {
           "userId": user.username,
+          "title": title,
+          "author": user.attributes.name,
           "content": content,
           "attachment": null,
           "pinned": false
