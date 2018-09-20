@@ -32,6 +32,10 @@
   *display: inline;
   zoom: 1;
 }
+#cssmenu > ul li:hover {
+	background: grey;	
+	background-color: rgb(210, 210, 210);
+}
 #cssmenu > ul li.right {
   float: right;
 }

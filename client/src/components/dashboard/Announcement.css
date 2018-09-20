@@ -10,9 +10,11 @@
 .announcement-title{
   font-weight: bold;
   margin-bottom: 10px;
+  text-align: center;
 }
 .announcement-content{
   margin-bottom: 10px;
+  /* text-indent: 2.5em; */
 }
 .announcement-creation-info{
   display:flex;
