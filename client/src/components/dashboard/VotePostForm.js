@@ -17,9 +17,10 @@ export class VotePostForm extends Component {
           <FormControl
             autoFocus
             type="Text"
+            className= "stock-name-input"
             onChange={this.props.handleVotePostChange}
             value={this.props.stock}
-            placeholder="Ex. Apple Inc."
+            placeholder="EX. Apple Inc."
           />
           <FormControl.Feedback />
         </FormGroup>
@@ -28,9 +29,10 @@ export class VotePostForm extends Component {
           <FormControl
             autoFocus
             type="Text"
+            className="stock-ticker-input"
             onChange={this.props.handleVotePostChange}
             value={this.props.ticker}
-            placeholder="Ex. APPL"
+            placeholder="EX. APPL"
           />
           <FormControl.Feedback />
         </FormGroup>
