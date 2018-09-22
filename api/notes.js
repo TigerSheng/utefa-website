@@ -68,7 +68,7 @@ router.get('/', (req, res, next) => {
     if(data)
       res.status(200).send(data.Items);
     else {
-      res.send("nothing");
+      res.send("empty table");
     }
   });
 });

@@ -7,7 +7,6 @@ const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
 //helper function
 const _MS_PER_DAY = 1000 * 60 * 60 * 24;
-
 // a and b are javascript Date objects
 function dateDiffInDays(a, b) {
   // Discard the time and time-zone information.
@@ -83,7 +82,12 @@ router.put('/vote/:voteId/:options/:userId', (req, res, next) => {
     list = req.vote.yes;
   else
     list = req.vote.no;
-  list.push(req.params.userId);
+  //place vote if voter is not in original list
+  if(list.indexOf(req.params.userId) === -1)
+    list.push(req.params.userId);
+  else {
+    return res.send("You have already voted.")
+  }
 
   let params = {
     TableName: 'votes',
@@ -110,5 +114,38 @@ router.put('/vote/:voteId/:options/:userId', (req, res, next) => {
     }
   })
 })
+
+// GET :/votes
+router.get('/', (req, res, next) => {
+  dynamoDB.scan({
+    TableName: 'votes',
+    Limit: 100
+  }, (err, data) => {
+    if(err)
+      return next(err);
+    if(data)
+      res.status(200).send(data.Items);
+    else {
+      res.send("empty table");
+    }
+  });
+})
+
+router.delete('/:voteId', (req, res, next) => {
+  const params = {
+    Key: {
+      voteId: req.voteId
+    },
+    TableName: 'votes'
+  };
+  dynamoDB.delete(params, (err, data) => {
+    if(err){
+      return next(err);
+    }
+    else{
+      res.status(204).send('deleted');
+    }
+  });
+});
 
 module.exports = router
