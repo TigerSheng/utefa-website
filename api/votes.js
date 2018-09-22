@@ -5,6 +5,18 @@ const AWS = require('aws-sdk');
 AWS.config.update({region: 'us-east-2'});
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
+//helper function
+const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+
+// a and b are javascript Date objects
+function dateDiffInDays(a, b) {
+  // Discard the time and time-zone information.
+  const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+  const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+
+  return Math.floor((utc2 - utc1) / _MS_PER_DAY);
+}
+
 router.param('voteId', (req, res, next, id) => {
   req.voteId = id;
   const params = {
@@ -55,16 +67,23 @@ router.post('/create', (req, res, next) => {
 // :/votes/vote/:voteId/:options/:userId
 router.put('/vote/:voteId/:options/:userId', (req, res, next) => {
   console.log('put');
+
+  //check time <= 2 days
+  const time = new Date(req.vote.time)
+  const now = new Date(Date.now())
+  if(dateDiffInDays(time, now) > 2){
+    const error = new Error("Vote expired");
+    error.status = 400;
+    return next(error);
+  }
+
+  //make new list of voters
   let list = [];
   if(req.params.options === "yes")
     list = req.vote.yes;
   else
     list = req.vote.no;
-
-  console.log(req.params.userId);
-  console.log(list);
   list.push(req.params.userId);
-  console.log(list);
 
   let params = {
     TableName: 'votes',
