@@ -50,6 +50,7 @@ router.post('/create', (req, res, next) => {
       name: req.body.name,
       yes: [],
       no: [],
+      attachment: req.body.attachment,
       time: Date.now()
     }
   }
@@ -97,6 +98,7 @@ router.put('/vote/:voteId/:options/:userId', (req, res, next) => {
       name: req.vote.name,
       yes: req.vote.yes,
       no: req.vote.no,
+      attachment: req.vote.attachment,
       time: req.vote.time
     }
   }

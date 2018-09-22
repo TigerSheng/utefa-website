@@ -162,20 +162,19 @@ export default class  Post extends Component {
     };
     return(
       <div>
-      <LeftNav/>
-      <div className="post-view">
-      <div className="announcement-post-container">
-        <AnnouncementPostForm {...announcementPostFormProps}/>
+        <LeftNav/>
+        <div className="post-view">
+          <div className="announcement-post-container">
+            <AnnouncementPostForm {...announcementPostFormProps}/>
+          </div>
+          <div className="vote-post-container">
+            <VotePostForm {...votePostFormProps}/>
+          </div>
+          <div className="learning-content-post-container">
+            <LearningContentPostForm {...learningContentPostFormProps}/>
+          </div>
+        </div>
       </div>
-      <div className="vote-post-container">
-        <VotePostForm {...votePostFormProps}/>
-      </div>
-      <div className="learning-content-post-container">
-        <LearningContentPostForm {...learningContentPostFormProps}/>
-      </div>
-      </div>
-      </div>
-
     );
   }
 
