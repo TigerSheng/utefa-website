@@ -3,6 +3,7 @@ import './Post.css'
 import {Auth, API} from 'aws-amplify';
 import {LeftNav} from './LeftNav'
 import {AnnouncementPostForm} from './AnnouncementPostForm'
+import {LearningContentPostForm} from './LearningContentPostForm'
 import {VotePostForm} from './VotePostForm'
 import { s3Upload } from "../../libs/awsLib";
 
@@ -32,6 +33,35 @@ export default class  Post extends Component {
 
   handleAnnouncementFileChange = event => {
     this.file = event.target.files[0];
+  }
+
+  handleLearningContentPostFormSubmit = async event => {
+    event.preventDefault();
+    this.setState({isLoading: true});
+
+    // try {
+    //   const attachment = this.file
+    //         ? await s3Upload(this.file)
+    //         : null;
+    //
+    //   await this.sendAnnouncement(
+    //     this.state.title,
+    //     this.state.content,
+    //     attachment
+    //   );
+    // } catch (e) {
+    //   alert(e);
+    // }
+    this.setState({ isLoading: false });
+  }
+  handleLearningContentPostChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+      });
+  }
+
+  handleLearningContentFileChange = event => {
+    this.fileAttachment = event.target.files[0];
   }
 
   handleAnnouncementPostFormSubmit = async event => {
@@ -122,6 +152,13 @@ export default class  Post extends Component {
       handleVotePostFormSubmit:this.handleVotePostFormSubmit,
       handleVotePostChange:this.handleVotePostFormChange
     };
+    const learningContentPostFormProps = {
+      fileName:this.fileName,
+      fileAttachment: this.fileAttachment,
+      handleLearningContentPostFormSubmit:this.handleLearningContentPostFormSubmit,
+      handleLearningContentPostChange:this.handleLearningContentPostChange,
+      handleLearningContentFileChange: this.handleLearningContentFileChange
+    };
     return(
       <div>
       <LeftNav/>
@@ -131,6 +168,9 @@ export default class  Post extends Component {
       </div>
       <div className="vote-post-container">
         <VotePostForm {...votePostFormProps}/>
+      </div>
+      <div className="learning-content-post-container">
+        <LearningContentPostForm {...learningContentPostFormProps}/>
       </div>
       </div>
       </div>
