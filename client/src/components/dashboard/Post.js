@@ -155,6 +155,7 @@ export default class  Post extends Component {
     const learningContentPostFormProps = {
       fileName:this.fileName,
       fileAttachment: this.fileAttachment,
+      description:this.description,
       handleLearningContentPostFormSubmit:this.handleLearningContentPostFormSubmit,
       handleLearningContentPostChange:this.handleLearningContentPostChange,
       handleLearningContentFileChange: this.handleLearningContentFileChange

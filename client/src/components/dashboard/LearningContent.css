@@ -1,3 +1,10 @@
 .learning-content-view{
   margin-left: 15em;
+  padding: 10px;
+}
+:focus {
+  outline: 0;
+}
+.center{
+  text-align: center;
 }

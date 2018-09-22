@@ -23,6 +23,14 @@ export class LearningContentPostForm extends Component {
           />
           <FormControl.Feedback />
         </FormGroup>
+        <FormGroup controlId="description" bsSize="large">
+          <ControlLabel>Description</ControlLabel>
+          <FormControl componentClass="textarea"
+          onChange={this.props.handleLearningContentPostChange}
+           placeholder="Enter file description"
+           value={this.props.description}/>
+          <FormControl.Feedback />
+        </FormGroup>
         <FormGroup controlId="fileAttachment" bsSize="large">
           <ControlLabel>File</ControlLabel>
           <FormControl
