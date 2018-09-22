@@ -15,7 +15,7 @@ export class  Announcement extends Component {
     try{
       let attachmentURL;
       if(this.props.announcementData.attachment){
-        attachmentURL = await Storage.vault.get(this.props.announcementData.attachment);
+        attachmentURL = await Storage.get(this.props.announcementData.attachment);
       }
       console.log(attachmentURL)
       this.setState({
