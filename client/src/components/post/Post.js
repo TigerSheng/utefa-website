@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Post.css'
+import {Alert} from 'react-bootstrap'
 import {Auth, API} from 'aws-amplify';
 import {LeftNav} from '../LeftNav'
 import {AnnouncementPostForm} from './AnnouncementPostForm'
@@ -16,7 +17,8 @@ export default class  Post extends Component {
       isLoading: false,
       stock:"",
       ticker:"",
-      pitchAttachment:""
+      pitchAttachment:"",
+      postSuccess: null
     }
   }
 
@@ -27,37 +29,13 @@ export default class  Post extends Component {
 
   handleAnnouncementPostChange = event => {
     this.setState({
-      [event.target.id]: event.target.value
-      });
+      [event.target.id]: event.target.value,
+      postSuccess: null
+    });
   }
 
   handleFileChange = event => {
     this.file = event.target.files[0];
-  }
-
-  handleLearningContentPostFormSubmit = async event => {
-    event.preventDefault();
-    this.setState({isLoading: true});
-
-    // try {
-    //   const attachment = this.file
-    //         ? await s3Upload(this.file)
-    //         : null;
-    //
-    //   await this.sendAnnouncement(
-    //     this.state.title,
-    //     this.state.content,
-    //     attachment
-    //   );
-    // } catch (e) {
-    //   alert(e);
-    // }
-    this.setState({ isLoading: false });
-  }
-  handleLearningContentPostChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-      });
   }
 
   handleAnnouncementPostFormSubmit = async event => {
@@ -73,12 +51,14 @@ export default class  Post extends Component {
         this.state.title,
         this.state.content,
         attachment
-      );
-      this.file = null;
+      )
     } catch (e) {
-      alert(e);
+      console.log(e);
+      this.setState({postSuccess: false})
     }
-    this.setState({ isLoading: false });
+    this.setState({
+      isLoading: false
+    });
   }
 
   // note body: {
@@ -106,6 +86,12 @@ export default class  Post extends Component {
         }
       }).then(response => {
         console.log(response);
+        this.setState({
+          title: "",
+          content: "",
+          attachment: "",
+          postSuccess: true
+        })
         return
       })
     });
@@ -129,6 +115,18 @@ export default class  Post extends Component {
 
     console.log(this.state)
     this.setState({isLoading: false});
+  }
+
+
+  handleLearningContentPostFormSubmit = async event => {
+    event.preventDefault();
+    this.setState({isLoading: true});
+    this.setState({ isLoading: false });
+  }
+  handleLearningContentPostChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
   }
 
   render() {
@@ -158,11 +156,22 @@ export default class  Post extends Component {
       handleLearningContentPostChange:this.handleLearningContentPostChange,
       handleLearningContentFileChange: this.handleFileChange
     };
+
     return(
       <div>
         <LeftNav/>
         <div className="post-view">
           <div className="announcement-post-container">
+            {this.state.postSuccess
+              && <Alert className="Alert" bsStyle='success'>
+                  Your have successfully posted an announcement.
+                </Alert>
+            }
+            {this.state.postSuccess === false
+              && <Alert className="Alert" bsStyle="danger">
+                  Something went wrong. Please try again,
+                </Alert>
+            }
             <AnnouncementPostForm {...announcementPostFormProps}/>
           </div>
           <div className="vote-post-container">

@@ -35,7 +35,6 @@ export class  Announcement extends Component {
     event.preventDefault()
     try {
       this.deleteAnnouncement();
-      window.location.reload();
     }catch(e){
       alert(e);
     }
@@ -46,7 +45,7 @@ export class  Announcement extends Component {
       API.del('notes', '/notes/' + user.username + "/" + this.props.announcementData.noteId)
         .then(response => {
           console.log(response);
-          return
+          return window.location.reload();
         })
     })
   }
