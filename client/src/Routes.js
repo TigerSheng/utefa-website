@@ -10,9 +10,9 @@ import Login from './components/login/Login';
 import NotFound from './components/NotFound';
 import Forgotpassword from './components/forgotpassword/Forgotpassword';
 import Dashboard from './components/dashboard/Dashboard';
-import Post from './components/dashboard/Post';
-import Vote from './components/dashboard/Vote';
-import LearningContent from './components/dashboard/LearningContent';
+import Post from './components/post/Post';
+import Vote from './components/vote/Vote';
+import LearningContent from './components/learningcontent/LearningContent';
 
 export default ({childProps, auth}) =>
   <Switch>

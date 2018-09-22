@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Vote.css'
-import {LeftNav} from './LeftNav'
+import {LeftNav} from '../LeftNav'
 import {VotePost} from './VotePost'
 
 

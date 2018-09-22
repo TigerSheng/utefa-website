@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {API, Storage} from 'aws-amplify';
+import {Storage} from 'aws-amplify';
 import './Announcement.css'
 
 export class  Announcement extends Component {

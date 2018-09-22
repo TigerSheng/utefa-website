@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {LeftNav} from './LeftNav'
+import {LeftNav} from '../LeftNav'
 import './LearningContent.css'
 import {LearningContentItem} from './LearningContentItem'
 import ReactTable from "react-table";
