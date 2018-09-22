@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser');
 const notes = require('./notes')
+const votes = require('./votes')
 
 app.use(bodyParser.json());
 //handle CORS response headers
@@ -19,6 +20,8 @@ app.get('/', (req, res, next) => {
 });
 
 app.use('/notes', notes);
+
+app.use('/votes', votes);
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;

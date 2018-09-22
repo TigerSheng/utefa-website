@@ -53,13 +53,16 @@ router.post('/', (req, res, next) => {
     if(err)
       return next(error);
     else{
-      res.send("post successful");
+      res.status(201).send("post successful");
     }
   });
 });
 
 router.get('/', (req, res, next) => {
-  dynamoDB.scan({TableName: 'notes'}, (err, data) => {
+  dynamoDB.scan({
+    TableName: 'notes',
+    Limit: 100
+  }, (err, data) => {
     if(err)
       return next(err);
     if(data)
