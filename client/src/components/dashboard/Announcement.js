@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Storage} from 'aws-amplify';
+import {Auth, API, Storage} from 'aws-amplify';
 import './Announcement.css'
 
 export class  Announcement extends Component {
@@ -9,6 +9,7 @@ export class  Announcement extends Component {
     this.state = {
       attachmentURL: null
     }
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   async componentDidMount() {
@@ -17,7 +18,6 @@ export class  Announcement extends Component {
       if(this.props.announcementData.attachment){
         attachmentURL = await Storage.get(this.props.announcementData.attachment);
       }
-      console.log(attachmentURL)
       this.setState({
         attachmentURL
       });
@@ -29,6 +29,26 @@ export class  Announcement extends Component {
 
   formatFilename(str) {
     return str.replace(/^\w+-/, "");
+  }
+
+  handleDelete = event => {
+    event.preventDefault()
+    try {
+      this.deleteAnnouncement();
+      window.location.reload();
+    }catch(e){
+      alert(e);
+    }
+  }
+
+  deleteAnnouncement(){
+    Auth.currentAuthenticatedUser().then(user => {
+      API.del('notes', '/notes/' + user.username + "/" + this.props.announcementData.noteId)
+        .then(response => {
+          console.log(response);
+          return
+        })
+    })
   }
 
   render(){
@@ -59,6 +79,11 @@ export class  Announcement extends Component {
           <p className="announcement-owner">
             By : {this.props.announcementData.author}
           </p>
+        </div>
+        <div className="announcement-delete">
+          <a onClick={this.handleDelete}>
+            Delete Post
+          </a>
         </div>
       </div>
 

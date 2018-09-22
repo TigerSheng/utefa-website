@@ -9,7 +9,7 @@ export default class Dashboard extends Component {
       <div>
         <LeftNav/>
         <div className="main-view">
-          <AnnouncementBlock />
+          <AnnouncementBlock history={this.props.history}/>
         </div>
       </div>
     );

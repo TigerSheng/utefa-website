@@ -31,7 +31,7 @@ export default class  Post extends Component {
       });
   }
 
-  handleAnnouncementFileChange = event => {
+  handleFileChange = event => {
     this.file = event.target.files[0];
   }
 
@@ -60,10 +60,6 @@ export default class  Post extends Component {
       });
   }
 
-  handleLearningContentFileChange = event => {
-    this.fileAttachment = event.target.files[0];
-  }
-
   handleAnnouncementPostFormSubmit = async event => {
     event.preventDefault();
     this.setState({isLoading: true});
@@ -78,6 +74,7 @@ export default class  Post extends Component {
         this.state.content,
         attachment
       );
+      this.file = null;
     } catch (e) {
       alert(e);
     }
@@ -117,7 +114,7 @@ export default class  Post extends Component {
   handleVotePostFormChange = event => {
     this.setState({
       [event.target.id]: event.target.value
-      });
+    });
   }
 
 
@@ -131,8 +128,8 @@ export default class  Post extends Component {
     });
 
     console.log(this.state)
-      this.setState({isLoading: false});
-    }
+    this.setState({isLoading: false});
+  }
 
   render() {
     const announcementPostFormProps = {
@@ -142,7 +139,7 @@ export default class  Post extends Component {
       attachment: this.state.attachment,
       handleAnnouncementPostFormSubmit:this.handleAnnouncementPostFormSubmit,
       handleAnnouncementPostChange:this.handleAnnouncementPostChange,
-      handleAnnouncementFileChange: this.handleAnnouncementFileChange
+      handleAnnouncementFileChange: this.handleFileChange
     };
     const votePostFormProps = {
       stock:this.state.stock,
@@ -150,7 +147,8 @@ export default class  Post extends Component {
       pitchAttachment:this.state.pitchAttachment,
       isLoading: this.state.isLoading,
       handleVotePostFormSubmit:this.handleVotePostFormSubmit,
-      handleVotePostChange:this.handleVotePostFormChange
+      handleVotePostChange:this.handleVotePostFormChange,
+      handleVoteFileChange:this.handleFileChange
     };
     const learningContentPostFormProps = {
       fileName:this.fileName,
@@ -158,7 +156,7 @@ export default class  Post extends Component {
       description:this.description,
       handleLearningContentPostFormSubmit:this.handleLearningContentPostFormSubmit,
       handleLearningContentPostChange:this.handleLearningContentPostChange,
-      handleLearningContentFileChange: this.handleLearningContentFileChange
+      handleLearningContentFileChange: this.handleFileChange
     };
     return(
       <div>

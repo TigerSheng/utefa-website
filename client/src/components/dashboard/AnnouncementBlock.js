@@ -14,9 +14,9 @@ export default class AnnouncementBlock extends Component {
 
   async componentDidMount() {
     try{
-
       const announcements = await this.updateData();
       console.log(announcements);
+      announcements.reverse();
       this.setState({
         announcements,
         announcementsIsHidden: false
@@ -55,7 +55,10 @@ export default class AnnouncementBlock extends Component {
               if(this.state.announcements[i]) {
                 return(
                   <div key={i}>
-                    <Announcement announcementData={this.state.announcements[i]}/>
+                    <Announcement
+                      announcementData={this.state.announcements[i]}
+                      history={this.props.history}
+                    />
                   </div>
                 )
               }else return(null);

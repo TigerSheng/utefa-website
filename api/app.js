@@ -9,7 +9,8 @@ app.use(bodyParser.json());
 app.use((req, res, next) => {
     res.set({
       'Access-Control-Allow-Origin': '*',
-      "Access-Control-Allow-Credentials": true
+      "Access-Control-Allow-Credentials": true,
+      "Access-Control-Allow-Methods": "DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT"
     });
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, X-Amz-Security-Token, x-amz-date, Authorization")
     next();
