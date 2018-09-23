@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import {API} from 'aws-amplify';
 import {Announcement} from './Announcement';
 import './Dashboard.css';
+import quickSort from "./sort"
 
 export default class AnnouncementBlock extends Component {
   constructor(props){
     super(props);
     this.state = {
-      announcements:[
-      ]
+      announcements:[]
     };
   }
 
@@ -16,6 +16,7 @@ export default class AnnouncementBlock extends Component {
     try{
       const announcements = await this.updateData();
       console.log(announcements);
+      quickSort(announcements, 0, announcements.length-1)
       announcements.reverse();
       this.setState({
         announcements,
