@@ -17,24 +17,26 @@ function dateDiffInDays(a, b) {
   return Math.floor((utc2 - utc1) / _MS_PER_DAY);
 }
 
-
 export class VotePost extends Component {
   constructor(props){
     super(props);
     this.file = null;
     this.state = {
       attachmentURL: null,
-      voted: false
+      voted: null
     }
     this.voteYes = this.voteYes.bind(this);
     this.voteNo = this.voteNo.bind(this);
-    Auth.currentAuthenticatedUser().then(user => {
-      this.setState({userId: user.username})
-    })
   }
 
   async componentDidMount() {
     try{
+      Auth.currentAuthenticatedUser().then(user => {
+        if(this.props.votePostData.yes.includes(user.username)
+          || this.props.votePostData.no.includes(user.username))
+          this.setState({voted: true})
+        else this.setState({voted: false})
+      })
       let attachmentURL;
       if(this.props.votePostData.attachment){
         attachmentURL = await Storage.get(this.props.votePostData.attachment)
@@ -42,9 +44,6 @@ export class VotePost extends Component {
       this.setState({
         attachmentURL
       })
-      if(!this.props.votePostData.yes.includes(this.state.userId)
-        && !this.props.votePostData.no.includes(this.state.userId))
-        this.setState({ voted: true })
     }catch(e){
       console.log(e)
       alert(e)
@@ -55,10 +54,12 @@ export class VotePost extends Component {
   //options yes for yes, no for no
   voteYes(){
     try{
-      API.put('api', '/votes/vote/' + this.props.votePostData.voteId + '/yes/'
-      + this.state.userId).then(response => {
-        console.log(response)
-        window.location.reload()
+      Auth.currentAuthenticatedUser().then(user => {
+        API.put('api', '/votes/vote/' + this.props.votePostData.voteId + '/yes/'
+        + user.username).then(response => {
+          console.log(response)
+          window.location.reload()
+        })
       })
     }catch(e){
       console.log(e)
@@ -68,10 +69,12 @@ export class VotePost extends Component {
 
   voteNo(){
     try{
-      API.put('api', '/votes/vote/' + this.props.votePostData.voteId + '/no/'
-      + this.state.userId).then(response => {
-        console.log(response)
-        window.location.reload()
+      Auth.currentAuthenticatedUser().then(user => {
+        API.put('api', '/votes/vote/' + this.props.votePostData.voteId + '/no/'
+        + user.username).then(response => {
+          console.log(response)
+          window.location.reload()
+        })
       })
     }catch(e){
       console.log(e)
@@ -82,25 +85,21 @@ export class VotePost extends Component {
   renderVote(){
     const now = new Date(Date.now())
     const time = new Date(this.props.votePostData.time)
-    if(dateDiffInDays(time, now) <= 2){
-      if(!this.state.voted){
-        return(
-          <div className= 'voting-yes-no-vote'>
-            <Button bsStyle="success" className="vote-yes" onClick={this.voteYes}>Yes</Button> <Button bsStyle="danger" onClick={this.voteNo} className="vote-no">No</Button>
-          </div>
-        )
-      }else{
-        return(
-          <p>You have already voted</p>
-        )
-      }
-    }else{
+    // console.log(this.voted())
+
+    if( this.state.voted || dateDiffInDays(time, now) > 2){
       return(
         <div className='vote-bar'>
           <ProgressBar>
             <ProgressBar bsStyle="success" now={100*(this.props.votePostData.yes.length )/(this.props.votePostData.yes.length+this.props.votePostData.no.length  )}label={100*(this.props.votePostData.yes.length )/(this.props.votePostData.yes.length+this.props.votePostData.no.length  )+`%`}  />
             <ProgressBar bsStyle="danger" now={100*(this.props.votePostData.no.length )/(this.props.votePostData.yes.length+this.props.votePostData.no.length  )} label={100*(this.props.votePostData.no.length )/(this.props.votePostData.yes.length+this.props.votePostData.no.length  )+`%`} />
           </ProgressBar>
+        </div>
+      )
+    }else{
+      return(
+        <div className= 'voting-yes-no-vote'>
+          <Button bsStyle="success" className="vote-yes" onClick={this.voteYes}>Yes</Button> <Button bsStyle="danger" onClick={this.voteNo} className="vote-no">No</Button>
         </div>
       )
     }

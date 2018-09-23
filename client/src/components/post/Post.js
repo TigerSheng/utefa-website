@@ -144,8 +144,7 @@ export default class  Post extends Component {
       this.setState({
         stock: "",
         ticker: "",
-        pitchAttachment: "",
-        postAnnouncementSuccess: true
+        postvoteSuccess: true
       })
       return
     })
@@ -212,6 +211,16 @@ export default class  Post extends Component {
             </Tab>
             <Tab eventKey={2} title="Post Vote">
               <div className="vote-post-container">
+                {this.state.postVoteSuccess
+                  && <Alert className="Alert" bsStyle='success'>
+                      Your have successfully posted a vote.
+                    </Alert>
+                }
+                {this.state.postVoteSuccess === false
+                  && <Alert className="Alert" bsStyle="danger">
+                      Something went wrong. Please try again,
+                    </Alert>
+                }
                 <VotePostForm {...votePostFormProps}/>
               </div>
             </Tab>
