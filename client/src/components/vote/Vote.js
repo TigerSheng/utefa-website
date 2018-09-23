@@ -12,8 +12,6 @@ export default class Vote extends Component {
     this.state={
       voteData:[]
     }
-    this.voteYes = this.voteYes.bind(this);
-    this.voteNo = this.voteNo.bind(this);
   }
 
   async componentDidMount() {
@@ -34,14 +32,6 @@ export default class Vote extends Component {
 
   getVotes(){
     return API.get('api', '/votes')
-  }
-
-  voteYes(){
-
-  }
-
-  voteNo(){
-
   }
 
   render(){

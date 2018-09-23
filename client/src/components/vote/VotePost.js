@@ -4,7 +4,7 @@ import {
   Button,
   ProgressBar
 } from "react-bootstrap";
-import {Storage} from 'aws-amplify'
+import {Storage, Auth, API} from 'aws-amplify'
 
 //helper function
 const _MS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -25,6 +25,11 @@ export class VotePost extends Component {
     this.state = {
       attachmentURL: null
     }
+    this.voteYes = this.voteYes.bind(this);
+    this.voteNo = this.voteNo.bind(this);
+    Auth.currentAuthenticatedUser().then(user => {
+      this.setState({userId: user.username})
+    })
   }
 
   async componentDidMount() {
@@ -42,15 +47,46 @@ export class VotePost extends Component {
     }
   }
 
+  //vote by PUT at endpoint/votes/vote/:voteId/:options/:userId
+  //options yes for yes, no for no
+  voteYes(){
+    try{
+      API.put('api', '/votes/vote/' + this.props.votePostData.voteId + '/yes/'
+      + this.state.userId).then(response => {
+        console.log(response)
+        window.location.reload()
+      })
+    }catch(e){
+      console.log(e)
+      alert(e)
+    }
+  }
+
+  voteNo(){
+    try{
+      API.put('api', '/votes/vote/' + this.props.votePostData.voteId + '/no/'
+      + this.state.userId).then(response => {
+        console.log(response)
+        window.location.reload()
+      })
+    }catch(e){
+      console.log(e)
+      alert(e)
+    }
+  }
+
   renderVote(){
     const now = new Date(Date.now())
     const time = new Date(this.props.votePostData.time)
     if(dateDiffInDays(time, now) <= 2){
-      return(
-        <div className= 'voting-yes-no-vote'>
-          <Button bsStyle="success" className="vote-yes" onClick={this.props.votePostData.voteYes}>Yes</Button> <Button bsStyle="danger" onClick={this.props.votePostData.voteNo} className="vote-no">No</Button>
-        </div>
-      )
+      if(!this.props.votePostData.yes.includes(this.state.userId)
+        && !this.props.votePostData.no.includes(this.state.userId)){
+        return(
+          <div className= 'voting-yes-no-vote'>
+            <Button bsStyle="success" className="vote-yes" onClick={this.voteYes}>Yes</Button> <Button bsStyle="danger" onClick={this.voteNo} className="vote-no">No</Button>
+          </div>
+        )
+      }else return null
     }else{
       return(
         <div className='vote-bar'>
