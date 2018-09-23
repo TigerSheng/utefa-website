@@ -41,13 +41,20 @@ export class  Announcement extends Component {
   }
 
   deleteAnnouncement(){
-    Auth.currentAuthenticatedUser().then(user => {
-      API.del('api', '/notes/' + user.username + "/" + this.props.announcementData.noteId)
-        .then(response => {
-          console.log(response);
-          return window.location.reload();
-        })
-    })
+    try{
+      if(this.props.announcementData.attachment)
+        Storage.remove(this.props.announcementData.attachment)
+      Auth.currentAuthenticatedUser().then(user => {
+        API.del('api', '/notes/' + user.username + "/" + this.props.announcementData.noteId)
+          .then(response => {
+            console.log(response);
+            return window.location.reload();
+          })
+      })
+    }catch(e){
+      console.log(e)
+      alert(e)
+    }
   }
 
   render(){
