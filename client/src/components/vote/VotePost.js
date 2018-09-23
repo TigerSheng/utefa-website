@@ -23,7 +23,8 @@ export class VotePost extends Component {
     super(props);
     this.file = null;
     this.state = {
-      attachmentURL: null
+      attachmentURL: null,
+      voted: false
     }
     this.voteYes = this.voteYes.bind(this);
     this.voteNo = this.voteNo.bind(this);
@@ -41,6 +42,9 @@ export class VotePost extends Component {
       this.setState({
         attachmentURL
       })
+      if(!this.props.votePostData.yes.includes(this.state.userId)
+        && !this.props.votePostData.no.includes(this.state.userId))
+        this.setState({ voted: true })
     }catch(e){
       console.log(e)
       alert(e)
@@ -79,14 +83,17 @@ export class VotePost extends Component {
     const now = new Date(Date.now())
     const time = new Date(this.props.votePostData.time)
     if(dateDiffInDays(time, now) <= 2){
-      if(!this.props.votePostData.yes.includes(this.state.userId)
-        && !this.props.votePostData.no.includes(this.state.userId)){
+      if(!this.state.voted){
         return(
           <div className= 'voting-yes-no-vote'>
             <Button bsStyle="success" className="vote-yes" onClick={this.voteYes}>Yes</Button> <Button bsStyle="danger" onClick={this.voteNo} className="vote-no">No</Button>
           </div>
         )
-      }else return null
+      }else{
+        return(
+          <p>You have already voted</p>
+        )
+      }
     }else{
       return(
         <div className='vote-bar'>
