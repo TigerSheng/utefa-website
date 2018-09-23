@@ -19,10 +19,10 @@ export class  LeftNav extends Component {
   render() {
     return(
       <div className="LeftNav">
-      <div className="side-logo-container">
-        <Link to='/dashboard'>
-          <img id="leftNavLogo" alt="logo" src='./images/UTEFA_LOGO.png'/>
-        </Link>
+        <div className="side-logo-container">
+          <Link to='/dashboard'>
+            <img id="leftNavLogo" alt="logo" src='./images/UTEFA_LOGO.png'/>
+          </Link>
         </div>
         <div className="LeftNav-Container">
           <Link to='/dashboard'>
@@ -46,9 +46,9 @@ export class  LeftNav extends Component {
           </div>
           </Link>
           <a href="/">
-          <div className="LeftNav-Item" onClick={this.handleLogout}>
-            <p>Log Out</p>
-          </div>
+            <div className="LeftNav-Item" onClick={this.handleLogout}>
+              <p>Log Out</p>
+            </div>
           </a>
         </div>
       </div>

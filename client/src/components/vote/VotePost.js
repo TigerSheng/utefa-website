@@ -4,6 +4,7 @@ import {
   Button,
   ProgressBar
 } from "react-bootstrap";
+import {Storage} from 'aws-amplify'
 
 //helper function
 const _MS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -18,6 +19,29 @@ function dateDiffInDays(a, b) {
 
 
 export class VotePost extends Component {
+  constructor(props){
+    super(props);
+    this.file = null;
+    this.state = {
+      attachmentURL: null
+    }
+  }
+
+  async componentDidMount() {
+    try{
+      let attachmentURL;
+      if(this.props.votePostData.attachment){
+        attachmentURL = await Storage.get(this.props.votePostData.attachment)
+      }
+      this.setState({
+        attachmentURL
+      })
+    }catch(e){
+      console.log(e)
+      alert(e)
+    }
+  }
+
   renderVote(){
     const now = new Date(Date.now())
     const time = new Date(this.props.votePostData.time)
@@ -43,7 +67,7 @@ export class VotePost extends Component {
     return(
       <div className="voting-container">
         <p className="voting-stock-title">{this.props.votePostData.name} ({this.props.votePostData.ticker})</p>
-        <p className="voting-download-label">If you missed the presentation: <a href={this.props.votePostData.attachment}><u className="voting-download-link" >Click to download</u></a></p>
+        <p className="voting-download-label">If you missed the presentation: <a href={this.state.attachmentURL}><u className="voting-download-link" >Click to download</u></a></p>
         {this.renderVote()}
       </div>
     );

@@ -151,7 +151,6 @@ export default class  Post extends Component {
     })
   }
 
-
   handleLearningContentPostFormSubmit = async event => {
     event.preventDefault();
     this.setState({isLoading: true});

@@ -3,9 +3,7 @@ export default function quickSort(arr, left, right){
   pivot,
   partitionIndex;
 
-  if(left <= right)
-    return;
-  else if(arr[left].time < arr[right].time){
+  if(left < right){
     pivot = right;
     partitionIndex = partition(arr, pivot, left, right);
 

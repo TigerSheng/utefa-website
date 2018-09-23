@@ -20,8 +20,9 @@ export default class Vote extends Component {
     try{
       const votes = await this.getVotes();
       console.log(votes)
-      quickSort(votes, 0, votes.length-1)
-      votes.reverse()
+      quickSort(votes, 0, votes.length-1);
+      votes.reverse();
+      console.log(votes)
       this.setState({
         voteData: votes
       })
@@ -51,7 +52,6 @@ export default class Vote extends Component {
         {
           this.state.voteData.length !== 0 && this.state.voteData.map((index, i) => {
             if(this.state.voteData[i] && this.state.voteData[i].name !== "") {
-              console.log(this.state.voteData[i])
               return(
                 <div key={i}>
                   <VotePost votePostData={this.state.voteData[i]}/>
