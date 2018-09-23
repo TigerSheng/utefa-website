@@ -144,7 +144,7 @@ export default class  Post extends Component {
       this.setState({
         stock: "",
         ticker: "",
-        postvoteSuccess: true
+        postVoteSuccess: true
       })
       return
     })
