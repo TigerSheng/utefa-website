@@ -25,26 +25,26 @@ export class  LeftNav extends Component {
         </Link>
         </div>
         <div className="LeftNav-Container">
-          <a href="/dashboard">
+          <Link to='/dashboard'>
           <div className={window.location.pathname === "/dashboard" ? "active-tab LeftNav-Item":"LeftNav-Item"}>
             <p>Home</p>
           </div>
-          </a>
-          <a href="/vote">
+          </Link>
+          <Link to='/vote'>
           <div className={window.location.pathname === "/vote" ? "active-tab LeftNav-Item":"LeftNav-Item"}>
             <p>Vote</p>
           </div>
-          </a>
-          <a href="/post">
+          </Link>
+          <Link to="/post">
           <div className={window.location.pathname === "/post" ? "active-tab LeftNav-Item":"LeftNav-Item"}>
             <p>Post</p>
           </div>
-          </a>
-          <a href="/learningcontent">
+          </Link>
+          <Link to="/learningcontent">
           <div className={window.location.pathname === "/learningcontent" ? "active-tab LeftNav-Item":"LeftNav-Item"}>
             <p>Learning Content</p>
           </div>
-          </a>
+          </Link>
           <a href="/">
           <div className="LeftNav-Item" onClick={this.handleLogout}>
             <p>Log Out</p>
