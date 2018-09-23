@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './Post.css'
-import {Alert} from 'react-bootstrap'
+import {
+  Alert,
+  Tabs,
+  Tab
+} from 'react-bootstrap'
 import {Auth, API} from 'aws-amplify';
 import {LeftNav} from '../LeftNav'
 import {AnnouncementPostForm} from './AnnouncementPostForm'
@@ -11,7 +15,7 @@ import { s3Upload } from "../../libs/awsLib";
 export default class  Post extends Component {
   constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       title: "",
       content: "",
       isLoading: false,
@@ -161,25 +165,33 @@ export default class  Post extends Component {
       <div>
         <LeftNav/>
         <div className="post-view">
-          <div className="announcement-post-container">
-            {this.state.postSuccess
-              && <Alert className="Alert" bsStyle='success'>
-                  Your have successfully posted an announcement.
-                </Alert>
-            }
-            {this.state.postSuccess === false
-              && <Alert className="Alert" bsStyle="danger">
-                  Something went wrong. Please try again,
-                </Alert>
-            }
-            <AnnouncementPostForm {...announcementPostFormProps}/>
-          </div>
-          <div className="vote-post-container">
-            <VotePostForm {...votePostFormProps}/>
-          </div>
-          <div className="learning-content-post-container">
-            <LearningContentPostForm {...learningContentPostFormProps}/>
-          </div>
+          <Tabs defaultActiveKey={1} id="post-forms">
+            <Tab eventKey={1} title="Post Announcement">
+              <div className="announcement-post-container">
+                {this.state.postSuccess
+                  && <Alert className="Alert" bsStyle='success'>
+                      Your have successfully posted an announcement.
+                    </Alert>
+                }
+                {this.state.postSuccess === false
+                  && <Alert className="Alert" bsStyle="danger">
+                      Something went wrong. Please try again,
+                    </Alert>
+                }
+                <AnnouncementPostForm {...announcementPostFormProps}/>
+              </div>
+            </Tab>
+            <Tab eventKey={2} title="Post Vote">
+              <div className="vote-post-container">
+                <VotePostForm {...votePostFormProps}/>
+              </div>
+            </Tab>
+            <Tab eventKey={3} title="Post Learning Material">
+              <div className="learning-content-post-container">
+                <LearningContentPostForm {...learningContentPostFormProps}/>
+              </div>
+            </Tab>
+          </Tabs>
         </div>
       </div>
     );

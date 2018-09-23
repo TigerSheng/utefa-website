@@ -3,7 +3,9 @@ export default function quickSort(arr, left, right){
   pivot,
   partitionIndex;
 
-  if(arr[left].postedAt < arr[right].postedAt){
+  if(left <= right)
+    return;
+  else if(arr[left].postedAt < arr[right].postedAt){
     pivot = right;
     partitionIndex = partition(arr, pivot, left, right);
 
