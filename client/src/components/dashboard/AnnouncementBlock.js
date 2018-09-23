@@ -41,7 +41,7 @@ export default class AnnouncementBlock extends Component {
         "Content-Type": "application/x-www-form-urlencoded",
       }
     }
-    return API.get('notes', '/notes', init)
+    return API.get('api', '/notes', init)
   }
 
   render(){

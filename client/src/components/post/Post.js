@@ -16,16 +16,16 @@ export default class  Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
-      content: "",
       isLoading: false,
-      stock:"",
-      ticker:"",
-      pitchAttachment:"",
-      postSuccess: null
+      postAnnouncementSuccess: null,
+      postVoteSuccess: null,
+      title:'',
+      content: '',
+      ticker:'',
+      stock: ''
     }
+    this.file = null
   }
-
   componentDidMount(){
     const a = Auth.currentAuthenticatedUser();
     console.log(a);
@@ -34,7 +34,7 @@ export default class  Post extends Component {
   handleAnnouncementPostChange = event => {
     this.setState({
       [event.target.id]: event.target.value,
-      postSuccess: null
+      postAnnouncementSuccess: null
     });
   }
 
@@ -58,25 +58,25 @@ export default class  Post extends Component {
       )
     } catch (e) {
       console.log(e);
-      this.setState({postSuccess: false})
+      this.setState({postAnnouncementSuccess: false})
     }
     this.setState({
       isLoading: false
     });
   }
 
-  // note body: {
-  //   userId: req.body.userId,
-  //   title: req.body.title,
-  //   author: req.body.author,
-  //   content: req.body.content,
-  //   attachment: req.body.attachment,
-  //   pinned: req.body.pinned
-  // }
+  /* note body: {
+    userId: req.body.userId,
+    title: req.body.title,
+    author: req.body.author,
+    content: req.body.content,
+    attachment: req.body.attachment,
+     pinned: req.body.pinned
+    } */
 
   sendAnnouncement(title, content, attachment){
     Auth.currentAuthenticatedUser().then(user => {
-      API.post('notes', '/notes', {
+      API.post('api', '/notes', {
         header: {
           "Content-Type": "application/json"
         },
@@ -94,7 +94,7 @@ export default class  Post extends Component {
           title: "",
           content: "",
           attachment: "",
-          postSuccess: true
+          postAnnouncementSuccess: true
         })
         return
       })
@@ -103,22 +103,52 @@ export default class  Post extends Component {
 
   handleVotePostFormChange = event => {
     this.setState({
-      [event.target.id]: event.target.value
+      [event.target.id]: event.target.value,
+      postVoteSuccess: null
     });
   }
 
-
+  // to post votes: POST at endpoint/votes/create
   handleVotePostFormSubmit = async event => {
     event.preventDefault();
     this.setState({isLoading: true});
-    this.setState({
-      stock:this.state.stock,
-      ticker:this.state.ticker,
-      pitchAttachment:this.state.pitchAttachment
-    });
+    try{
+      const attachment = this.file
+            ? await s3Upload(this.file)
+            : null;
 
-    console.log(this.state)
+      await this.sendVote(
+        this.state.ticker,
+        this.state.stock,
+        attachment
+      );
+    }catch(e){
+      console.log(e)
+      this.setState({postVoteSuccess: false});
+    }
     this.setState({isLoading: false});
+  }
+
+  sendVote(ticker, name, attachment) {
+    API.post('api', '/votes/create', {
+      header: {
+        "Content-Type": "application/json"
+      },
+      body: {
+        "ticker": ticker,
+        "name": name,
+        "attachment": attachment
+      }
+    }).then(response => {
+      console.log(response);
+      this.setState({
+        stock: "",
+        ticker: "",
+        pitchAttachment: "",
+        postAnnouncementSuccess: true
+      })
+      return
+    })
   }
 
 
@@ -168,12 +198,12 @@ export default class  Post extends Component {
           <Tabs defaultActiveKey={1} id="post-forms">
             <Tab eventKey={1} title="Post Announcement">
               <div className="announcement-post-container">
-                {this.state.postSuccess
+                {this.state.postAnnouncementSuccess
                   && <Alert className="Alert" bsStyle='success'>
                       Your have successfully posted an announcement.
                     </Alert>
                 }
-                {this.state.postSuccess === false
+                {this.state.postAnnouncementSuccess === false
                   && <Alert className="Alert" bsStyle="danger">
                       Something went wrong. Please try again,
                     </Alert>
