@@ -1,67 +1,66 @@
 import React, { Component } from 'react';
 import './Vote.css'
+import {API} from 'aws-amplify'
 import {LeftNav} from '../LeftNav'
 import {VotePost} from './VotePost'
+import quickSort from './sort'
 
 
 export default class Vote extends Component {
   constructor(props) {
     super(props);
     this.state={
-      voteData:[{
-        ticker:"APPL",
-        stock:"Apple",
-        votersYes:["john","mark","ada"],
-        votersNo:["nada","joel"],
-        viewer:"mark",
-        pitch:null,
-        downloadLink:"https:www.google.com",
-        voteYes: this.voteYes,
-        voteNo: this.voteNo,
-        datePosted:Date.now()
-      },{
-        ticker:"GOOGL",
-        stock:"Google",
-        votersYes:["john"],
-        viewer:"mark",
-        votersNo:["nada","joel"],
-        pitch:null,
-        voteYes: this.voteYes,
-        voteNo: this.voteNo,
-        downloadLink:"https:www.google.com",
-        datePosted:Date.now()
-      }]
+      voteData:[]
+    }
+    this.voteYes = this.voteYes.bind(this);
+    this.voteNo = this.voteNo.bind(this);
+  }
+
+  async componentDidMount() {
+    try{
+      const votes = await this.getVotes();
+      console.log(votes)
+      quickSort(votes, 0, votes.length-1)
+      votes.reverse()
+      this.setState({
+        voteData: votes
+      })
+    }catch(e){
+      console.log(e)
+      alert(e.message)
     }
   }
 
-  voteYes = async event => {
-    //potentially call the updateData function to refresh the data incase of changes (empty->not empty)
-    alert('voted yes!')
+  getVotes(){
+    return API.get('api', '/votes')
   }
-  voteNo = async event => {
-    //potentially call the updateData function to refresh the data incase of changes (empty->not empty)
-    alert('voted no!')
+
+  voteYes(){
+
   }
+
+  voteNo(){
+
+  }
+
   render(){
     return(
       <div>
-      <LeftNav/>
-
-      <div className="vote-view">
-      {
-        this.state.voteData.map((index, i) => {
-          if(this.state.voteData[i] && this.state.voteData[i].stock !== "") {
-            console.log(this.state.voteData[i])
-            return(
-              <div key={i}>
-              <VotePost votePostData={this.state.voteData[i]}/>
-              </div>
-            )
-          }else return(null);
+        <LeftNav/>
+        <div className="vote-view">
+        {
+          this.state.voteData.length !== 0 && this.state.voteData.map((index, i) => {
+            if(this.state.voteData[i] && this.state.voteData[i].name !== "") {
+              console.log(this.state.voteData[i])
+              return(
+                <div key={i}>
+                  <VotePost votePostData={this.state.voteData[i]}/>
+                </div>
+              )
+            }else return(null);
+          })
         }
-      )
-      }
-      </div>
+        </div>
       </div>
     );
   }

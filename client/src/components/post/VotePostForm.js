@@ -41,7 +41,7 @@ export class VotePostForm extends Component {
           <FormControl
           type="file"
           onChange={this.props.handleVotePostChange}
-          value={this.props.pitchAttachment}/>
+          />
           <FormControl.Feedback />
         </FormGroup>
         <LoaderButton

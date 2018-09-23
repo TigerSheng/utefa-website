@@ -42,7 +42,7 @@ export class  Announcement extends Component {
 
   deleteAnnouncement(){
     Auth.currentAuthenticatedUser().then(user => {
-      API.del('notes', '/notes/' + user.username + "/" + this.props.announcementData.noteId)
+      API.del('api', '/notes/' + user.username + "/" + this.props.announcementData.noteId)
         .then(response => {
           console.log(response);
           return window.location.reload();
