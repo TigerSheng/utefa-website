@@ -7,14 +7,24 @@ import {Link} from 'react-router-dom';
 export class  LeftNav extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isAdmin: false
+    }
     this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  componentDidMount() {
+    Auth.currentUserInfo().then(user => {
+      this.setState({
+        isAdmin: user.attributes['custom:isAdmin']
+      })
+    })
   }
 
   handleLogout = async (event) => {
     await Auth.signOut();
     this.props.userHasAuthenticated(false);
   }
-
 
   render() {
     return(
@@ -26,24 +36,24 @@ export class  LeftNav extends Component {
         </div>
         <div className="LeftNav-Container">
           <Link to='/dashboard'>
-          <div className={window.location.pathname === "/dashboard" ? "active-tab LeftNav-Item":"LeftNav-Item"}>
-            <p>Home</p>
-          </div>
+            <div className={window.location.pathname === "/dashboard" ? "active-tab LeftNav-Item":"LeftNav-Item"}>
+              <p>Home</p>
+            </div>
           </Link>
           <Link to='/vote'>
-          <div className={window.location.pathname === "/vote" ? "active-tab LeftNav-Item":"LeftNav-Item"}>
-            <p>Vote</p>
-          </div>
+            <div className={window.location.pathname === "/vote" ? "active-tab LeftNav-Item":"LeftNav-Item"}>
+              <p>Vote</p>
+            </div>
           </Link>
-          <Link to="/post">
-          <div className={window.location.pathname === "/post" ? "active-tab LeftNav-Item":"LeftNav-Item"}>
-            <p>Post</p>
-          </div>
-          </Link>
+          {this.state.isAdmin && <Link to="/post">
+            <div className={window.location.pathname === "/post" ? "active-tab LeftNav-Item":"LeftNav-Item"}>
+              <p>Post</p>
+            </div>
+          </Link>}
           <Link to="/learningcontent">
-          <div className={window.location.pathname === "/learningcontent" ? "active-tab LeftNav-Item":"LeftNav-Item"}>
-            <p>Learning Content</p>
-          </div>
+            <div className={window.location.pathname === "/learningcontent" ? "active-tab LeftNav-Item":"LeftNav-Item"}>
+              <p>Learning Content</p>
+            </div>
           </Link>
           <a href="/">
             <div className="LeftNav-Item" onClick={this.handleLogout}>
