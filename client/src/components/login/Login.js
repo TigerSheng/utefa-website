@@ -63,6 +63,11 @@ export default class Login extends Component {
             });
           }else{
             this.props.userHasAuthenticated(true);
+            Auth.currentUserInfo().then(user => {
+              if(user.attributes['custom:isAdmin']){
+                this.props.userIsAdmin(true)
+              }
+            })
             this.props.history.push('/dashboard');
           }
         });
@@ -96,6 +101,11 @@ export default class Login extends Component {
       ).then(() => {
           Auth.signIn(this.state.email, this.state.newPassword);
           this.props.userHasAuthenticated(true);
+          Auth.currentUserInfo().then(user => {
+            if(user.attributes['custom:isAdmin']){
+              this.props.userIsAdmin(true)
+            }
+          })
           this.props.history.push('/dashboard');
       });
     }catch(e){

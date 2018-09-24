@@ -97,6 +97,11 @@ export default class Forgotpassword extends Component {
       Auth.currentAuthenticatedUser()
         .then(user => console.log(user));
       this.props.userHasAuthenticated(true);
+      Auth.currentUserInfo().then(user => {
+        if(user.attributes['custom:isAdmin']){
+          this.props.userIsAdmin(true)
+        }
+      })
       this.props.history.push('/dashboard');
     }catch(e){
       console.log(e);

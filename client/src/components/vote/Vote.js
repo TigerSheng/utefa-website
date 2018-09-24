@@ -37,7 +37,7 @@ export default class Vote extends Component {
   render(){
     return(
       <div>
-        <LeftNav/>
+        <LeftNav isAdmin={this.props.isAdmin}/>
         <div className="vote-view">
         {
           this.state.voteData.length !== 0 && this.state.voteData.map((index, i) => {

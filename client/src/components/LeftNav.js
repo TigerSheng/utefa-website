@@ -7,18 +7,7 @@ import {Link} from 'react-router-dom';
 export class  LeftNav extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isAdmin: false
-    }
     this.handleLogout = this.handleLogout.bind(this);
-  }
-
-  componentDidMount() {
-    Auth.currentUserInfo().then(user => {
-      this.setState({
-        isAdmin: user.attributes['custom:isAdmin']
-      })
-    })
   }
 
   handleLogout = async (event) => {
@@ -45,7 +34,7 @@ export class  LeftNav extends Component {
               <p>Vote</p>
             </div>
           </Link>
-          {this.state.isAdmin && <Link to="/post">
+          {this.props.isAdmin && <Link to="/post">
             <div className={window.location.pathname === "/post" ? "active-tab LeftNav-Item":"LeftNav-Item"}>
               <p>Post</p>
             </div>

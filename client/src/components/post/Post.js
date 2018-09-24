@@ -13,7 +13,7 @@ export default class  Post extends Component {
   render() {
     return(
       <div>
-        <LeftNav/>
+        <LeftNav isAdmin={this.props.isAdmin}/>
         <div className="post-view">
           <Tabs defaultActiveKey={1} id="post-forms">
             <Tab eventKey={1} title="Post Announcement">

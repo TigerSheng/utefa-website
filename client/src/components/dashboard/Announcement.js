@@ -86,11 +86,11 @@ export class  Announcement extends Component {
             By : {this.props.announcementData.author}
           </p>
         </div>
-        <div className="announcement-delete">
+        {this.props.isAdmin && <div className="announcement-delete">
           <a onClick={this.handleDelete}>
             Delete Post
           </a>
-        </div>
+        </div>}
       </div>
 
     );

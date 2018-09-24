@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {API} from 'aws-amplify';
+import {Auth, API} from 'aws-amplify';
 import {Announcement} from './Announcement';
 import './Dashboard.css';
 import quickSort from "./sort"
@@ -58,7 +58,7 @@ export default class AnnouncementBlock extends Component {
                   <div key={i}>
                     <Announcement
                       announcementData={this.state.announcements[i]}
-                      history={this.props.history}
+                      isAdmin={this.props.isAdmin}
                     />
                   </div>
                 )

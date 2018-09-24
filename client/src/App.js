@@ -10,7 +10,8 @@ class App extends Component {
     super(props);
     this.state = {
       isAuthenticated: false,
-      isAuthenticating: true
+      isAuthenticating: true,
+      isAdmin: false
     };
   }
 
@@ -37,10 +38,18 @@ class App extends Component {
     });
   }
 
+  userIsAdmin = isAdmin => {
+    this.setState({
+      isAdmin
+    })
+  }
+
   render() {
     const childProps = {
       isAuthenticated: this.state.isAuthenticated,
-      userHasAuthenticated: this.userHasAuthenticated
+      userHasAuthenticated: this.userHasAuthenticated,
+      isAdmin: this.state.isAdmin,
+      userIsAdmin: this.userIsAdmin
     };
 
     return (

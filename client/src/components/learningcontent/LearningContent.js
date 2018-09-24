@@ -62,7 +62,7 @@ export default class LearningContent extends Component {
 
       return (
             <div>
-              <LeftNav/>
+              <LeftNav isAdmin={this.props.isAdmin}/>
                <div className="learning-content-view">
                 <ReactTable
                   data={data}

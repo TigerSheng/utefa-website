@@ -7,9 +7,11 @@ export default class Dashboard extends Component {
   render(){
     return(
       <div>
-        <LeftNav/>
+        <LeftNav isAdmin={this.props.isAdmin}/>
         <div className="main-view">
-          <AnnouncementBlock history={this.props.history}/>
+          <AnnouncementBlock
+          history={this.props.history}
+          isAdmin={this.props.isAdmin}/>
         </div>
       </div>
     );
