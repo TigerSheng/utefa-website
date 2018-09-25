@@ -24,6 +24,7 @@ export default class LearningContent extends Component {
           attachmentURL = Storage.get(c.file.link)
         }
         c.file.link = attachmentURL
+        c.postedAt = new Date(c.postedAt).toLocaleString()
         return c
       })
       console.log(files)
