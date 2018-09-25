@@ -55,6 +55,7 @@ export default class LearningContent extends Component {
   }
 
   render() {
+    const data=this.state.files
     const columns = [{
       Header: 'File',
       accessor: 'file',
