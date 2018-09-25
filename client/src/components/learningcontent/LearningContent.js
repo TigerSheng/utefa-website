@@ -17,8 +17,8 @@ export default class LearningContent extends Component {
   componentDidMount() {
     try{
       this.getContent().then(content => {
-        let files = []
-        console.log(content)
+        let files = [...this.state.files]
+        console.log(files)
         for(let c of content) {
           let file = c
           // file.author = c.author
@@ -27,16 +27,25 @@ export default class LearningContent extends Component {
           // file.file = {}
           // file.file.name = c.file.name
           if(c.file.link){
-            Storage.get(c.file.link).then(url =>
+            Storage.get(c.file.link).then(url =>{
               file.file.link = url
+              file.postedAt = new Date(c.postedAt).toLocaleString()
+              files.push(file)
+              console.log(files)
+              this.setState({files})
+            }
             )
+          }else{
+            file.postedAt = new Date(c.postedAt).toLocaleString()
+            files.push(file)
+            console.log(files)
+            this.setState({files})
+
           }
           // else file.file.link = null
-          file.postedAt = new Date(c.postedAt).toLocaleString()
-          files.push(file)
+
         }
-        console.log(files)
-        this.setState({files})
+
       });
     }catch(e){
       console.log(e)
