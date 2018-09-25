@@ -3,12 +3,13 @@ import {Auth, API} from 'aws-amplify';
 import {Announcement} from './Announcement';
 import './Dashboard.css';
 import quickSort from "./sort"
-
+var index = 5;
 export default class AnnouncementBlock extends Component {
   constructor(props){
     super(props);
     this.state = {
-      announcements:[]
+      announcements:[],
+      allAnnouncements:[]
     };
   }
 
@@ -19,7 +20,8 @@ export default class AnnouncementBlock extends Component {
       quickSort(announcements, 0, announcements.length-1)
       announcements.reverse();
       this.setState({
-        announcements,
+        announcements:announcements.slice(0,index),
+        allAnnouncements:announcements,
         announcementsIsHidden: false
       });
     }catch(e){
@@ -44,6 +46,13 @@ export default class AnnouncementBlock extends Component {
     return API.get('api', '/notes', init)
   }
 
+  loadMore=async event=>{
+    index+=5;
+    this.setState({
+      announcements:this.state.allAnnouncements.slice(0,index),
+      announcementsIsHidden: false
+    });
+  }
   render(){
     return(
       <div>
@@ -66,7 +75,7 @@ export default class AnnouncementBlock extends Component {
             })
           }
           <div className="button-container">
-            <button onClick= {this.updateData}>
+            <button onClick= {this.loadMore.bind(this)}>
               Load More
             </button>
           </div>

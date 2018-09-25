@@ -67,14 +67,13 @@ export class  Announcement extends Component {
           {this.props.announcementData.content}
         </p>
         {this.props.announcementData.attachment &&
-          <div>
-            <p>Attachment</p>
+          <div className="announcement-attachments">
             <a
               target="_blank"
               rel="noopener noreferrer"
               href={this.state.attachmentURL}
             >
-              {this.formatFilename(this.props.announcementData.attachment)}
+              <u>{this.formatFilename(this.props.announcementData.attachment)}</u>
             </a>
           </div>
         }
@@ -86,7 +85,8 @@ export class  Announcement extends Component {
             By : {this.props.announcementData.author}
           </p>
         </div>
-        {this.props.isAdmin && <div className="announcement-delete">
+        {this.props.isAdmin &&
+          <div className="announcement-delete">
           <a onClick={this.handleDelete}>
             Delete Post
           </a>

@@ -21,6 +21,9 @@
   /* background-color: black;
   color: white; */
 }
+.announcement-attachments{
+  margin-bottom: 15px;
+}
 .announcement-date{
   margin-right: 10px;
   font-size: 12px;
