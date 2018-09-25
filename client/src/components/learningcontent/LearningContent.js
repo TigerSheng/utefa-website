@@ -34,12 +34,6 @@ export default class LearningContent extends Component {
               this.setState({files})
             }
             )
-          }else{
-          // else file.file.link = null
-            file.postedAt = new Date(c.postedAt).toLocaleString()
-            files.push(file)
-            this.setState({files})
-
           }
         }
 
