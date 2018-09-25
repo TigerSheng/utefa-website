@@ -43,7 +43,6 @@ export default class LearningContent extends Component {
       const data = this.state.files
 
       const columns = [{
-
         Header: 'File',
         accessor: 'file',
          className: "center",
