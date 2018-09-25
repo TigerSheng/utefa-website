@@ -34,8 +34,6 @@ router.param('noteId', (req, res, next, id) => {
 });
 
 router.post('/', (req, res, next) => {
-  console.log(req.body);
-
   const params = {
     TableName: 'notes',
     Item: {

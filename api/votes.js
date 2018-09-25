@@ -40,8 +40,6 @@ router.param('voteId', (req, res, next, id) => {
 
 // :/votes/create
 router.post('/create', (req, res, next) => {
-  console.log(req.body);
-
   const params = {
     TableName: 'votes',
     Item: {
@@ -66,8 +64,6 @@ router.post('/create', (req, res, next) => {
 
 // :/votes/vote/:voteId/:options/:userId
 router.put('/vote/:voteId/:options/:userId', (req, res, next) => {
-  console.log('put');
-
   //check time <= 2 days
   const time = new Date(req.vote.time)
   const now = new Date(Date.now())
