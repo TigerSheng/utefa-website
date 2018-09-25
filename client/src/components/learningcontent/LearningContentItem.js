@@ -9,8 +9,8 @@ export class  LearningContentItem extends Component {
   render(){
     return(
       <div className="learning-content-item">
-      <a className="file-name">{this.props.fileData.fileName}</a>
-      <a href= {this.props.fileData.file} className="file-attachment">filleeeee</a>
+        <a className="file-name">{this.props.fileData.fileName}</a>
+        <a href= {this.props.fileData.file} className="file-attachment">filleeeee</a>
       </div>
 
     );
