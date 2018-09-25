@@ -34,13 +34,12 @@ export default class LearningContent extends Component {
             }
             )
           }else{
+          // else file.file.link = null
             file.postedAt = new Date(c.postedAt).toLocaleString()
             files.push(file)
             this.setState({files})
 
           }
-          // else file.file.link = null
-
         }
 
       });
