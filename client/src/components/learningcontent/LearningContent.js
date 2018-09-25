@@ -17,8 +17,7 @@ export default class LearningContent extends Component {
   componentDidMount() {
     try{
       this.getContent().then(content => {
-        let files = [...this.state.files]
-        console.log(files)
+        let files = []
         for(let c of content) {
           let file = c
           // file.author = c.author
@@ -31,14 +30,12 @@ export default class LearningContent extends Component {
               file.file.link = url
               file.postedAt = new Date(c.postedAt).toLocaleString()
               files.push(file)
-              console.log(files)
               this.setState({files})
             }
             )
           }else{
             file.postedAt = new Date(c.postedAt).toLocaleString()
             files.push(file)
-            console.log(files)
             this.setState({files})
 
           }
