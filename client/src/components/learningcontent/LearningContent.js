@@ -5,6 +5,7 @@ import {LearningContentItem} from './LearningContentItem'
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import {API, Storage} from 'aws-amplify'
+import {Button} from "react-bootstrap";
 
 export default class LearningContent extends Component {
   constructor(props){
@@ -67,27 +68,33 @@ export default class LearningContent extends Component {
     {Header: 'Description',
     accessor: 'description'
     },{
-      Header: 'Date Posted',
-      accessor: 'postedAt',
-       className: "center"
-    },{
-      Header: 'Author',
-      accessor: 'author',
-       className: "center"
-    }]
+        Header: 'Date Posted',
+        accessor: 'postedAt',
+         className: "center"
+      },{
+        Header: 'Author',
+        accessor: 'author',
+         className: "center"
+      },{
+        header: 'Delete',
+        id: 'delete-btn',
+        sortable: false,
+        filterable: false,
+        Cell: props => <div className="delete-content-btn-container"><Button bsStyle="danger">Delete</Button></div>
+        }]
 
-    return (
-          <div>
-            <LeftNav isAdmin={this.props.isAdmin}/>
-             <div className="learning-content-view">
-              <ReactTable
-                data={this.state.files}
-                columns={columns}
-                defaultPageSize = {20}
-              />
-              </div>
-          </div>
-    )
-
+      return (
+            <div>
+              <LeftNav isAdmin={this.props.isAdmin}/>
+               <div className="learning-content-view">
+                <ReactTable
+                  data={data}
+                  columns={columns}
+                  defaultPageSize = {20}
+                />
+                <p className="lc-tip">Tip: Hold shift when sorting to multi-sort</p>
+                </div>
+            </div>
+      )
   }
 }
