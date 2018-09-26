@@ -19,6 +19,10 @@ class App extends Component {
     try{
       if (await Auth.currentSession()) {
         this.userHasAuthenticated(true);
+        Auth.currentUserInfo().then(user => {
+          if(user.attributes['custom:isAdmin'])
+            this.userIsAdmin(true)
+        })
         if(!authReqPages.includes(this.props.history.location.pathname)){
           this.props.history.push('/dashboard');
         }
@@ -55,7 +59,9 @@ class App extends Component {
     return (
       !this.state.isAuthenticating &&
       <div>
-        <Routes childProps={childProps} auth={this.state.isAuthenticated}/>
+        <Routes childProps={childProps}
+        auth={this.state.isAuthenticated}
+        isAdmin={this.state.isAdmin}/>
       </div>
     );
   }

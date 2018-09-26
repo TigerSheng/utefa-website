@@ -27,6 +27,7 @@ export class VotePost extends Component {
     }
     this.voteYes = this.voteYes.bind(this);
     this.voteNo = this.voteNo.bind(this);
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   async componentDidMount() {
@@ -82,6 +83,31 @@ export class VotePost extends Component {
     }
   }
 
+  handleDelete(e) {
+    e.preventDefault();
+    try {
+      this.deleteVote();
+    }catch(e){
+      alert(e);
+      console.log(e)
+    }
+  }
+
+  deleteVote() {
+    try{
+      if(this.props.votePostData.attachment)
+        Storage.remove(this.props.votePostData.attachment)
+      API.del('api','/votes/'+this.props.votePostData.voteId)
+        .then(response => {
+          console.log(response);
+          return window.location.reload();
+        })
+    }catch(e){
+      console.log(e)
+      alert(e)
+    }
+  }
+
   renderVote(){
     const now = new Date(Date.now())
     const time = new Date(this.props.votePostData.time)
@@ -111,6 +137,9 @@ export class VotePost extends Component {
         <p className="voting-stock-title">{this.props.votePostData.name} ({this.props.votePostData.ticker})</p>
         <p className="voting-download-label">If you missed the presentation: <a href={this.state.attachmentURL}><u className="voting-download-link" >Click to download</u></a></p>
         {this.renderVote()}
+        <a onClick={this.handleDelete}>
+          Delete Vote
+        </a>
       </div>
     );
   }
