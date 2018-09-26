@@ -137,9 +137,10 @@ export class VotePost extends Component {
         <p className="voting-stock-title">{this.props.votePostData.name} ({this.props.votePostData.ticker})</p>
         <p className="voting-download-label">If you missed the presentation: <a href={this.state.attachmentURL}><u className="voting-download-link" >Click to download</u></a></p>
         {this.renderVote()}
+        {this.props.isAdmin &&
         <a onClick={this.handleDelete}>
           Delete Vote
-        </a>
+        </a>}
       </div>
     );
   }

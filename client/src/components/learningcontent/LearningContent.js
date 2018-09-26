@@ -62,7 +62,7 @@ export default class LearningContent extends Component {
 
   render() {
     const data = this.state.files
-    const columns = [{
+    let columns = [{
       Header: 'File',
       accessor: 'file',
       className: "center",
@@ -85,25 +85,28 @@ export default class LearningContent extends Component {
       Header: 'Author',
       accessor: 'author',
       className: "center"
-    },
-    {
-      header: 'Delete',
-      id: 'delete-btn',
-      sortable: false,
-      filterable: false,
-      Cell: props =>  (
-        props.row._original.file.name !== 'Loading...' &&
-        <div className="delete-content-btn-container">
-          <Button bsStyle="danger"
-            onClick={() => {
-              this.deleteContent(props.row._original)
-            }}
-          >
-            Delete
-          </Button>
-        </div>
-      )
     }]
+
+    if(this.props.isAdmin){
+      columns.push({
+        header: 'Delete',
+        id: 'delete-btn',
+        sortable: false,
+        filterable: false,
+        Cell: props =>  (
+          props.row._original.file.name !== 'Loading...' &&
+          <div className="delete-content-btn-container">
+            <Button bsStyle="danger"
+              onClick={() => {
+                this.deleteContent(props.row._original)
+              }}
+            >
+              Delete
+            </Button>
+          </div>
+        )
+      })
+    }
 
     return (
       <div>

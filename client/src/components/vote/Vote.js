@@ -48,7 +48,8 @@ export default class Vote extends Component {
             if(this.state.voteData[i] && this.state.voteData[i].name !== "") {
               return(
                 <div key={i}>
-                  <VotePost votePostData={this.state.voteData[i]}/>
+                  <VotePost votePostData={this.state.voteData[i]}
+                  isAdmin={this.props.isAdmin}/>
                 </div>
               )
             }else return(null);
