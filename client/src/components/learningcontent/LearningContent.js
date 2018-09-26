@@ -115,6 +115,12 @@ export default class LearningContent extends Component {
           <ReactTable
             data={data}
             columns={columns}
+            defaultSorted={[
+           {
+             id: "postedAt",
+             desc: true
+           }
+         ]}
             defaultPageSize = {20}
           />
           <p className="lc-tip">Tip: Hold shift when sorting to multi-sort</p>
