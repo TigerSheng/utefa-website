@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  Alert,
   FormGroup,
   FormControl,
   ControlLabel
@@ -15,7 +16,8 @@ export class LearningContentPostForm extends Component {
     this.state = {
       isLoading: false,
       name: '',
-      description: ''
+      description: '',
+      postSuccess: null
     }
     this.file = null
   }
@@ -40,6 +42,7 @@ export class LearningContentPostForm extends Component {
       this.file = null
     }catch(e) {
       console.log(e);
+      this.setState({postSuccess: false})
     }
 
     this.setState({ isLoading: false });
@@ -61,7 +64,8 @@ export class LearningContentPostForm extends Component {
         console.log(response)
         this.setState({
           name: '',
-          description: ''
+          description: '',
+          postSuccess: true
         })
       })
     })
@@ -69,51 +73,64 @@ export class LearningContentPostForm extends Component {
 
   handleChange = event => {
     this.setState({
-      [event.target.id]: event.target.value
+      [event.target.id]: event.target.value,
+      postSuccess: null
     });
   }
 
   render() {
     return(
-      <form onSubmit={this.handleSubmit}>
-        <FormGroup controlId="name" bsSize="large">
-          <ControlLabel>File Name</ControlLabel>
-          <FormControl
-            autoFocus
-            type="Text"
-            onChange={this.handleChange}
-            value={this.state.name}
-            placeholder="Enter file name"
-          />
-          <FormControl.Feedback />
-        </FormGroup>
-        <FormGroup controlId="description" bsSize="large">
-          <ControlLabel>Description</ControlLabel>
-          <FormControl componentClass="textarea"
-            onChange={this.handleChange}
-            placeholder="Enter file description"
-            value={this.state.description}/>
-          <FormControl.Feedback />
-        </FormGroup>
-        <FormGroup controlId="fileAttachment" bsSize="large">
-          <ControlLabel>File</ControlLabel>
-          <FormControl
-          type="file"
-          onChange={this.handleFileChange}
-          />
-          <FormControl.Feedback />
-        </FormGroup>
-        <LoaderButton
-          block
-          bsSize="large"
-          type="submit"
-          isLoading={this.state.isLoading}
-          text="Post"
-          loadingText="Posting..."
-        >
-          Post
-        </LoaderButton>
-      </form>
+      <div>
+        {this.state.postSuccess
+          && <Alert className="Alert" bsStyle='success'>
+              Your have successfully posted learning materials.
+            </Alert>
+        }
+        {this.state.postSuccess === false
+          && <Alert className="Alert" bsStyle="danger">
+              Something went wrong. Please try again,
+            </Alert>
+        }
+        <form onSubmit={this.handleSubmit}>
+          <FormGroup controlId="name" bsSize="large">
+            <ControlLabel>File Name</ControlLabel>
+            <FormControl
+              autoFocus
+              type="Text"
+              onChange={this.handleChange}
+              value={this.state.name}
+              placeholder="Enter file name"
+            />
+            <FormControl.Feedback />
+          </FormGroup>
+          <FormGroup controlId="description" bsSize="large">
+            <ControlLabel>Description</ControlLabel>
+            <FormControl componentClass="textarea"
+              onChange={this.handleChange}
+              placeholder="Enter file description"
+              value={this.state.description}/>
+            <FormControl.Feedback />
+          </FormGroup>
+          <FormGroup controlId="fileAttachment" bsSize="large">
+            <ControlLabel>File</ControlLabel>
+            <FormControl
+            type="file"
+            onChange={this.handleFileChange}
+            />
+            <FormControl.Feedback />
+          </FormGroup>
+          <LoaderButton
+            block
+            bsSize="large"
+            type="submit"
+            isLoading={this.state.isLoading}
+            text="Post"
+            loadingText="Posting..."
+          >
+            Post
+          </LoaderButton>
+        </form>
+      </div>
     );
   }
 }
