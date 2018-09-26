@@ -3,7 +3,7 @@ import {LeftNav} from '../LeftNav'
 import './LearningContent.css'
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-import {API, Storage} from 'aws-amplify'
+import {API, Storage} from 'aws-amplify';
 import {Button} from "react-bootstrap";
 
 export default class LearningContent extends Component {

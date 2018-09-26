@@ -2,15 +2,19 @@ import React, { Component } from 'react';
 import {Auth, API} from 'aws-amplify';
 import {Announcement} from './Announcement';
 import './Dashboard.css';
-import quickSort from "./sort"
+import quickSort from "./sort";
+import {Button} from "react-bootstrap";
+
 var index = 5;
+
 export default class AnnouncementBlock extends Component {
   constructor(props){
     super(props);
     this.state = {
       isLoading: false,
       announcements:[],
-      allAnnouncements:[]
+      allAnnouncements:[],
+      moreToLoad:true
     };
   }
 
@@ -21,10 +25,15 @@ export default class AnnouncementBlock extends Component {
       console.log(announcements);
       quickSort(announcements, 0, announcements.length-1)
       announcements.reverse();
+      var MTL=true;
+      if (announcements.length<=index){
+        MTL=false;
+      }
       this.setState({
         announcements:announcements.slice(0,index),
         allAnnouncements:announcements,
-        announcementsIsHidden: false
+        announcementsIsHidden: false,
+        moreToLoad:MTL
       });
     }catch(e){
       console.log(e);
@@ -51,9 +60,14 @@ export default class AnnouncementBlock extends Component {
 
   loadMore=async event=>{
     index+=5;
+    var MTL=true;
+    if (this.state.allAnnouncements.length<=index){
+      MTL=false;
+    }
     this.setState({
       announcements:this.state.allAnnouncements.slice(0,index),
-      announcementsIsHidden: false
+      announcementsIsHidden: false,
+      moreToLoad:MTL
     });
   }
   render(){
@@ -78,10 +92,10 @@ export default class AnnouncementBlock extends Component {
               }else return(null);
             })
           }
-          <div className="button-container">
-            <button onClick= {this.loadMore.bind(this)}>
+          <div className={this.state.moreToLoad?"button-container":'hidden'}>
+            <Button bsStyle="primary" onClick= {this.loadMore.bind(this)}>
               Load More
-            </button>
+            </Button>
           </div>
         </div>
       </div>
