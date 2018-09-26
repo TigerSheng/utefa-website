@@ -10,11 +10,13 @@ export default class Vote extends Component {
   constructor(props) {
     super(props);
     this.state={
-      voteData:[]
+      voteData:[],
+      isLoading: false
     }
   }
 
   async componentDidMount() {
+    this.setState({isLoading: true})
     try{
       const votes = await this.getVotes();
       console.log(votes)
@@ -28,6 +30,7 @@ export default class Vote extends Component {
       console.log(e)
       alert(e.message)
     }
+    this.setState({isLoading: false})
   }
 
   getVotes(){
@@ -39,6 +42,7 @@ export default class Vote extends Component {
       <div>
         <LeftNav isAdmin={this.props.isAdmin}/>
         <div className="vote-view">
+        {this.state.isLoading && <h1>Loading...</h1>}
         {
           this.state.voteData.length !== 0 && this.state.voteData.map((index, i) => {
             if(this.state.voteData[i] && this.state.voteData[i].name !== "") {

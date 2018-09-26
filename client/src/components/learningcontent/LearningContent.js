@@ -10,7 +10,12 @@ export default class LearningContent extends Component {
   constructor(props){
     super(props);
     this.state={
-      files:[]
+      files:[{
+        file:{
+          name: 'Loading...',
+          url: null
+        }
+      }]
     }
   }
 
@@ -87,6 +92,7 @@ export default class LearningContent extends Component {
       sortable: false,
       filterable: false,
       Cell: props =>  (
+        props.row._original.file.name !== 'Loading...' &&
         <div className="delete-content-btn-container">
           <Button bsStyle="danger"
             onClick={() => {

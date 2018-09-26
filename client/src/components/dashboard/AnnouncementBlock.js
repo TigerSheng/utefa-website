@@ -8,12 +8,14 @@ export default class AnnouncementBlock extends Component {
   constructor(props){
     super(props);
     this.state = {
+      isLoading: false,
       announcements:[],
       allAnnouncements:[]
     };
   }
 
   async componentDidMount() {
+    this.setState({isLoading: true})
     try{
       const announcements = await this.updateData();
       console.log(announcements);
@@ -28,6 +30,7 @@ export default class AnnouncementBlock extends Component {
       console.log(e);
       alert(e.message);
     }
+    this.setState({isLoading: false})
   }
 
   toggleAnnouncementView = async event => {
@@ -59,6 +62,7 @@ export default class AnnouncementBlock extends Component {
         <div className="banner" onClick={this.toggleAnnouncementView.bind(this)}>
           Announcements
         </div>
+        {this.state.isLoading && <h1>Loading...</h1>}
         <div className={this.state.announcementsIsHidden ? 'hidden' : ''}>
           {
             this.state.announcements.map((index, i) => {
