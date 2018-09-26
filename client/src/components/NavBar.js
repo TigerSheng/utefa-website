@@ -15,7 +15,7 @@ export class NavBar extends Component {
 
   render () {
     return (
-      <div className="animated fadeInLeft" id='cssmenu'>
+      <div className="" id='cssmenu'>
         <ul>
           {this.props.isAuthenticated
             ?  <Fragment>
@@ -27,7 +27,7 @@ export class NavBar extends Component {
                 <li><Link to='/' onClick={this.handleLogout}>Log Out</Link></li>
               </Fragment>
             : <Fragment>
-                <li><a className="" href='/'><span>Home</span></a></li>
+                <li><a className="" href='/#top'><span>Home</span></a></li>
                 <li><a className="" href='/#about'><span>About</span></a></li>
                 <li><a className="" href='/#decks'><span>Learning Materials</span></a></li>
                 <li><a className="" href='/#team'><span>Team</span></a></li>
