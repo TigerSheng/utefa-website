@@ -8,7 +8,8 @@ const pictures = {
   eric: imgDir + "Eric.jpg",
   yuri: imgDir + "Lawryshyn.jpg",
   tiger: imgDir + "Tiger.jpg",
-  tom: imgDir + "Tom.jpg"
+  tom: imgDir + "Tom.jpg",
+  ameer: imgDir + "Ameer.jpg"
 };
 
 const titles = {
@@ -35,7 +36,7 @@ export class OurTeam extends Component {
             <Profile src={pictures.stefan} title={titles.stefan}>
               Stefan Momic
             </Profile>
-            <Profile title={titles.ameer}>Ameer Shaikh</Profile>
+            <Profile src={pictures.ameer} title={titles.ameer}>Ameer Shaikh</Profile>
             <Profile src={pictures.eric} title={titles.eric}>
               Eric Boszin
             </Profile>
