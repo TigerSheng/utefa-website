@@ -158,7 +158,8 @@ export class LearningContentPostForm extends Component {
               placement='right'
               overlay={postPolicy}
               >
-                <div>
+                <div style={{ display: 'inline-block', cursor: 'not-allowed',
+                width: '100%' }}>
                   <LoaderButton
                     block
                     bsSize="large"
@@ -167,6 +168,7 @@ export class LearningContentPostForm extends Component {
                     isLoading={this.state.isLoading}
                     text="Post"
                     loadingText="Posting..."
+                    style={{ pointerEvents: 'none' }}
                   >
                     Post
                   </LoaderButton>
