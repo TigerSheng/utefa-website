@@ -4,6 +4,7 @@ import {Announcement} from './Announcement';
 import './Dashboard.css';
 import quickSort from "./sort";
 import {Button} from "react-bootstrap";
+import ReactLoading from 'react-loading';
 
 var index = 5;
 
@@ -76,28 +77,30 @@ export default class AnnouncementBlock extends Component {
         <div className="banner" onClick={this.toggleAnnouncementView.bind(this)}>
           Announcements
         </div>
-        {this.state.isLoading ? <h1>Loading...</h1>
-        : <div className={this.state.announcementsIsHidden ? 'hidden' : ''}>
-          {
-            this.state.announcements.map((index, i) => {
-              if(this.state.announcements[i]) {
-                return(
-                  <div key={i}>
-                    <Announcement
-                      announcementData={this.state.announcements[i]}
-                      isAdmin={this.props.isAdmin}
-                    />
-                  </div>
-                )
-              }else return(null);
-            })
-          }
-          <div className={this.state.moreToLoad?"button-container":'hidden'}>
-            <Button bsStyle="primary" onClick= {this.loadMore.bind(this)}>
-              Load More
-            </Button>
+        {this.state.isLoading
+          ? <ReactLoading type={'spin'} color={'black'} />
+          : <div className={this.state.announcementsIsHidden ? 'hidden' : ''}>
+            {
+              this.state.announcements.map((index, i) => {
+                if(this.state.announcements[i]) {
+                  return(
+                    <div key={i}>
+                      <Announcement
+                        announcementData={this.state.announcements[i]}
+                        isAdmin={this.props.isAdmin}
+                      />
+                    </div>
+                  )
+                }else return(null);
+              })
+            }
+            <div className={this.state.moreToLoad?"button-container":'hidden'}>
+              <Button bsStyle="primary" onClick= {this.loadMore.bind(this)}>
+                Load More
+              </Button>
+            </div>
           </div>
-        </div>}
+        }
       </div>
     );
   }

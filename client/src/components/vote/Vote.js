@@ -4,6 +4,7 @@ import {Auth, API} from 'aws-amplify'
 import {LeftNav} from '../LeftNav'
 import {VotePost} from './VotePost'
 import quickSort from './sort'
+import ReactLoading from 'react-loading'
 
 
 export default class Vote extends Component {
@@ -42,7 +43,7 @@ export default class Vote extends Component {
       <div>
         <LeftNav isAdmin={this.props.isAdmin}/>
         <div className="vote-view">
-        {this.state.isLoading && <h1>Loading...</h1>}
+        {this.state.isLoading && <ReactLoading type={'spin'} color={'black'} />}
         {
           this.state.voteData.length !== 0 && this.state.voteData.map((index, i) => {
             if(this.state.voteData[i] && this.state.voteData[i].name !== "") {
