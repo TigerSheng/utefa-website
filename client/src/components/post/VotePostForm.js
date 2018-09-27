@@ -3,12 +3,21 @@ import {
   Alert,
   FormGroup,
   FormControl,
-  ControlLabel
+  ControlLabel,
+  Popover,
+  OverlayTrigger
 } from "react-bootstrap";
 import {Auth, API} from 'aws-amplify';
 import LoaderButton from '../LoaderButton';
 import "./VotePostForm.css";
 import { s3Upload } from "../../libs/awsLib";
+
+const postPolicy = (
+  <Popover id="post-policy">
+    New vote should have a stock name, a ticker
+    and the associated pitch uploaded.
+  </Popover>
+)
 
 export class VotePostForm extends Component {
   constructor(props){
@@ -17,13 +26,25 @@ export class VotePostForm extends Component {
       isLoading: false,
       ticker: "",
       stock: "",
-      postSuccess: null
+      postSuccess: null,
+      attachment: false
     }
     this.file = null
   }
 
+  validateForm() {
+    return (
+      this.state.ticker.length > 0 && this.state.stock.length > 0
+      && this.state.attachment
+    )
+  }
+
   handleFileChange = event => {
     this.file = event.target.files[0];
+    if(this.file){
+      this.setState({attachment: true})
+    }else
+      this.setState({attachment: false})
   }
 
   handleChange = event => {
@@ -48,6 +69,7 @@ export class VotePostForm extends Component {
         attachment
       );
       this.file = null
+      this.setState({attachment: false})
     }catch(e){
       console.log(e)
       this.setState({postSuccess: false});
@@ -122,16 +144,38 @@ export class VotePostForm extends Component {
             />
             <FormControl.Feedback />
           </FormGroup>
-          <LoaderButton
-            block
-            bsSize="large"
-            type="submit"
-            isLoading={this.state.isLoading}
-            text="Post"
-            loadingText="Posting..."
-          >
-            Post
-          </LoaderButton>
+          {this.validateForm()
+            ? <LoaderButton
+              block
+              bsSize="large"
+              //disabled={!this.validateForm()}
+              type="submit"
+              isLoading={this.state.isLoading}
+              text="Post"
+              loadingText="Posting..."
+              >
+                Post
+              </LoaderButton>
+             : <OverlayTrigger
+              trigger={['hover', 'focus']}
+              placement='right'
+              overlay={postPolicy}
+              >
+                <div>
+                  <LoaderButton
+                    block
+                    bsSize="large"
+                    disabled={!this.validateForm()}
+                    type="submit"
+                    isLoading={this.state.isLoading}
+                    text="Post"
+                    loadingText="Posting..."
+                  >
+                    Post
+                  </LoaderButton>
+                </div>
+              </OverlayTrigger>
+            }
         </form>
       </div>
     );

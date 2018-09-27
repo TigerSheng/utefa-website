@@ -149,7 +149,6 @@ export class AnnouncementPostForm extends Component {
             ? <LoaderButton
               block
               bsSize="large"
-              //disabled={!this.validateForm()}
               type="submit"
               isLoading={this.state.isLoading}
               text="Post"
