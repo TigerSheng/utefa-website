@@ -3,12 +3,20 @@ import {
   Alert,
   FormGroup,
   FormControl,
-  ControlLabel
+  ControlLabel,
+  Popover,
+  OverlayTrigger
 } from "react-bootstrap";
 import {Auth, API} from 'aws-amplify';
 import LoaderButton from '../LoaderButton';
 import "./AnnouncementPostForm.css";
 import { s3Upload } from "../../libs/awsLib";
+
+const postPolicy = (
+  <Popover id="post-policy">
+    Announcement should have a title and some content.
+  </Popover>
+)
 
 export class AnnouncementPostForm extends Component {
   constructor(props){
@@ -20,6 +28,10 @@ export class AnnouncementPostForm extends Component {
       postSuccess: null
     }
     this.file = null
+  }
+
+  validateForm() {
+    return this.state.title.length > 0 && this.state.content.length > 0;
   }
 
   handleFileChange = event => {
@@ -133,16 +145,38 @@ export class AnnouncementPostForm extends Component {
             />
             <FormControl.Feedback />
           </FormGroup>
-          <LoaderButton
-            block
-            bsSize="large"
-            type="submit"
-            isLoading={this.state.isLoading}
-            text="Post"
-            loadingText="Posting..."
-          >
-            Post
-          </LoaderButton>
+          {this.validateForm()
+            ? <LoaderButton
+              block
+              bsSize="large"
+              //disabled={!this.validateForm()}
+              type="submit"
+              isLoading={this.state.isLoading}
+              text="Post"
+              loadingText="Posting..."
+              >
+                Post
+              </LoaderButton>
+             : <OverlayTrigger
+              trigger={['hover', 'focus']}
+              placement='right'
+              overlay={postPolicy}
+              >
+                <div>
+                  <LoaderButton
+                    block
+                    bsSize="large"
+                    disabled={!this.validateForm()}
+                    type="submit"
+                    isLoading={this.state.isLoading}
+                    text="Post"
+                    loadingText="Posting..."
+                  >
+                    Post
+                  </LoaderButton>
+                </div>
+              </OverlayTrigger>
+            }
         </form>
       </div>
     );

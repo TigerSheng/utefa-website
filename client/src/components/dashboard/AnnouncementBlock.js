@@ -76,8 +76,8 @@ export default class AnnouncementBlock extends Component {
         <div className="banner" onClick={this.toggleAnnouncementView.bind(this)}>
           Announcements
         </div>
-        {this.state.isLoading && <h1>Loading...</h1>}
-        <div className={this.state.announcementsIsHidden ? 'hidden' : ''}>
+        {this.state.isLoading ? <h1>Loading...</h1>
+        : <div className={this.state.announcementsIsHidden ? 'hidden' : ''}>
           {
             this.state.announcements.map((index, i) => {
               if(this.state.announcements[i]) {
@@ -97,7 +97,7 @@ export default class AnnouncementBlock extends Component {
               Load More
             </Button>
           </div>
-        </div>
+        </div>}
       </div>
     );
   }
