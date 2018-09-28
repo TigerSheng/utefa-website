@@ -168,7 +168,7 @@ export class LearningContentPostForm extends Component {
               </LoaderButton>
              : <OverlayTrigger
               trigger={['hover', 'focus']}
-              placement='right'
+              placement='bottom'
               overlay={postPolicy}
               >
                 <div style={{ display: 'inline-block', cursor: 'not-allowed',
