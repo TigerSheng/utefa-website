@@ -37,7 +37,8 @@ router.post('/', (req, res, next) => {
         },
         description: req.body.description,
         postedAt: Date.now(),
-        author: req.body.author
+        author: req.body.author,
+        isPublic: req.body.isPublic
       }
   }
   dynamoDB.put(params, (err, data) => {
@@ -75,6 +76,24 @@ router.delete('/:contentId', (req, res, next) => {
       return next(err)
     }else
       res.status(204).send('deleted')
+  })
+})
+
+router.get('/public', (req, res, next) => {
+  dynamoDB.scan({
+    TableName: 'learning-content',
+    FilterExpression: 'isPublic = :p',
+    ExpressionAttributeValues: {
+      ':p': true
+    }
+  }, (err, data) => {
+    if(err)
+      return next(err);
+    else if(data)
+      res.status(200).send(data.Items);
+    else {
+      res.send("no content available")
+    }
   })
 })
 
