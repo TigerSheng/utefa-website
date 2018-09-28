@@ -5,7 +5,8 @@ import {
   FormControl,
   ControlLabel,
   Popover,
-  OverlayTrigger
+  OverlayTrigger,
+  Checkbox
 } from "react-bootstrap";
 import {Auth, API} from 'aws-amplify'
 import LoaderButton from '../LoaderButton';
@@ -27,9 +28,11 @@ export class LearningContentPostForm extends Component {
       name: '',
       description: '',
       postSuccess: null,
-      attachment: false
+      attachment: false,
+      isPublic: false
     }
     this.file = null
+    this.handleCheck = this.handleCheck.bind(this)
   }
 
   validateForm() {
@@ -58,7 +61,8 @@ export class LearningContentPostForm extends Component {
       await this.sendContent(
         this.state.name,
         attachment,
-        this.state.description
+        this.state.description,
+        this.state.isPublic
       )
       this.file = null
       this.setState({attachment: false})
@@ -70,7 +74,7 @@ export class LearningContentPostForm extends Component {
     this.setState({ isLoading: false });
   }
 
-  sendContent(name, attachment, description){
+  sendContent(name, attachment, description, isPublic){
     Auth.currentUserInfo().then(user => {
       API.post('api', '/learningcontent', {
         header: {
@@ -80,7 +84,8 @@ export class LearningContentPostForm extends Component {
           "name": name,
           "attachment": attachment,
           "description": description,
-          "author": user.attributes.name
+          "author": user.attributes.name,
+          "isPublic": isPublic
         }
       }).then(response => {
         console.log(response)
@@ -93,6 +98,12 @@ export class LearningContentPostForm extends Component {
     })
   }
 
+  handleCheck(event) {
+    this.setState({
+      isPublic: event.target.checked
+    })
+  }
+
   handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value,
@@ -101,6 +112,7 @@ export class LearningContentPostForm extends Component {
   }
 
   render() {
+    console.log(this.state.isPublic)
     return(
       <div>
         {this.state.postSuccess
@@ -133,6 +145,7 @@ export class LearningContentPostForm extends Component {
               value={this.state.description}/>
             <FormControl.Feedback />
           </FormGroup>
+          <Checkbox onChange={this.handleCheck}>Public Content</Checkbox>
           <FormGroup controlId="fileAttachment" bsSize="large">
             <ControlLabel>File</ControlLabel>
             <FormControl
