@@ -39,12 +39,19 @@ export class  Announcement extends Component {
     event.preventDefault()
 
     try {
-      // this.setState({deleteMessage:true});
-      // console.log(this.state);
       this.deleteAnnouncement();
+      this.closeDeleteMessage();
     }catch(e){
       alert(e);
     }
+  }
+
+  openDeleteMessage = event => {
+    this.setState({deleteMessage:true});
+  }
+
+  closeDeleteMessage = event => {
+    this.setState({deleteMessage:false});
   }
 
   deleteAnnouncement(){
@@ -67,24 +74,23 @@ export class  Announcement extends Component {
   render(){
     return(
       <div className="announcement-container">
-      {/* <Modal.Dialog>
-          <Modal.Header>
-            <Modal.Title>Modal title</Modal.Title>
-          </Modal.Header>
+      <Modal bsSize="small" 
+      show={this.state.deleteMessage}>
+          <Modal.Header className="delete-modal-title">
+            <Modal.Title>Delete Post?</Modal.Title>
+          </Modal.Header> 
 
-          <Modal.Body>One fine body...</Modal.Body>
-
-          <Modal.Footer>
-            <Button>Close</Button>
-            <Button bsStyle="primary">Save changes</Button>
+          <Modal.Footer className="delete-modal-buttons">
+            <Button onClick={this.handleDelete} bsStyle="danger">Delete</Button>
+            <Button onClick={this.closeDeleteMessage}>Cancel</Button>
           </Modal.Footer>
-        </Modal.Dialog> */}
+        </Modal>
 
 
         <div className="announcement-banner">
           {this.props.isAdmin &&
           <p className="announcement-delete">
-              <Button bsSize="xsmall" bsStyle="danger" onClick={this.handleDelete}>
+              <Button bsSize="xsmall" bsStyle="danger" onClick={this.openDeleteMessage}>
                 <Glyphicon glyph="remove-circle"/>
             </Button>
           </p>}

@@ -58,3 +58,10 @@
   display: flex;
 }
 
+.delete-modal-title{
+  text-align: center;
+}
+
+.delete-modal-buttons{
+  text-align: center;
+}
