@@ -3,13 +3,20 @@
   min-width: 200px;
   max-width: 750px;
   /* border:.1em solid #f2f2f2; */
-  padding: 0px;
+  padding: 0px 0px 3px 0px;
   margin: 0 auto;
   margin-bottom: 15px;
   border-radius: 3px;
-  box-shadow: 5px 5px 5px;
-
+  /* box-shadow: 5px 5px 5px; */
+  transition: 0.5s;
 }
+
+.announcement-container:hover{
+  box-shadow: inset 0 0 0 3px #2098D1, 0 0 1px rgba(0, 0, 0, 0);
+  cursor: pointer; 
+  transition: 0.3s;
+}
+
 .announcement-title{
   font-weight: bold;
   margin-bottom: 10px;
@@ -35,15 +42,19 @@
   padding-bottom: 5px;
   font-size: 12px;
   text-align: right;
+  margin-left: auto;
 }
 
 .announcement-delete{
   text-align: right;
-  margin-right: 0px;
   margin-left: auto;
 }
 
 .announcement-banner{
+  display: flex;
+}
+
+.announcement-footer{
   display: flex;
 }
 

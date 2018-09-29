@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Auth, API, Storage} from 'aws-amplify';
 import './Announcement.css'
 import {Button, Glyphicon, Modal} from "react-bootstrap";
-var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+var dateOptions = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric'};
 
 
 export class  Announcement extends Component {
@@ -82,9 +82,6 @@ export class  Announcement extends Component {
 
 
         <div className="announcement-banner">
-          <p className="announcement-date">
-                  {new Date(this.props.announcementData.postedAt).toLocaleDateString("en-US", dateOptions)}
-          </p>
           {this.props.isAdmin &&
           <p className="announcement-delete">
               <Button bsSize="xsmall" bsStyle="danger" onClick={this.handleDelete}>
@@ -110,10 +107,14 @@ export class  Announcement extends Component {
             </a>
           </div>
         }
-
-        <p className="announcement-owner">
-          {this.props.announcementData.author}
-        </p>
+        <div className="announcement-footer">
+         <p className="announcement-date">
+                  {new Date(this.props.announcementData.postedAt).toLocaleDateString("en-US", dateOptions)}
+          </p>
+          <p className="announcement-owner">
+            {this.props.announcementData.author}
+          </p>
+        </div>
       </div>
 
     );

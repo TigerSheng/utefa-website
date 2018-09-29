@@ -6,7 +6,7 @@ position: relative;
 }
 
 .LeftNav {
-  position: absolute;
+  position: fixed;
   display: block;
   width: 15em;
   height: 100%;
