@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Auth, API, Storage} from 'aws-amplify';
 import './Announcement.css'
 import {Button, Glyphicon, Modal} from "react-bootstrap";
+var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+
 
 export class  Announcement extends Component {
   constructor(props){
@@ -69,19 +71,19 @@ export class  Announcement extends Component {
           <Modal.Header>
             <Modal.Title>Modal title</Modal.Title>
           </Modal.Header>
-      
+
           <Modal.Body>One fine body...</Modal.Body>
-      
+
           <Modal.Footer>
             <Button>Close</Button>
             <Button bsStyle="primary">Save changes</Button>
           </Modal.Footer>
         </Modal.Dialog> */}
-         
-      
+
+
         <div className="announcement-banner">
           <p className="announcement-date">
-                  {new Date(this.props.announcementData.postedAt).toLocaleString()}
+                  {new Date(this.props.announcementData.postedAt).toLocaleString("en-US", dateOptions)}
           </p>
           {this.props.isAdmin &&
           <p className="announcement-delete">
@@ -89,7 +91,7 @@ export class  Announcement extends Component {
                 <Glyphicon glyph="remove-circle"/>
             </Button>
           </p>}
-          
+
         </div>
         <p className="announcement-title">
           {this.props.announcementData.title}
@@ -108,7 +110,7 @@ export class  Announcement extends Component {
             </a>
           </div>
         }
-       
+
         <p className="announcement-owner">
           {this.props.announcementData.author}
         </p>
