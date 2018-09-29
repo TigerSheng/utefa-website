@@ -78,7 +78,7 @@ export default class AnnouncementBlock extends Component {
           Announcements
         </div>
         {this.state.isLoading
-          ? <ReactLoading type={'spin'} color={'black'} />
+          ? <ReactLoading className="loader" type={'spin'} color={'black'} />
           : <div className={this.state.announcementsIsHidden ? 'hidden' : ''}>
             {
               this.state.announcements.map((index, i) => {

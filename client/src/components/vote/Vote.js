@@ -43,7 +43,7 @@ export default class Vote extends Component {
       <div>
         <LeftNav isAdmin={this.props.isAdmin}/>
         <div className="vote-view">
-        {this.state.isLoading && <ReactLoading type={'spin'} color={'black'} />}
+        {this.state.isLoading && <div className="loadingcontainer"><ReactLoading type={'spin'} className="loader" color={'black'} /></div>}
         {
           this.state.voteData.length !== 0 && this.state.voteData.map((index, i) => {
             if(this.state.voteData[i] && this.state.voteData[i].name !== "") {

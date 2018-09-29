@@ -6,3 +6,8 @@
   /* background-color: gold; */
   display: block;
 }
+
+.loader{
+  padding-top: 15%;
+margin:0 auto;
+}
