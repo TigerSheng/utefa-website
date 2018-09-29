@@ -6,13 +6,13 @@ import AnnouncementBlock from './AnnouncementBlock'
 export default class Dashboard extends Component {
   render(){
     return(
-      <div>
+      <div  className="background">
         <LeftNav isAdmin={this.props.isAdmin}/>
-        <div className="main-view">
-          <AnnouncementBlock
-          history={this.props.history}
-          isAdmin={this.props.isAdmin}/>
-        </div>
+          <div className="main-view">
+            <AnnouncementBlock
+            history={this.props.history}
+            isAdmin={this.props.isAdmin}/>
+          </div>
       </div>
     );
   }

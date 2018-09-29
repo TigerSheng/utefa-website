@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import {Auth, API, Storage} from 'aws-amplify';
 import './Announcement.css'
+import {Button, Glyphicon, Modal} from "react-bootstrap";
 
 export class  Announcement extends Component {
   constructor(props){
     super(props);
     this.file = null;
     this.state = {
-      attachmentURL: null
+      attachmentURL: null,
+      deleteMessage: false
     }
     this.handleDelete = this.handleDelete.bind(this)
   }
@@ -33,7 +35,10 @@ export class  Announcement extends Component {
 
   handleDelete = event => {
     event.preventDefault()
+
     try {
+      // this.setState({deleteMessage:true});
+      // console.log(this.state);
       this.deleteAnnouncement();
     }catch(e){
       alert(e);
@@ -60,6 +65,32 @@ export class  Announcement extends Component {
   render(){
     return(
       <div className="announcement-container">
+      {/* <Modal.Dialog>
+          <Modal.Header>
+            <Modal.Title>Modal title</Modal.Title>
+          </Modal.Header>
+      
+          <Modal.Body>One fine body...</Modal.Body>
+      
+          <Modal.Footer>
+            <Button>Close</Button>
+            <Button bsStyle="primary">Save changes</Button>
+          </Modal.Footer>
+        </Modal.Dialog> */}
+         
+      
+        <div className="announcement-banner">
+          <p className="announcement-date">
+                  {new Date(this.props.announcementData.postedAt).toLocaleString()}
+          </p>
+          {this.props.isAdmin &&
+          <p className="announcement-delete">
+              <Button bsSize="xsmall" bsStyle="danger" onClick={this.handleDelete}>
+                <Glyphicon glyph="remove-circle"/>
+            </Button>
+          </p>}
+          
+        </div>
         <p className="announcement-title">
           {this.props.announcementData.title}
         </p>
@@ -77,20 +108,10 @@ export class  Announcement extends Component {
             </a>
           </div>
         }
-        <div className="announcement-creation-info">
-          <p className="announcement-date">
-            {new Date(this.props.announcementData.postedAt).toLocaleString()}
-          </p>
-          <p className="announcement-owner">
-            By : {this.props.announcementData.author}
-          </p>
-        </div>
-        {this.props.isAdmin &&
-          <div className="announcement-delete">
-          <a onClick={this.handleDelete}>
-            Delete Post
-          </a>
-        </div>}
+       
+        <p className="announcement-owner">
+          {this.props.announcementData.author}
+        </p>
       </div>
 
     );

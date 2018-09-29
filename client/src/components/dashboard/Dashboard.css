@@ -6,6 +6,14 @@
   /* background-color: gold; */
   display: block;
 }
+
+.background{
+  background-image: url("fabric-3295563_1920.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
 .hidden{
   display: none;
 }
