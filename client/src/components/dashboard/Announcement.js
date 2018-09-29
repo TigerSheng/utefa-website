@@ -83,7 +83,7 @@ export class  Announcement extends Component {
 
         <div className="announcement-banner">
           <p className="announcement-date">
-                  {new Date(this.props.announcementData.postedAt).toLocaleString("en-US", dateOptions)}
+                  {new Date(this.props.announcementData.postedAt).toLocaleDateString("en-US", dateOptions)}
           </p>
           {this.props.isAdmin &&
           <p className="announcement-delete">
