@@ -8,6 +8,7 @@ import {OurAlumni} from './OurAlumni';
 import {Footer} from './Footer';
 import {Topbar} from '../header/Topbar'
 import Decks from './Decks'
+import Schedule from './Schedule'
 
 
 export class Homepage extends Component {
@@ -23,6 +24,8 @@ export class Homepage extends Component {
           <MainPane />
           <div className="break"></div>
           <AboutUs />
+          <div className="break"></div>
+          <Schedule />
           <div className="break"></div>
           <Decks />
           <div className="break"></div>
