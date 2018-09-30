@@ -26,6 +26,9 @@ class App extends Component {
         if(!authReqPages.includes(this.props.history.location.pathname)){
           this.props.history.push('/dashboard');
         }
+      }else {
+        this.userHasAuthenticated(false);
+        this.props.history.push('/')
       }
     }
     catch(e) {
