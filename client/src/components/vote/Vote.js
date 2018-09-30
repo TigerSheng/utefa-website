@@ -5,6 +5,7 @@ import {LeftNav} from '../LeftNav'
 import {VotePost} from './VotePost'
 import quickSort from './sort'
 import ReactLoading from 'react-loading'
+import Fade from 'react-reveal/Fade';
 
 
 export default class Vote extends Component {
@@ -42,6 +43,7 @@ export default class Vote extends Component {
     return(
       <div>
         <LeftNav isAdmin={this.props.isAdmin}/>
+        <Fade big cascade>
         <div className="vote-view">
         {this.state.isLoading && <div className="loadingcontainer"><ReactLoading type={'spinningBubbles'} className="loader" color={'black'} /></div>}
         {
@@ -57,6 +59,7 @@ export default class Vote extends Component {
           })
         }
         </div>
+        </Fade>
       </div>
     );
   }

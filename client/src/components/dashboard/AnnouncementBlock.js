@@ -5,6 +5,7 @@ import './Dashboard.css';
 import quickSort from "./sort";
 import {Button} from "react-bootstrap";
 import ReactLoading from 'react-loading';
+import Fade from 'react-reveal/Fade';
 
 var index = 5;
 
@@ -79,11 +80,12 @@ export default class AnnouncementBlock extends Component {
         </div> */}
         {this.state.isLoading
           ? <ReactLoading className="loader" type={'spinningBubbles'} color={'white'} />
-          : <div className={this.state.announcementsIsHidden ? 'hidden' : ''}>
+          : <Fade big cascade><div className={this.state.announcementsIsHidden ? 'hidden' : ''}>
             {
               this.state.announcements.map((index, i) => {
                 if(this.state.announcements[i]) {
                   return(
+                    
                     <div key={i}>
                       <Announcement
                         announcementData={this.state.announcements[i]}
@@ -100,6 +102,7 @@ export default class AnnouncementBlock extends Component {
               </Button>
             </div>
           </div>
+          </Fade>
         }
       </div>
     );

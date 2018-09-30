@@ -117,7 +117,7 @@ export class  Announcement extends Component {
          <p className="announcement-date">
                   {new Date(this.props.announcementData.postedAt).toLocaleDateString("en-US", dateOptions)}
           </p>
-          <p className="announcement-owner">
+         <p className="announcement-owner">
             {this.props.announcementData.author}
           </p>
         </div>

@@ -9,7 +9,6 @@
   /* box-shadow: 5px 5px 5px; */
   transition: 0.5s;
   -webkit-transition: 0.5s;
-  
 }
 
 .announcement-container:hover{
@@ -35,13 +34,12 @@
   margin-bottom: 10px;
 }
 .announcement-date{
-  margin-top: 2px;
   margin-left: 5px;
   font-size: 12px;
 }
 .announcement-owner{
   padding-right: 5px;
-  padding-bottom: 5px;
+  /* padding-bottom: 5px; */
   font-size: 12px;
   text-align: right;
   margin-left: auto;
@@ -58,6 +56,7 @@
 
 .announcement-footer{
   display: flex;
+  padding-bottom: 3px;
 }
 
 .delete-modal-title{
