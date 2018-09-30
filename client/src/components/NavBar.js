@@ -21,7 +21,8 @@ export class NavBar extends Component {
             ?  <Fragment>
                 <li><a className="" href='/'><span>Home</span></a></li>
                 <li><a className="" href='/#about'><span>About</span></a></li>
-                <li><a className="" href='/#decks'><span>Learning Materials</span></a></li>
+                <li><a className="" href='/#schedule'><span>Schedule</span></a></li>
+                <li><a className="" href='/#decks'><span>Materials</span></a></li>
                 <li><a className="" href='/#team'><span>Team</span></a></li>
                 <li><a className="" href='/#alumni'><span>Alumni</span></a></li>
                 <li><Link to='/' onClick={this.handleLogout}>Log Out</Link></li>
@@ -29,7 +30,8 @@ export class NavBar extends Component {
             : <Fragment>
                 <li><a className="" href='/#top'><span>Home</span></a></li>
                 <li><a className="" href='/#about'><span>About</span></a></li>
-                <li><a className="" href='/#decks'><span>Learning Materials</span></a></li>
+                <li><a className="" href='/#schedule'><span>Schedule</span></a></li>
+                <li><a className="" href='/#decks'><span>Materials</span></a></li>
                 <li><a className="" href='/#team'><span>Team</span></a></li>
                 <li><a className="" href='/#alumni'><span>Alumni</span></a></li>
                 <li><Link to='/login'><span>Log In</span></Link></li>
