@@ -74,11 +74,11 @@ export default class AnnouncementBlock extends Component {
   render(){
     return(
       <div>
-        <div className="banner" onClick={this.toggleAnnouncementView.bind(this)}>
+        {/* <div className="banner" onClick={this.toggleAnnouncementView.bind(this)}>
           Announcements
-        </div>
+        </div> */}
         {this.state.isLoading
-          ? <ReactLoading className="loader" type={'spin'} color={'black'} />
+          ? <ReactLoading className="loader" type={'spinningBubbles'} color={'white'} />
           : <div className={this.state.announcementsIsHidden ? 'hidden' : ''}>
             {
               this.state.announcements.map((index, i) => {
