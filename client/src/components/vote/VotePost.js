@@ -116,9 +116,9 @@ export class VotePost extends Component {
     if( this.state.voted || dateDiffInDays(time, now) > 2){
       return(
         <div className='vote-bar'>
-          <ProgressBar>
-            <ProgressBar bsStyle="success" now={100*(this.props.votePostData.yes.length )/(this.props.votePostData.yes.length+this.props.votePostData.no.length  )}label={100*(this.props.votePostData.yes.length )/(this.props.votePostData.yes.length+this.props.votePostData.no.length  )+`%`}  />
-            <ProgressBar bsStyle="danger" now={100*(this.props.votePostData.no.length )/(this.props.votePostData.yes.length+this.props.votePostData.no.length  )} label={100*(this.props.votePostData.no.length )/(this.props.votePostData.yes.length+this.props.votePostData.no.length  )+`%`} />
+          <ProgressBar className="no-margin-bottom" >
+            <ProgressBar bsStyle="success" className="no-margin-bottom" now={100*(this.props.votePostData.yes.length )/(this.props.votePostData.yes.length+this.props.votePostData.no.length  )}label={100*(this.props.votePostData.yes.length )/(this.props.votePostData.yes.length+this.props.votePostData.no.length  )+`%`}  />
+            <ProgressBar bsStyle="danger" className="no-margin-bottom" now={100*(this.props.votePostData.no.length )/(this.props.votePostData.yes.length+this.props.votePostData.no.length  )} label={100*(this.props.votePostData.no.length )/(this.props.votePostData.yes.length+this.props.votePostData.no.length  )+`%`} />
           </ProgressBar>
         </div>
       )

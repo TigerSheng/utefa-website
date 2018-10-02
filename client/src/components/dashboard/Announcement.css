@@ -40,7 +40,9 @@ text-align: center;
 }
 .announcement-content{
   margin-bottom: 10px;
-  margin-left: 10px;
+  margin-right: 10px;
+margin-left: 10px;
+padding: 5px;
   /* text-indent: 2.5em; */
 }
 .announcement-attachments{
@@ -75,6 +77,9 @@ text-align: center;
 }
 
 .delete-modal-title{
+  text-align: center;
+}
+.delete-modal-text{
   text-align: center;
 }
 

@@ -8,6 +8,9 @@
   margin-bottom: 25px;
   box-shadow: 2px 5px #888888;
 }
+.no-margin-bottom{
+  margin-bottom: 0;
+}
 .voting-yes-no-vote{
   text-align: center;
   color: white;

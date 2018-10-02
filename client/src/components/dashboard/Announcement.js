@@ -77,9 +77,9 @@ export class  Announcement extends Component {
       <Modal bsSize="small"
       show={this.state.deleteMessage}>
           <Modal.Header className="delete-modal-title">
-            <Modal.Title>Delete Post?</Modal.Title>
+            <Modal.Title>Delete Post</Modal.Title>
           </Modal.Header>
-
+          <Modal.Body className="delete-modal-text">Are you sure you want to delete this post?</Modal.Body>
           <Modal.Footer className="delete-modal-buttons">
             <Button onClick={this.handleDelete} bsStyle="danger">Delete</Button>
             <Button onClick={this.closeDeleteMessage}>Cancel</Button>
@@ -94,7 +94,7 @@ export class  Announcement extends Component {
           {this.props.isAdmin &&
           <p className="announcement-delete">
               <Button bsSize="xsmall" bsStyle="danger" onClick={this.openDeleteMessage}>
-                <Glyphicon glyph="remove-circle"/>
+                X
             </Button>
           </p>}
 
