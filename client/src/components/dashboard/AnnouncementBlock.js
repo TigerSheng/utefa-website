@@ -85,7 +85,7 @@ export default class AnnouncementBlock extends Component {
               this.state.announcements.map((index, i) => {
                 if(this.state.announcements[i]) {
                   return(
-                    
+
                     <div key={i}>
                       <Announcement
                         announcementData={this.state.announcements[i]}
@@ -100,6 +100,8 @@ export default class AnnouncementBlock extends Component {
               <Button bsStyle="primary" onClick= {this.loadMore.bind(this)}>
                 Load More
               </Button>
+            </div>
+            <div className="filler">
             </div>
           </div>
           </Fade>
