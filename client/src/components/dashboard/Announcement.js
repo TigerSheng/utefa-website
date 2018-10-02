@@ -87,7 +87,10 @@ export class  Announcement extends Component {
         </Modal>
 
 
-        <div className="announcement-banner">
+        <div className="announcement-header">
+        <p className="announcement-title">
+          {this.props.announcementData.title}
+        </p>
           {this.props.isAdmin &&
           <p className="announcement-delete">
               <Button bsSize="xsmall" bsStyle="danger" onClick={this.openDeleteMessage}>
@@ -96,9 +99,7 @@ export class  Announcement extends Component {
           </p>}
 
         </div>
-        <p className="announcement-title">
-          {this.props.announcementData.title}
-        </p>
+
         <p className="announcement-content">
           {this.props.announcementData.content}
         </p>
