@@ -74,11 +74,11 @@ export class  Announcement extends Component {
   render(){
     return(
       <div className="announcement-container">
-      <Modal bsSize="small" 
+      <Modal bsSize="small"
       show={this.state.deleteMessage}>
           <Modal.Header className="delete-modal-title">
             <Modal.Title>Delete Post?</Modal.Title>
-          </Modal.Header> 
+          </Modal.Header>
 
           <Modal.Footer className="delete-modal-buttons">
             <Button onClick={this.handleDelete} bsStyle="danger">Delete</Button>
@@ -113,6 +113,7 @@ export class  Announcement extends Component {
             </a>
           </div>
         }
+        <hr className="section-seperator"/>
         <div className="announcement-footer">
          <p className="announcement-date">
                   {new Date(this.props.announcementData.postedAt).toLocaleDateString("en-US", dateOptions)}
