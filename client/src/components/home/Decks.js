@@ -10,7 +10,7 @@ export default class Decks extends Component {
     return(
       <div className="decks-section wow fadeIn" data-wow-delay="0.4s" data-wow-offset="150" id="decks">
         <div className="border-w">
-          <div className="line-g"></div>
+          <div className="line"></div>
           <div className="key-g">
             <img src="css/key-g2.png"  alt="placeholder"/>
           </div>
