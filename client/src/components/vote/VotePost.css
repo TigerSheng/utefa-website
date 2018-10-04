@@ -1,12 +1,15 @@
+.voting-body{
+  padding: 1em;
+  padding-top: 3px;
+}
 .voting-container{
   background-color: white;
   min-width: 200px;
   max-width: 750px;
   border:.1em solid grey;
-  padding: 1em;
+  box-shadow: 2px 5px #888888;
   margin: 0 auto;
   margin-bottom: 25px;
-  box-shadow: 2px 5px #888888;
 }
 .no-margin-bottom{
   margin-bottom: 0;
@@ -42,10 +45,20 @@
   margin-bottom: 15px;
   font-size: 20px;
   font-weight: bold;
+  padding-top: 1em;
 }
 .voting-download-label{
   margin-bottom:20px;
 }
 .voting-download-link{
   color: blue;
+}
+.voting-header{
+  display: flex;
+  padding-top: 3px;
+  padding-left: 1em;
+  padding-right: 3px;
+}
+.voting-delete{
+  margin-left: auto;
 }

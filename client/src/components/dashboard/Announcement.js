@@ -74,8 +74,8 @@ export class  Announcement extends Component {
   render(){
     return(
       <div className="announcement-container">
-      <Modal bsSize="small"
-      show={this.state.deleteMessage}>
+        <Modal bsSize="small"
+        show={this.state.deleteMessage}>
           <Modal.Header className="delete-modal-title">
             <Modal.Title>Delete Post</Modal.Title>
           </Modal.Header>

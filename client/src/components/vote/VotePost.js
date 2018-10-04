@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import './VotePost.css'
 import {
   Button,
-  ProgressBar
+  ProgressBar,
+  Glyphicon,
+  Modal
 } from "react-bootstrap";
 import {Storage, Auth, API} from 'aws-amplify'
 
@@ -23,7 +25,8 @@ export class VotePost extends Component {
     this.file = null;
     this.state = {
       attachmentURL: null,
-      voted: null
+      voted: null,
+      deleteMessage: false
     }
     this.voteYes = this.voteYes.bind(this);
     this.voteNo = this.voteNo.bind(this);
@@ -93,6 +96,14 @@ export class VotePost extends Component {
     }
   }
 
+  openDeleteMessage = event => {
+    this.setState({deleteMessage:true});
+  }
+
+  closeDeleteMessage = event => {
+    this.setState({deleteMessage:false});
+  }
+
   deleteVote() {
     try{
       if(this.props.votePostData.attachment)
@@ -134,13 +145,31 @@ export class VotePost extends Component {
   render(){
     return(
       <div className="voting-container">
-        <p className="voting-stock-title">{this.props.votePostData.name} ({this.props.votePostData.ticker})</p>
-        <p className="voting-download-label">If you missed the presentation: <a href={this.state.attachmentURL}><u className="voting-download-link" >Click to download</u></a></p>
-        {this.renderVote()}
-        {this.props.isAdmin &&
-        <a onClick={this.handleDelete}>
-          Delete Vote
-        </a>}
+        <Modal bsSize="small"
+        show={this.state.deleteMessage}>
+          <Modal.Header className="delete-modal-title">
+            <Modal.Title>Delete Post</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="delete-modal-text">Are you sure you want to delete this post?</Modal.Body>
+          <Modal.Footer className="delete-modal-buttons">
+            <Button onClick={this.handleDelete} bsStyle="danger">Delete</Button>
+            <Button onClick={this.closeDeleteMessage}>Cancel</Button>
+          </Modal.Footer>
+        </Modal>
+
+        <div className="voting-header">
+          <p className="voting-stock-title">{this.props.votePostData.name} ({this.props.votePostData.ticker})</p>
+          {this.props.isAdmin &&
+          <p className="voting-delete">
+            <Button bsSize="xsmall" bsStyle="danger" onClick={this.openDeleteMessage}>
+              X
+            </Button>
+          </p>}
+        </div>
+        <div className="voting-body">
+          <p className="voting-download-label">If you missed the presentation: <a href={this.state.attachmentURL}><u className="voting-download-link" >Click to download</u></a></p>
+          {this.renderVote()}
+        </div>
       </div>
     );
   }
