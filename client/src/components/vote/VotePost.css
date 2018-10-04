@@ -62,3 +62,18 @@
 .voting-delete{
   margin-left: auto;
 }
+.voting-footer{
+  display: flex;
+  padding-bottom: 3px;
+}
+.voting-date{
+  margin-left: 5px;
+  font-size: 12px;
+}
+.section-seperator{
+  margin: 0;
+  margin-bottom: 10px;
+  width: 98%;
+  margin-left: 1%;
+  text-align: center;
+}

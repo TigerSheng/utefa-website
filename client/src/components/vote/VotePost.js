@@ -8,6 +8,8 @@ import {
 } from "react-bootstrap";
 import {Storage, Auth, API} from 'aws-amplify'
 
+var dateOptions = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric'};
+
 //helper function
 const _MS_PER_DAY = 1000 * 60 * 60 * 24;
 // a and b are javascript Date objects
@@ -169,6 +171,12 @@ export class VotePost extends Component {
         <div className="voting-body">
           <p className="voting-download-label">If you missed the presentation: <a href={this.state.attachmentURL}><u className="voting-download-link" >Click to download</u></a></p>
           {this.renderVote()}
+        </div>
+        <hr className="section-seperator"/>
+        <div className="voting-footer">
+         <p className="voting-date">
+            {new Date(this.props.votePostData.time).toLocaleDateString("en-US", dateOptions)}
+          </p>
         </div>
       </div>
     );

@@ -43,9 +43,9 @@ text-align: center;
 .announcement-content{
   margin-bottom: 10px;
   margin-right: 20px;
-margin-left: 20px;
-padding: 5px;
-white-space: pre-wrap;
+  margin-left: 20px;
+  padding: 5px;
+  white-space: pre-wrap;
   /* text-indent: 2.5em; */
 }
 .announcement-attachments{
