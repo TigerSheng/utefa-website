@@ -22,11 +22,9 @@ export class  Announcement extends Component {
       if(this.props.announcementData.attachment){
         attachmentURL = await Storage.get(this.props.announcementData.attachment);
       }
-      if(this._isMounted){
-        this.setState({
-          attachmentURL
-        });
-      }  
+      this.setState({
+        attachmentURL
+      });
     }catch(e){
       alert(e);
       console.log(e);
