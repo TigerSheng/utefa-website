@@ -64,6 +64,7 @@ export default class Login extends Component {
           }else{
             this.props.userHasAuthenticated(true);
             Auth.currentUserInfo().then(user => {
+              console.log(user)
               if(user.attributes['custom:isAdmin']){
                 this.props.userIsAdmin(true)
               }
