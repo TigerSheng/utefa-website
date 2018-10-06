@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Auth, API, Storage} from 'aws-amplify';
 import './Announcement.css'
-import {Button, Glyphicon, Modal} from "react-bootstrap";
+import {Button, Modal} from "react-bootstrap";
 var dateOptions = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric'};
 
 

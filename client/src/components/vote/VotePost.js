@@ -3,7 +3,6 @@ import './VotePost.css'
 import {
   Button,
   ProgressBar,
-  Glyphicon,
   Modal
 } from "react-bootstrap";
 import {Storage, Auth, API} from 'aws-amplify'
@@ -138,7 +137,7 @@ export class VotePost extends Component {
     }else{
       return(
         <div className= 'voting-yes-no-vote'>
-          <Button bsStyle="success" className="vote-yes" onClick={this.voteYes}>Yes</Button> <Button bsStyle="danger" onClick={this.voteNo} className="vote-no">No</Button>
+          <Button bsStyle="success" className="vote-yes" onClick={this.voteYes}>Buy</Button> <Button bsStyle="danger" onClick={this.voteNo} className="vote-no">Not Now</Button>
         </div>
       )
     }

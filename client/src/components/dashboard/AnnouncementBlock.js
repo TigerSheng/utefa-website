@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Auth, API} from 'aws-amplify';
+import {API} from 'aws-amplify';
 import {Announcement} from './Announcement';
 import './Dashboard.css';
 import quickSort from "./sort";
@@ -97,7 +97,7 @@ export default class AnnouncementBlock extends Component {
               })
             }
             <div className={this.state.moreToLoad?"button-container":'hidden'}>
-              <Button bsStyle="primary" onClick= {this.loadMore.bind(this)}>
+              <Button onClick= {this.loadMore.bind(this)}>
                 Load More
               </Button>
             </div>

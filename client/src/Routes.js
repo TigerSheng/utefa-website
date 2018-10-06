@@ -1,10 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
   Route,
-  Switch,
-  Redirect
+  Switch
 } from 'react-router-dom';
-import {Auth} from 'aws-amplify'
 import AppliedRoute from './components/AppliedRoute'
 import PrivateRoute from './components/PrivateRoute'
 import {Homepage} from './components/home/Homepage';
