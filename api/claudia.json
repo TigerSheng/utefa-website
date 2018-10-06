@@ -1,10 +1,10 @@
 {
   "lambda": {
-    "role": "api-executor",
-    "name": "api",
+    "role": "utefa-api-executor",
+    "name": "utefa-api",
     "region": "us-east-2"
   },
   "api": {
-    "id": "juz5hq9g6b"
+    "id": "sxtf812jcb"
   }
 }

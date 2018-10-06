@@ -24,7 +24,6 @@ export default class AnnouncementBlock extends Component {
     this.setState({isLoading: true})
     try{
       const announcements = await this.updateData();
-      console.log(announcements);
       quickSort(announcements, 0, announcements.length-1)
       announcements.reverse();
       var MTL=true;

@@ -21,10 +21,8 @@ export default class Vote extends Component {
     this.setState({isLoading: true})
     try{
       const votes = await this.getVotes();
-      console.log(votes)
       quickSort(votes, 0, votes.length-1);
       votes.reverse();
-      console.log(votes)
       this.setState({
         voteData: votes
       })
