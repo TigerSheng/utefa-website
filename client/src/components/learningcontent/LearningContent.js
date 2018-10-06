@@ -4,7 +4,7 @@ import './LearningContent.css'
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import {API, Storage} from 'aws-amplify';
-import {Button} from "react-bootstrap";
+import {Button, Modal} from "react-bootstrap";
 
 export default class LearningContent extends Component {
   constructor(props){
@@ -13,7 +13,9 @@ export default class LearningContent extends Component {
       files:[{
         file:{
           name: 'Loading...',
-          url: null
+          url: null,
+          deleteMessage: false,
+          contentToDelete: ""
         }
       }]
     }
@@ -60,6 +62,20 @@ export default class LearningContent extends Component {
     }
   }
 
+  openDeleteMessage = content => {
+    this.setState({
+      deleteMessage:true,
+      contentToDelete: content
+    });
+  }
+
+  closeDeleteMessage = event => {
+    this.setState({
+      deleteMessage:false,
+      contentToDelete: ""
+    });
+  }
+
   render() {
     const data = this.state.files
     let columns = [{
@@ -98,7 +114,7 @@ export default class LearningContent extends Component {
           <div className="delete-content-btn-container">
             <Button bsStyle="danger"
               onClick={() => {
-                this.deleteContent(props.row._original)
+                this.openDeleteMessage(props.row._original)
               }}
             >
               Delete
@@ -110,6 +126,20 @@ export default class LearningContent extends Component {
 
     return (
       <div>
+        <Modal bsSize="small"
+        show={this.state.deleteMessage}>
+          <Modal.Header className="delete-modal-title">
+            <Modal.Title>Delete Post</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="delete-modal-text">Are you sure you want to delete this post?</Modal.Body>
+          <Modal.Footer className="delete-modal-buttons">
+            <Button onClick={() =>
+              {this.deleteContent(this.state.contentToDelete)}} 
+              bsStyle="danger">Delete
+            </Button>
+            <Button onClick={this.closeDeleteMessage}>Cancel</Button>
+          </Modal.Footer>
+        </Modal>
         <LeftNav isAdmin={this.props.isAdmin}/>
          <div className="learning-content-view">
           <ReactTable
