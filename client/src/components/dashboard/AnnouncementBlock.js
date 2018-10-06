@@ -97,7 +97,7 @@ export default class AnnouncementBlock extends Component {
               })
             }
             <div className={this.state.moreToLoad?"button-container":'hidden'}>
-              <Button bsStyle="primary" onClick= {this.loadMore.bind(this)}>
+              <Button onClick= {this.loadMore.bind(this)}>
                 Load More
               </Button>
             </div>
