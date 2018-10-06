@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import Amplify from 'aws-amplify';
-import config from './config.prod.js';
+import config from './config';
 
 Amplify.configure({
   Auth: {
