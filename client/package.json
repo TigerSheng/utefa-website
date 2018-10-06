@@ -19,6 +19,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "predeploy": "npm run build",
+    "deploy": "aws s3 sync build/ s3://utefa-client --delete",
+    "postdeploy": "aws cloudfront create-invalidation --distribution-id EUAA89EA9Y186 --paths /*",
     "eject": "react-scripts eject"
   }
 }
