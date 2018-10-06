@@ -55,7 +55,6 @@ export default class Login extends Component {
       //if first sign in force to change password
       await Auth.signIn(this.state.email, this.state.password)
         .then(user => {
-          console.log(user);
           if(user.challengeName === "NEW_PASSWORD_REQUIRED"){
             this.setState({
               newUser: user,
@@ -64,7 +63,6 @@ export default class Login extends Component {
           }else{
             this.props.userHasAuthenticated(true);
             Auth.currentUserInfo().then(user => {
-              console.log(user)
               if(user.attributes['custom:isAdmin']){
                 this.props.userIsAdmin(true)
               }

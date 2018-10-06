@@ -112,7 +112,6 @@ export class LearningContentPostForm extends Component {
   }
 
   render() {
-    console.log(this.state.isPublic)
     return(
       <div>
         {this.state.postSuccess
