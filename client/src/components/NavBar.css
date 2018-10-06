@@ -1,0 +1,106 @@
+@import 'https://fonts.googleapis.com/css?family=Crimson+Text';
+#cssmenu {
+	font-family: 'Crimson Text', Arial, sans-serif;
+  font-size: 12pt;
+  line-height: 15px;
+  text-transform: uppercase;
+  text-align: center;
+  color:#000000;
+  margin-bottom:0px;
+  letter-spacing:1px;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+  border-color: white;
+}
+#cssmenu > ul {
+  border-bottom-color: white !important;
+}
+#cssmenu > ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background: #ffffff;
+}
+#cssmenu > ul li#responsive-tab {
+  display: none;
+  /* Hide for large screens */
+
+}
+#cssmenu > ul li {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+#cssmenu > ul li.right {
+  float: right;
+}
+#cssmenu > ul li a {
+  display: block;
+  padding: 20px 24px 20px 24px;
+  text-decoration: none;
+  color: #000000;
+ 	-webkit-transition: color linear 0.2s ;
+    -moz-transition: color linear 0.2s;
+    -o-transition: color linear 0.2s;
+    transition: color linear 0.2s;
+
+}
+#cssmenu > ul li a.active,
+#cssmenu > ul li a:hover {
+  color: #000000;
+
+}
+@media (max-width: 675px) {
+#cssmenu{
+	margin-right:0;
+	margin-bottom:10px;
+
+}
+  #cssmenu > ul {
+    width: 100%;
+
+  }
+  #cssmenu > ul li#responsive-tab {
+    display: block;
+	color:#ffffff;
+	margin-bottom:10px;
+  }
+  #cssmenu > ul li#responsive-tab a {
+    background: url('menu1.png') no-repeat;
+    background-position: 95% -35%;
+	color:#ffffff;
+  }
+  #cssmenu > ul li#responsive-tab a:hover {
+	cursor:pointer;
+  }
+  #cssmenu > ul li {
+    display: none;
+  }
+  #cssmenu > ul li.right {
+    float: none;
+  }
+	#cssmenu > ul li.last {
+		}
+
+}
+/* Make sure they show even if hidden in mobile view by JS */
+@media (min-width: 675px) {
+
+  #cssmenu > ul > li.collapsed {
+    display: inline-block !important;
+    *display: inline;
+    zoom: 1;
+  }
+  #cssmenu > ul ul li.collapsed {
+    display: block !important;
+  }
+}
+@media (max-width: 675px) {
+#cssmenu{
+	float:none;
+	top:10px;
+	width:100%;
+	margin-top:10px;
+	margin-bottom:0;
+	}
+
+}
