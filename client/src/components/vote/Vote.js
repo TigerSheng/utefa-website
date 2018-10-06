@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Vote.css'
-import {Auth, API} from 'aws-amplify'
+import {API} from 'aws-amplify'
 import {LeftNav} from '../LeftNav'
 import {VotePost} from './VotePost'
 import quickSort from './sort'

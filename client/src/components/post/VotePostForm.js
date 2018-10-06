@@ -7,7 +7,7 @@ import {
   Popover,
   OverlayTrigger
 } from "react-bootstrap";
-import {Auth, API} from 'aws-amplify';
+import {API} from 'aws-amplify';
 import LoaderButton from '../LoaderButton';
 import "./VotePostForm.css";
 import { s3Upload } from "../../libs/awsLib";

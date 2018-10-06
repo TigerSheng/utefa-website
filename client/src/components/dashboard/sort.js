@@ -1,6 +1,5 @@
 export default function quickSort(arr, left, right){
-  var len = arr.length,
-  pivot,
+  var pivot,
   partitionIndex;
 
   if(left < right){

@@ -3,7 +3,6 @@ import './VotePost.css'
 import {
   Button,
   ProgressBar,
-  Glyphicon,
   Modal
 } from "react-bootstrap";
 import {Storage, Auth, API} from 'aws-amplify'

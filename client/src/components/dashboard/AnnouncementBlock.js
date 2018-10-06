@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Auth, API} from 'aws-amplify';
+import {API} from 'aws-amplify';
 import {Announcement} from './Announcement';
 import './Dashboard.css';
 import quickSort from "./sort";
