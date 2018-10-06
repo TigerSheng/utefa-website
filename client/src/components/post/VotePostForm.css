@@ -1,0 +1,6 @@
+.stock-name-input{
+  text-transform: capitalize;
+}
+.stock-ticker-input{
+  text-transform: uppercase;
+}

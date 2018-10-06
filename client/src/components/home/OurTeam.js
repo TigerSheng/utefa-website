@@ -8,7 +8,8 @@ const pictures = {
   eric: imgDir + "Eric.jpg",
   yuri: imgDir + "Lawryshyn.jpg",
   tiger: imgDir + "Tiger.jpg",
-  tom: imgDir + "Tom.jpg"
+  tom: imgDir + "Tom.jpg",
+  ameer: imgDir + "Ameer.jpg"
 };
 
 const titles = {
@@ -28,14 +29,14 @@ export class OurTeam extends Component {
       <div className="wow fadeIn" data-wow-delay="0.4s"  id="team">
         <div className="border-g">
           <div className="line-g"></div>
-          <div className="key3"><img src="css/key3.png"/></div>
+          <div className="key3"><img alt='placeholder' src="css/key3.png"/></div>
           <div className="heading-w">Our Team</div>
           <div className="emphasis-b">Meet our team of executives for 2018-2019.</div>
           <div className="t-cont">
             <Profile src={pictures.stefan} title={titles.stefan}>
               Stefan Momic
             </Profile>
-            <Profile title={titles.ameer}>Ameer Shaikh</Profile>
+            <Profile src={pictures.ameer} title={titles.ameer}>Ameer Shaikh</Profile>
             <Profile src={pictures.eric} title={titles.eric}>
               Eric Boszin
             </Profile>

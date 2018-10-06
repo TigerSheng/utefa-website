@@ -5,10 +5,15 @@
   line-height: 15px;
   text-transform: uppercase;
   text-align: center;
+	position: sticky;
+	top:0px;
+	z-index: 5;
+	width:100%;
   color:#000000;
+  box-shadow: 0px 1px black;
   margin-bottom:0px;
   letter-spacing:1px;
-  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 
 }
 #cssmenu > ul {
@@ -26,6 +31,10 @@
   display: inline-block;
   *display: inline;
   zoom: 1;
+}
+#cssmenu > ul li:hover {
+	background: grey;	
+	background-color: rgb(210, 210, 210);
 }
 #cssmenu > ul li.right {
   float: right;
@@ -76,7 +85,7 @@
   }
 	#cssmenu > ul li.last {
 		}
-  
+
 }
 /* Make sure they show even if hidden in mobile view by JS */
 @media (min-width: 675px) {

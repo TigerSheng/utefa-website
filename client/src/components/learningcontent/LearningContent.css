@@ -1,0 +1,17 @@
+.learning-content-view{
+  margin-left: 15em;
+  padding: 10px;
+}
+:focus {
+  outline: 0;
+}
+.center{
+  text-align: center;
+}
+.lc-tip{
+  text-align: center;
+  margin-top: 10px;
+}
+.delete-content-btn-container{
+  text-align: center;
+}

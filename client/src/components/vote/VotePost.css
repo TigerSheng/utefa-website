@@ -1,0 +1,79 @@
+.voting-body{
+  padding: 1em;
+  padding-top: 3px;
+}
+.voting-container{
+  background-color: white;
+  min-width: 200px;
+  max-width: 750px;
+  border:.1em solid grey;
+  box-shadow: 2px 5px #888888;
+  margin: 0 auto;
+  margin-bottom: 25px;
+}
+.no-margin-bottom{
+  margin-bottom: 0;
+}
+.voting-yes-no-vote{
+  text-align: center;
+  color: white;
+}
+.voters-yes{
+  background-color: green;
+  padding: 5px;
+}
+.vote-yes{
+  width: 100px;
+}
+.vote-no{
+    width: 100px;
+}
+
+.voters-no{
+
+  background-color: red;
+  padding: 5px;
+}
+.vote-bar{
+  /* display:flex; */
+  height:auto;
+  text-align: center;
+  color:white;
+  margin-bottom: 10px;
+}
+.voting-stock-title{
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 1em;
+}
+.voting-download-label{
+  margin-bottom:20px;
+}
+.voting-download-link{
+  color: blue;
+}
+.voting-header{
+  display: flex;
+  padding-top: 3px;
+  padding-left: 1em;
+  padding-right: 3px;
+}
+.voting-delete{
+  margin-left: auto;
+}
+.voting-footer{
+  display: flex;
+  padding-bottom: 3px;
+}
+.voting-date{
+  margin-left: 5px;
+  font-size: 12px;
+}
+.section-seperator{
+  margin: 0;
+  margin-bottom: 10px;
+  width: 98%;
+  margin-left: 1%;
+  text-align: center;
+}

@@ -1,0 +1,16 @@
+.schedule {
+  text-align:center; display: block; margin-top:30px;
+}
+#schedule{
+    position: relative;
+    padding: 25px;
+}
+
+.schedule img {
+  max-width: 100%;
+}
+
+
+.schedule-main {
+  visibility: visible; animation-delay: 0.4s; animation-name: fadeIn;
+}
