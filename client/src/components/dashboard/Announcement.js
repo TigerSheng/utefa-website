@@ -9,9 +9,12 @@ export class  Announcement extends Component {
   constructor(props){
     super(props);
     this.file = null;
+    this.myRef = React.createRef();
     this.state = {
       attachmentURL: null,
-      deleteMessage: false
+      deleteMessage: false,
+      expanded: false,
+      expandable: false
     }
     this.handleDelete = this.handleDelete.bind(this)
   }
@@ -71,9 +74,22 @@ export class  Announcement extends Component {
     }
   }
 
+  expandText = event =>{
+    console.log()
+    if(this.state.expanded){
+      this.setState({expanded:false})
+    }
+    else{
+      this.setState({expanded:true})
+    }
+  }
+
   render(){
+    const expandable= this.myRef.current !== null ? 
+    (this.myRef.current.offsetHeight !== this.myRef.current.scrollHeight): false
+
     return(
-      <div className="announcement-container">
+      <div onClick={this.expandText} className="announcement-container">
         <Modal bsSize="small"
         show={this.state.deleteMessage}>
           <Modal.Header className="delete-modal-title">
@@ -100,9 +116,12 @@ export class  Announcement extends Component {
 
         </div>
 
-        <p className="announcement-content">
+        <p ref={this.myRef} className={this.state.expanded ? "announcement-content-expanded" : "announcement-content"}>
           {this.props.announcementData.content}
         </p>
+
+        <div className={expandable && !this.state.expanded ? "expand-sign" : "no-expand"}>...</div>
+
         {this.props.announcementData.attachment &&
           <div className="announcement-attachments">
             <a
