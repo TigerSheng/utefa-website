@@ -39,7 +39,7 @@ export default class Vote extends Component {
 
   render(){
     return(
-      <div>
+      <div className="vote-background">
         <LeftNav isAdmin={this.props.isAdmin}/>
         <Fade big cascade>
         <div className="vote-view">

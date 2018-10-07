@@ -6,16 +6,11 @@ AWS.config.update({region: 'us-east-2'});
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
 //functions to check if certain element exists
-router.param('userId', (req, res, next, id) => {
-  req.userId = id;
-  next();
-})
 router.param('noteId', (req, res, next, id) => {
   req.noteId = id;
   const params = {
     TableName: 'notes',
     Key: {
-      userId: req.userId,
       noteId: id
     }
   };
@@ -71,14 +66,13 @@ router.get('/', (req, res, next) => {
   });
 });
 
-router.get('/:userId/:noteId', (req, res, next) => {
+router.get('/:noteId', (req, res, next) => {
   res.send(req.notes);
 });
 
-router.delete('/:userId/:noteId', (req, res, next) => {
+router.delete('/:noteId', (req, res, next) => {
   const params = {
     Key: {
-      userId: req.userId,
       noteId: req.noteId
     },
     TableName: 'notes'
