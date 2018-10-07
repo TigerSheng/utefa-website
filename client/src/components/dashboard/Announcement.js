@@ -29,9 +29,9 @@ export class  Announcement extends Component {
       this.setState({
         attachmentURL
       });
-      this.setState({expandable: this.myRef.current !== null ? 
+      this.setState({expandable: this.myRef.current !== null ?
           (this.myRef.current.offsetHeight !== this.myRef.current.scrollHeight): false});
-      
+
     }catch(e){
       alert(e);
       console.log(e);
@@ -66,7 +66,7 @@ export class  Announcement extends Component {
       if(this.props.announcementData.attachment)
         Storage.remove(this.props.announcementData.attachment)
       Auth.currentAuthenticatedUser().then(user => {
-        API.del('api', '/notes/' + user.username + "/" + this.props.announcementData.noteId)
+        API.del('api', '/notes/' + this.props.announcementData.noteId)
           .then(response => {
             console.log(response);
             return window.location.reload();
@@ -121,7 +121,7 @@ export class  Announcement extends Component {
           {this.props.announcementData.content}
         </p>
         <p className={this.state.expandable && !this.state.expanded ? "expand-sign" : "no-expand"}>...</p>
-        
+
         {this.props.announcementData.attachment &&
           <div className="announcement-attachments">
             <a
