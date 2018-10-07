@@ -86,7 +86,8 @@ export class  Announcement extends Component {
 
   render(){
     const expandable= this.myRef.current !== null ? 
-    (this.myRef.current.offsetHeight !== this.myRef.current.scrollHeight): false
+    (this.myRef.current.offsetHeight !== this.myRef.current.scrollHeight): true
+    
 
     return(
       <div onClick={this.expandText} className="announcement-container">
