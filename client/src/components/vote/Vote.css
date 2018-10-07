@@ -1,3 +1,14 @@
+.vote-background{
+  position: fixed;
+  overflow: auto;
+  background-attachment: fixed;
+  background-image: url("vote-146962.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
 .vote-view{
   margin-top: 5px;
   margin-left: 15em;
