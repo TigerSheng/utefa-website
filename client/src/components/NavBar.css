@@ -1,4 +1,29 @@
 @import 'https://fonts.googleapis.com/css?family=Crimson+Text';
+
+/*New Navbar Menubar CSS */
+.menu-bar{
+  border-top: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 0px;
+  background-color: white;
+  font-size: 10pt;
+  letter-spacing:1px;
+  z-index: 5; 
+}
+
+.menu-item:hover{
+  background: grey;
+	background-color: rgb(210, 210, 210);
+}
+
+.menu-hamburger{
+  background: transparent;
+  border: 0px;
+}
+
+
+/*Old Menubar CSS (to be removed)*/
 #cssmenu {
 	font-family: 'Crimson Text', Arial, sans-serif;
   font-size: 12pt;
@@ -13,8 +38,10 @@
   margin-bottom:0px;
   letter-spacing:1px;
   -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
-
 }
+
+
+
 #cssmenu > ul {
   list-style-type: none;
   padding: 0;
