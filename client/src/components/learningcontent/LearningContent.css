@@ -11,9 +11,14 @@
 .lc-tip{
   text-align: center;
   margin-top: 10px;
+  color: white;
 }
 .delete-content-btn-container{
   text-align: center;
+}
+.ReactTable{
+  background: white !important;
+ border-radius: 5px;
 }
 .background{
   position: fixed;
