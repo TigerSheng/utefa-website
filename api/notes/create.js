@@ -5,7 +5,7 @@ import { success, failure } from "../libs/response-lib";
 export async function main(event, context, callback) {
   const data = JSON.parse(event.body);
   const params = {
-    TableName: "otes",
+    TableName: "notes",
     Item: {
       userId: data.userId,
       noteId: uuid.v1(),
