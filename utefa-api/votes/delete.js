@@ -3,11 +3,11 @@ import { success, failure } from "../libs/response-lib";
 
 export async function main(event, context, callback) {
   const params = {
-    TableName: "notes",
+    TableName: "votes",
     // 'Key' defines the partition key and sort key of the item to be removed
     // - 'noteId': path parameter
     Key: {
-      noteId: event.pathParameters.id
+      voteId: event.pathParameters.id
     }
   };
 

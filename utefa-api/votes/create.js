@@ -5,16 +5,15 @@ import { success, failure } from "../libs/response-lib";
 export async function main(event, context, callback) {
   const data = JSON.parse(event.body);
   const params = {
-    TableName: "otes",
+    TableName: "votes",
     Item: {
-      userId: data.userId,
-      noteId: uuid.v1(),
-      content: data.content,
+      voteId: uuid(),
+      ticker: data.ticker,
+      name: data.name,
+      yes: [],
+      no: [],
       attachment: data.attachment,
-      postedAt: Date.now(),
-      author: data.author,
-      pinned: data.pinned,
-      title: data.title
+      time: Date.now()
     }
   };
 

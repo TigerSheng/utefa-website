@@ -3,7 +3,7 @@ import { success, failure } from "../libs/response-lib";
 
 export async function main(event, context, callback) {
   const params = {
-    TableName: "notes",
+    TableName: "votes",
     Limit: 100
   };
 

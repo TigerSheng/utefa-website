@@ -83,3 +83,37 @@ functions:
           method: delete
           cors: true
           authorizer: aws_iam
+
+  #/votes
+  create-vote:
+    handler: votes/create.main
+    events:
+      - http:
+          path: votes/create
+          method: post
+          cors: true
+          authorizer: aws_iam
+  vote:
+    handler: votes/vote.main
+    events:
+      - http:
+          path: votes/vote/{id}/{options}/{userId}
+          method: put
+          cors: true
+          authorizer: aws_iam
+  list-votes:
+    handler: votes/list.main
+    events:
+      - http:
+          path: votes
+          method: get
+          cors: true
+          authorizer: aws_iam
+  delete-vote:
+    handler: votes/delete.main
+    events:
+      - http:
+          path: votes/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
