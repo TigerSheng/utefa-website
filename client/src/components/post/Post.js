@@ -26,7 +26,7 @@ export default class  Post extends Component {
                 <VotePostForm/>
               </div>
             </Tab>
-            <Tab eventKey={3} title="Post Learning Material">
+            <Tab eventKey={3} title="Post Material">
               <div className="learning-content-post-container">
                 <LearningContentPostForm/>
               </div>
