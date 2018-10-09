@@ -4,7 +4,7 @@ import Routes from './Routes';
 import {Auth} from 'aws-amplify';
 import {withRouter} from 'react-router-dom';
 
-const authReqPages = ['/dashboard','/post','/vote','/learningcontent'];
+const authReqPages = ['/dashboard','/post','/vote','/sessionmaterial'];
 class App extends Component {
   constructor(props){
     super(props);
