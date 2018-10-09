@@ -40,7 +40,7 @@ export class  LeftNav extends Component {
             </div>
           </Link>}
           <Link to="/sessionmaterial">
-            <div className={window.location.pathname === "/learningcontent" ? "active-tab LeftNav-Item":"LeftNav-Item"}>
+            <div className={window.location.pathname === "/sessionmaterial" ? "active-tab LeftNav-Item":"LeftNav-Item"}>
               <p>Materials</p>
             </div>
           </Link>
