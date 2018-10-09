@@ -125,7 +125,7 @@ export default class LearningContent extends Component {
     }
 
     return (
-      <div>
+      <div className="background">
         <Modal bsSize="small"
         show={this.state.deleteMessage}>
           <Modal.Header className="delete-modal-title">
