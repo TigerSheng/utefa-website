@@ -38,6 +38,10 @@ position: relative;
   font-size: 1.15em;
 }
 
+.LeftNav-Item p {
+  font-family: Times !important;
+}
+
 .LeftNav-Item:hover {
   background-color: rgb(210, 210, 210);
 }
