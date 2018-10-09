@@ -117,3 +117,36 @@ functions:
           method: delete
           cors: true
           authorizer: aws_iam
+
+  #/learningcontent
+  list-content:
+    handler: learningcontent/list.main
+    events:
+      - http:
+          path: learningcontent
+          method: get
+          cors: true
+          authorizer: aws_iam
+  list-public-content:
+    handler: learningcontent/listpublic.main
+    events:
+      - http:
+          path: learningcontent/public
+          method: get
+          cors: true
+  create-content:
+    handler: learningcontent/create.main
+    events:
+      - http:
+          path: learningcontent
+          method: post
+          cors: true
+          authorizer: aws_iam
+  delete-content:
+    handler: learningcontent/delete.main
+    events:
+      - http:
+          path: learningcontent/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
