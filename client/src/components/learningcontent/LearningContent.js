@@ -134,7 +134,7 @@ export default class LearningContent extends Component {
           <Modal.Body className="delete-modal-text">Are you sure you want to delete this post?</Modal.Body>
           <Modal.Footer className="delete-modal-buttons">
             <Button onClick={() =>
-              {this.deleteContent(this.state.contentToDelete)}} 
+              {this.deleteContent(this.state.contentToDelete)}}
               bsStyle="danger">Delete
             </Button>
             <Button onClick={this.closeDeleteMessage}>Cancel</Button>

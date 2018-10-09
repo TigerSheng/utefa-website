@@ -1,3 +1,10 @@
 button {
   /* pointer-events: none; */
 }
+
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+    /* position: absolute; */
+    position: relative !important;
+    margin-left: -20px;
+    margin-right: 5px;
+}

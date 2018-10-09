@@ -59,11 +59,11 @@ text-align: center;
   white-space: pre-wrap;
 }
 
-.expand-sign{
-  font-size: 24px;
-  margin-left: 25px;
+.expand-sign {
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
 }
-
 .no-expand{
   display:none;
 }
