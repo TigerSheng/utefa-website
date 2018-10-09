@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "aws-amplify": "^1.1.4",
+    "aws-amplify": "^1.1.6",
     "npm": "^6.4.1",
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",
@@ -20,6 +20,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "predeploy": "npm run build",
+    "deploy": "aws s3 sync build/ s3://utefa-client --cache-control max-age=86400 --delete",
+    "postdeploy": "aws configure set preview.cloudfront true && aws cloudfront create-invalidation --distribution-id EIJ0Q81ENE6DG --paths /*",
     "eject": "react-scripts eject"
   }
 }
