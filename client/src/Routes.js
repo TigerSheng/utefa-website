@@ -26,7 +26,7 @@ export default ({childProps, auth}) =>
       props={childProps} auth={auth}/>}
     <PrivateRoute path='/vote' exact component={Vote}
     props={childProps} auth={auth}/>
-    <PrivateRoute path='/learningcontent' exact component={LearningContent}
+    <PrivateRoute path='/sessionmaterial' exact component={LearningContent}
     props={childProps} auth={auth}/>
     <Route component={NotFound} />
   </Switch>
