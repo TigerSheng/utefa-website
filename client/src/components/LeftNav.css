@@ -1,3 +1,64 @@
+/*NEW Bootstrap LeftNav CSS Styling*/
+.wrapper{
+  display: flex;
+  width: 100%;
+}
+
+.side-bar{
+  max-width: 15em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 999;
+  /* background-color: rgb(230,230,230); */
+  border-radius: 0px;
+}
+
+.navbar-header{
+  width: 100%;
+}
+
+.navbar-brand{
+  height: fit-content;
+  width: fit-content; 
+}
+
+.container-fluid{
+  padding: 0;
+}
+
+#leftNavLogo{
+  margin-left: 50%;
+}
+
+.LeftNav-Item {
+  /* padding: 0.5em; */
+  text-align: center;
+  font-size: 1.15em;
+  width: 100%;
+}
+
+.LeftNav-Item p {
+  font-family: Times !important;
+}
+
+.LeftNav-Item:hover {
+    background-color: rgb(210, 210, 210);
+}
+
+.LeftNav-Item img {
+  width: 2em;
+  padding-bottom: 0.5em;
+}
+
+a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+/*OLD LeftNav CSS styling */
+
 .side-logo-container{
   margin: 0 auto;
 display: block;
@@ -33,28 +94,8 @@ position: relative;
   cursor: pointer;
 }
 
-.LeftNav-Item {
-  padding: 0.5em;
-  font-size: 1.15em;
-}
-
-.LeftNav-Item p {
-  font-family: Times !important;
-}
-
-.LeftNav-Item:hover {
-  background-color: rgb(210, 210, 210);
-}
-
-.LeftNav-Item img {
-  width: 2em;
-  padding-bottom: 0.5em;
-}
-.active-tab{
+/* .active-tab{
     background-color: rgb(210, 210, 210);
-}
+} */
 
-a {
-  color: inherit !important;
-  text-decoration: none !important;
-}
+
