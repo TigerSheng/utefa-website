@@ -3,7 +3,7 @@ import './LeftNav.css'
 
 import {Auth} from 'aws-amplify';
 import {Link} from 'react-router-dom';
-import { Navbar, Nav, NavItem, Glyphicon } from "react-bootstrap";
+import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 export class  LeftNav extends Component {
@@ -20,7 +20,7 @@ export class  LeftNav extends Component {
 
   render() {
     return(
-      <div>
+      <div className="wrapper">
         <Navbar fluid className="side-bar">
           <Navbar.Header>
             <Navbar.Brand>
@@ -32,37 +32,31 @@ export class  LeftNav extends Component {
         <Nav>
           <LinkContainer to='/dashboard'>
             <NavItem className="LeftNav-Item">
-            <Glyphicon  className="left-nav-icon" glyph="home" /><p className="left-nav-text">Home</p>
+                  <p>Home</p>
             </NavItem>
           </LinkContainer>
 
           <LinkContainer to='/vote'>
             <NavItem className="LeftNav-Item"> 
-            <Glyphicon className="left-nav-icon" glyph="inbox" /><p className="left-nav-text">Vote</p>
-            </NavItem>
-          </LinkContainer>
-
-          <LinkContainer to='/discussion'>
-            <NavItem className="LeftNav-Item"> 
-            <Glyphicon className="left-nav-icon" glyph="transfer" /><p className="left-nav-text">Discussion</p>
+                  <p>Vote</p>
             </NavItem>
           </LinkContainer>
 
           {this.props.isAdmin &&  <LinkContainer to='/post'>
             <NavItem className="LeftNav-Item"> 
-            <Glyphicon className="left-nav-icon" glyph="bullhorn" /><p className="left-nav-text">Post</p>
+                  <p>Post</p>
             </NavItem>
           </LinkContainer>}
 
           <LinkContainer to="/sessionmaterial">
             <NavItem className="LeftNav-Item">
-            <Glyphicon className="left-nav-icon" glyph="folder-open" /><p className="left-nav-text">Materials</p>
+              <p>Materials</p>
             </NavItem>
           </LinkContainer>
 
           <NavItem className="LeftNav-Item" onClick={this.handleLogout}>
               <div >
-              <Glyphicon className="left-nav-icon" glyph="log-out" /><p className="left-nav-text">Log Out</p>
+                <p>Log Out</p>
               </div>
           </NavItem>
         </Nav>
