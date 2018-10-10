@@ -3,11 +3,7 @@ import './LeftNav.css'
 
 import {Auth} from 'aws-amplify';
 import {Link} from 'react-router-dom';
-<<<<<<< HEAD
-import { Navbar, Nav, NavItem, Glyphicon } from "react-bootstrap";
-=======
 import { Navbar, Nav, NavItem } from "react-bootstrap";
->>>>>>> Converted LeftNav bar to react-bootstrap Navbar
 import { LinkContainer } from "react-router-bootstrap";
 
 export class  LeftNav extends Component {
@@ -24,11 +20,7 @@ export class  LeftNav extends Component {
 
   render() {
     return(
-<<<<<<< HEAD
-      <div>
-=======
       <div className="wrapper">
->>>>>>> Converted LeftNav bar to react-bootstrap Navbar
         <Navbar fluid className="side-bar">
           <Navbar.Header>
             <Navbar.Brand>
@@ -40,57 +32,31 @@ export class  LeftNav extends Component {
         <Nav>
           <LinkContainer to='/dashboard'>
             <NavItem className="LeftNav-Item">
-<<<<<<< HEAD
-            <Glyphicon  className="left-nav-icon" glyph="home" /><p className="left-nav-text">Home</p>
-=======
                   <p>Home</p>
->>>>>>> Converted LeftNav bar to react-bootstrap Navbar
             </NavItem>
           </LinkContainer>
 
           <LinkContainer to='/vote'>
             <NavItem className="LeftNav-Item"> 
-<<<<<<< HEAD
-            <Glyphicon className="left-nav-icon" glyph="inbox" /><p className="left-nav-text">Vote</p>
-            </NavItem>
-          </LinkContainer>
-
-          <LinkContainer to='/discussion'>
-            <NavItem className="LeftNav-Item"> 
-            <Glyphicon className="left-nav-icon" glyph="transfer" /><p className="left-nav-text">Discussion</p>
-=======
                   <p>Vote</p>
->>>>>>> Converted LeftNav bar to react-bootstrap Navbar
             </NavItem>
           </LinkContainer>
 
           {this.props.isAdmin &&  <LinkContainer to='/post'>
             <NavItem className="LeftNav-Item"> 
-<<<<<<< HEAD
-            <Glyphicon className="left-nav-icon" glyph="bullhorn" /><p className="left-nav-text">Post</p>
-=======
                   <p>Post</p>
->>>>>>> Converted LeftNav bar to react-bootstrap Navbar
             </NavItem>
           </LinkContainer>}
 
           <LinkContainer to="/sessionmaterial">
             <NavItem className="LeftNav-Item">
-<<<<<<< HEAD
-            <Glyphicon className="left-nav-icon" glyph="folder-open" /><p className="left-nav-text">Materials</p>
-=======
               <p>Materials</p>
->>>>>>> Converted LeftNav bar to react-bootstrap Navbar
             </NavItem>
           </LinkContainer>
 
           <NavItem className="LeftNav-Item" onClick={this.handleLogout}>
               <div >
-<<<<<<< HEAD
-              <Glyphicon className="left-nav-icon" glyph="log-out" /><p className="left-nav-text">Log Out</p>
-=======
                 <p>Log Out</p>
->>>>>>> Converted LeftNav bar to react-bootstrap Navbar
               </div>
           </NavItem>
         </Nav>
