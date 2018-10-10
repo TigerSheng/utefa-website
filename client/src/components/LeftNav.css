@@ -1,33 +1,7 @@
 /*NEW Bootstrap LeftNav CSS Styling*/
-
-@media screen and (max-width: 1024px){
-  .side-bar{
-    width: 5em;
-  }
-
-  .navbar-nav{
-    display: inline-block;
-    float: none;
-    vertical-align: top;  
-    margin: 0;
-  }
-
-  .navbar-header{
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  .left-nav-text {
-    display: none;
-  }
-
-  .left-nav-icon{
-    display: inline-block !important;
-  }
-}
-
-.left-nav-icon{
-  display: none;
+.wrapper{
+  display: flex;
+  width: 100%;
 }
 
 .side-bar{
@@ -37,18 +11,16 @@
   left: 0;
   height: 100vh;
   z-index: 999;
+  /* background-color: rgb(230,230,230); */
   border-radius: 0px;
 }
 
 .navbar-header{
   width: 100%;
-  padding: 0;
-  align-content: center;
 }
 
 .navbar-brand{
   height: fit-content;
-  float: none;
   width: fit-content; 
 }
 
@@ -57,20 +29,14 @@
 }
 
 #leftNavLogo{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100%;
-  max-height: 100%;
   margin-left: 50%;
 }
 
 .LeftNav-Item {
+  /* padding: 0.5em; */
   text-align: center;
   font-size: 1.15em;
   width: 100%;
-  min-width: 100%;
-  float: left;
 }
 
 .LeftNav-Item p {
@@ -93,7 +59,6 @@ a {
 
 /*OLD LeftNav CSS styling */
 
-/* .side-logo-container{
 =======
 .side-logo-container{
 >>>>>>> Converted LeftNav bar to react-bootstrap Navbar
@@ -131,13 +96,11 @@ position: relative;
   background: none;
   border: none;
   width: 100%;
-  cursor: pointer; */
-/* } */
+  cursor: pointer;
+}
 
-/* .LeftNav-Item img {
-  width: 2em;
-  padding-bottom: 0.5em;
+/* .active-tab{
+    background-color: rgb(210, 210, 210);
 } */
-
 
 
