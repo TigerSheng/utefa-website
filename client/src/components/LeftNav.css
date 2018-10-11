@@ -1,5 +1,10 @@
 /*NEW Bootstrap LeftNav CSS Styling*/
-<<<<<<< HEAD
+
+.wrapper{
+  display: flex;
+  width: 100%;
+}
+
 
 @media screen and (max-width: 1024px){
   .side-bar{
@@ -7,10 +12,12 @@
   }
 
   .navbar-nav{
+    width: 5em;
     display: inline-block;
     float: none;
     vertical-align: top;  
     margin: 0;
+    transition: width 2s;
   }
 
   .navbar-header{
@@ -19,37 +26,17 @@
   }
 
   .left-nav-text {
-    display: none;
+    font-size:0;
   }
 
   .left-nav-icon{
-    display: inline-block !important;
+    color: black !important;
   }
 }
 
 .left-nav-icon{
-  display: none;
-=======
-.wrapper{
-  display: flex;
-  width: 100%;
->>>>>>> Converted LeftNav bar to react-bootstrap Navbar
+  color: transparent;
 }
-
-@media screen and (max-width: 768px){
-  .side-bar{
-    width: 5em;
-  }
-
-}
-
-@media screen and (max-width: 1024px){
-  .side-bar{
-    width: 10em;
-  }
-
-}
-
 
 .side-bar{
   max-width: 15em;
@@ -58,38 +45,20 @@
   left: 0;
   height: 100vh;
   z-index: 999;
-<<<<<<< HEAD
-=======
   /* background-color: rgb(230,230,230); */
->>>>>>> Converted LeftNav bar to react-bootstrap Navbar
   border-radius: 0px;
 }
 
 .navbar-header{
   width: 100%;
-<<<<<<< HEAD
-<<<<<<< HEAD
   padding: 0;
   align-content: center;
-=======
->>>>>>> Converted LeftNav bar to react-bootstrap Navbar
-=======
-  padding: 0;
-  align-content: center;
->>>>>>> Minor responsiveness fixes
 }
 
 .navbar-brand{
   height: fit-content;
-<<<<<<< HEAD
-<<<<<<< HEAD
   float: none;
-=======
   width: fit-content; 
->>>>>>> Converted LeftNav bar to react-bootstrap Navbar
-=======
-  float: none;
->>>>>>> Minor responsiveness fixes
 }
 
 .container-fluid{
@@ -97,39 +66,19 @@
 }
 
 #leftNavLogo{
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Minor responsiveness fixes
   display: block;
   margin-left: auto;
   margin-right: auto;
   max-width: 100%;
   max-height: 100%;
-<<<<<<< HEAD
-}
-
-.LeftNav-Item {
-  text-align: center;
-  font-size: 1.15em;
-  min-width: 100%;
-  float: left;
-=======
   margin-left: 50%;
-=======
->>>>>>> Minor responsiveness fixes
 }
 
 .LeftNav-Item {
-  /* padding: 0.5em; */
   text-align: center;
   font-size: 1.15em;
-<<<<<<< HEAD
   width: 100%;
->>>>>>> Converted LeftNav bar to react-bootstrap Navbar
-=======
   min-width: 100%;
->>>>>>> Minor responsiveness fixes
 }
 
 .LeftNav-Item p {
@@ -140,14 +89,11 @@
     background-color: rgb(210, 210, 210);
 }
 
-<<<<<<< HEAD
-=======
 .LeftNav-Item img {
   width: 2em;
   padding-bottom: 0.5em;
 }
 
->>>>>>> Converted LeftNav bar to react-bootstrap Navbar
 a {
   color: inherit !important;
   text-decoration: none !important;
@@ -155,11 +101,13 @@ a {
 
 /*OLD LeftNav CSS styling */
 
-<<<<<<< HEAD
 /* .side-logo-container{
 =======
 .side-logo-container{
 >>>>>>> Converted LeftNav bar to react-bootstrap Navbar
+=======
+/* .side-logo-container{
+>>>>>>> More responsive improvements for leftnav
   margin: 0 auto;
 display: block;
 width: 125px;
@@ -191,7 +139,6 @@ position: relative;
   background: none;
   border: none;
   width: 100%;
-<<<<<<< HEAD
   cursor: pointer; */
 /* } */
 
@@ -201,13 +148,4 @@ position: relative;
 } */
 
 
-=======
-  cursor: pointer;
-}
-
-/* .active-tab{
-    background-color: rgb(210, 210, 210);
-} */
-
->>>>>>> Converted LeftNav bar to react-bootstrap Navbar
 
