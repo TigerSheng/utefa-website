@@ -1,23 +1,41 @@
 /*NEW Bootstrap LeftNav CSS Styling*/
-.wrapper{
+/* .wrapper{
   display: flex;
   width: 100%;
-}
+} */
 
-@media screen and (max-width: 768px){
+
+@media screen and (max-width: 1024px){
   .side-bar{
     width: 5em;
   }
 
-}
-
-@media screen and (max-width: 1024px){
-  .side-bar{
-    width: 10em;
+  .navbar-nav{
+    width: 5em;
+    display: inline-block;
+    float: none;
+    vertical-align: top;  
+    margin: 0;
+    transition: width 2s;
   }
 
+  .navbar-header{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .left-nav-text {
+    font-size:0;
+  }
+
+  .left-nav-icon{
+    color: black !important;
+  }
 }
 
+.left-nav-icon{
+  color: transparent;
+}
 
 .side-bar{
   max-width: 15em;
@@ -54,7 +72,6 @@
 }
 
 .LeftNav-Item {
-  /* padding: 0.5em; */
   text-align: center;
   font-size: 1.15em;
   min-width: 100%;
@@ -68,11 +85,6 @@
     background-color: rgb(210, 210, 210);
 }
 
-.LeftNav-Item img {
-  width: 2em;
-  padding-bottom: 0.5em;
-}
-
 a {
   color: inherit !important;
   text-decoration: none !important;
@@ -80,7 +92,7 @@ a {
 
 /*OLD LeftNav CSS styling */
 
-.side-logo-container{
+/* .side-logo-container{
   margin: 0 auto;
 display: block;
 width: 125px;
@@ -115,8 +127,10 @@ position: relative;
   cursor: pointer; */
 /* } */
 
-/* .active-tab{
-    background-color: rgb(210, 210, 210);
+/* .LeftNav-Item img {
+  width: 2em;
+  padding-bottom: 0.5em;
 } */
+
 
 
