@@ -4,12 +4,4 @@ client/package-lock.json
 old_api/node_modules/
 <<<<<<< Updated upstream
 .DS_Store
-=======
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-.DS_Store
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+client/package-lock.json
