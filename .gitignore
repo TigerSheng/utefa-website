@@ -2,4 +2,8 @@ api/node_modules/
 client/package-lock.json
 old_api/node_modules/
 .DS_Store
+<<<<<<< HEAD
 api/package-lock.json
+=======
+client/package-lock.json
+>>>>>>> bougee image fix
