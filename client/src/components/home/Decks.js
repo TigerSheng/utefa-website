@@ -4,7 +4,7 @@ import './Decks.css'
 export default class Decks extends Component {
   render(){
     return(
-      <div className="decks-section wow fadeIn" data-wow-delay="0.4s" data-wow-offset="150" id="decks">
+      <div className="decks-section wow fadeIn" data-wow-delay="0.4s" data-wow-offset="150" id="materials">
         <div className="border-w">
           <div className="line"></div>
           <div className="key-g">

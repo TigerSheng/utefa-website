@@ -20,7 +20,7 @@ export class NavBar extends Component {
                 <NavItem className="menu-item" href='/#top'>Home</NavItem>
                 <NavItem className="menu-item" href='/#about'>About</NavItem>
                 <NavItem className="menu-item" href='/#schedule'>Schedule</NavItem>
-                <NavItem className="menu-item" href='/#decks'>Decks</NavItem>
+                <NavItem className="menu-item" href='/#materials'>Materials</NavItem>
                 <NavItem className="menu-item" href='/#team'>Team</NavItem>
                 <NavItem className="menu-item" href='/#alumni'>Alumni</NavItem>
                 <NavItem className="menu-item" href='/login'>Log In</NavItem>
