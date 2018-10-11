@@ -3,7 +3,7 @@ import './LeftNav.css'
 
 import {Auth} from 'aws-amplify';
 import {Link} from 'react-router-dom';
-import { Navbar, Nav, NavItem } from "react-bootstrap";
+import { Navbar, Nav, NavItem, Glyphicon } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 export class  LeftNav extends Component {
@@ -32,31 +32,31 @@ export class  LeftNav extends Component {
         <Nav>
           <LinkContainer to='/dashboard'>
             <NavItem className="LeftNav-Item">
-                  <p>Home</p>
+            <Glyphicon  className="left-nav-icon" glyph="home" /><p className="left-nav-text">Home</p>
             </NavItem>
           </LinkContainer>
 
           <LinkContainer to='/vote'>
             <NavItem className="LeftNav-Item"> 
-                  <p>Vote</p>
+            <Glyphicon className="left-nav-icon" glyph="inbox" /><p className="left-nav-text">Vote</p>
             </NavItem>
           </LinkContainer>
 
           {this.props.isAdmin &&  <LinkContainer to='/post'>
             <NavItem className="LeftNav-Item"> 
-                  <p>Post</p>
+            <Glyphicon className="left-nav-icon" glyph="bullhorn" /><p className="left-nav-text">Post</p>
             </NavItem>
           </LinkContainer>}
 
           <LinkContainer to="/sessionmaterial">
             <NavItem className="LeftNav-Item">
-              <p>Materials</p>
+            <Glyphicon className="left-nav-icon" glyph="folder-open" /><p className="left-nav-text">Materials</p>
             </NavItem>
           </LinkContainer>
 
           <NavItem className="LeftNav-Item" onClick={this.handleLogout}>
               <div >
-                <p>Log Out</p>
+              <Glyphicon className="left-nav-icon" glyph="log-out" /><p className="left-nav-text">Log Out</p>
               </div>
           </NavItem>
         </Nav>
