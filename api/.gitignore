@@ -50,5 +50,6 @@ env.yml
 
 # Jetbrains IDEs
 .idea
+package-lock.json
 
 package-lock.json
