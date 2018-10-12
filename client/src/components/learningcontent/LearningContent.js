@@ -140,7 +140,7 @@ export default class LearningContent extends Component {
             <Button onClick={this.closeDeleteMessage}>Cancel</Button>
           </Modal.Footer>
         </Modal>
-        <LeftNav isAdmin={this.props.isAdmin}/>
+        <LeftNav isAdmin={this.props.isAdmin} userHasAuthenticated={this.props.userHasAuthenticated} />
          <div className="learning-content-view">
           <ReactTable
             data={data}

@@ -40,7 +40,7 @@ export default class Vote extends Component {
   render(){
     return(
       <div className="vote-background">
-        <LeftNav isAdmin={this.props.isAdmin}/>
+        <LeftNav isAdmin={this.props.isAdmin} userHasAuthenticated={this.props.userHasAuthenticated}/>
         <Fade big cascade>
         <div className="vote-view">
         {this.state.isLoading && <div className="loadingcontainer"><ReactLoading type={'spinningBubbles'} className="loader" color={'black'} /></div>}
