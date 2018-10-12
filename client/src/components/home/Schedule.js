@@ -10,7 +10,7 @@ export default class Schedule extends Component {
           <div className="key"><img src="css/key2.png" alt="placeholder"/></div>
           <div className="heading">Schedule and Events</div>
             <div className="schedule">
-              <img src="decks/Schedule.jpg" alt="schedule"/>
+              <img src="Schedule.jpg" alt="schedule"/>
             </div>
         </div>
       </div>
