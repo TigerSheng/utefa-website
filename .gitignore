@@ -6,4 +6,9 @@ old_api/node_modules/
 api/package-lock.json
 =======
 client/package-lock.json
+<<<<<<< HEAD
 >>>>>>> bougee image fix
+=======
+api/package-lock.json
+api/package-lock.json
+>>>>>>> update session material default sort
