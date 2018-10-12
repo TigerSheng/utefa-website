@@ -148,7 +148,7 @@ export default class LearningContent extends Component {
             defaultSorted={[
            {
              id: "postedAt",
-             desc: true
+             desc: false
            }
          ]}
             defaultPageSize = {20}

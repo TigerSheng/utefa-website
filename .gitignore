@@ -5,3 +5,5 @@ old_api/node_modules/
 <<<<<<< Updated upstream
 .DS_Store
 client/package-lock.json
+api/package-lock.json
+api/package-lock.json
