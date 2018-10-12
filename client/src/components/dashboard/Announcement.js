@@ -16,8 +16,10 @@ export class  Announcement extends Component {
       deleteMessage: false,
       expanded: false,
       expandable: null,
+      hovered: false
     }
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleHover = this.handleHover.bind(this)
   }
 
   async componentDidMount() {
@@ -50,6 +52,12 @@ export class  Announcement extends Component {
       this.closeDeleteMessage();
     }catch(e){
       alert(e);
+    }
+  }
+
+  handleHover() {
+    if(this.state.expandable){
+      this.setState(prevState => ({ hovered: !prevState.hovered }))
     }
   }
 
@@ -88,9 +96,10 @@ export class  Announcement extends Component {
     }
   }
 
-  render(){
+  render(){ 
+    const hoverable = this.state.hovered ? "announcement-container-hovered" : "announcement-container";
     return(
-      <div onClick={this.expandText} className="announcement-container">
+      <div onClick={this.expandText} className={hoverable} onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} >
         <Modal bsSize="small"
         show={this.state.deleteMessage}>
           <Modal.Header className="delete-modal-title">
