@@ -1,11 +1,5 @@
 /*NEW Bootstrap LeftNav CSS Styling*/
 
-.wrapper{
-  display: flex;
-  width: 100%;
-}
-
-
 @media screen and (max-width: 1024px){
   .side-bar{
     width: 5em;
@@ -76,6 +70,7 @@
   font-size: 1.15em;
   width: 100%;
   min-width: 100%;
+  float: left;
 }
 
 .LeftNav-Item p {
