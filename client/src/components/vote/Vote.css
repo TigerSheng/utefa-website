@@ -1,4 +1,8 @@
-
+@media screen and (max-width: 1024px){
+  .vote-view{
+    margin-left: 5em !important;
+    }
+}
 .vote-background{
   position: fixed;
   overflow: auto;

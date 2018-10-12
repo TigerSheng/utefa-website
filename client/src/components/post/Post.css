@@ -1,3 +1,9 @@
+@media screen and (max-width: 1024px){
+  .post-view{
+    margin-left: 5em !important;
+    }
+}
+
 .post-view{
   margin-left: 15em;
   min-width: 200px;

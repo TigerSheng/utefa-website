@@ -19,7 +19,7 @@ export class  LeftNav extends Component {
 
   render() {
     return(
-      <div className="wrapper">
+      <div>
         <Navbar fluid className="side-bar">
           <Navbar.Header>
             <Navbar.Brand>

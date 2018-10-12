@@ -1,8 +1,12 @@
+@media screen and (max-width: 1024px){
+  .main-view{
+    margin-left: 5em !important;
+    }
+}
+
 .main-view{
   margin-left: 15em;
   min-width: 200px;
-  /* padding: 10px; */
-  /* height: 100%; */
   display: block;
   height: 100%;
 }
