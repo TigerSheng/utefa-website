@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import {Auth, API, Storage} from 'aws-amplify';
 import ReactLoading from 'react-loading';
-import {Button, Modal, FormGroup, FormControl, FieldGroup } from "react-bootstrap";
+import {Button, Modal, FormGroup, FormControl } from "react-bootstrap";
 import './DiscussionPost.css'
 
 import {Reply} from './Reply';
+
+
 import quickSort from "../dashboard/sort";
 
 var dateOptions = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric'};
@@ -14,7 +16,7 @@ export class DiscussionPost extends Component {
         super(props);
         this.file = null;
         this.myRef = React.createRef();
-
+    
         this.state = {
           attachmentURL: null,
           deletePostMessage: false,
@@ -22,13 +24,8 @@ export class DiscussionPost extends Component {
           expandable: null,
           hovered: false,
           userEditable: null,
-          userEditing: false,
           replies: [],
-          newReplyValue: "",
-          username:null,
-          newAttachment: null,
-          newContent: "",
-          newTitle: ""
+          newReplyValue: ""
         }
 
         this.handleDelete = this.handleDelete.bind(this)
@@ -37,15 +34,8 @@ export class DiscussionPost extends Component {
         this.createReply = this.createReply.bind(this)
         this.handleReplyUpdate = this.handleReplyUpdate.bind(this)
         this.getNewReplyData = this.getNewReplyData.bind(this)
-
-        this.editPost = this.editPost.bind(this)
-        this.submitEditChanges = this.submitEditChanges.bind(this)
-
-        this.cancelPostEdit = this.cancelPostEdit.bind(this)
-        this.updateNewContent = this.updateNewContent.bind(this)
-        this.updateNewTitle = this.updateNewTitle.bind(this)
       }
-
+    
     updateReplyData(){
         const init = {
         'queryStringParameters': {
@@ -58,49 +48,10 @@ export class DiscussionPost extends Component {
         return API.get('api', '/reply', init)
     }
 
-    updateNewContent(e){
-      this.setState({newContent: e.target.value})
-    }
-
-    updateNewTitle(e){
-      this.setState({newTitle: e.target.value})
-    }
-
-    editPost(){
-      this.setState({userEditing: true})
-    }
-
-    cancelPostEdit(){
-      this.setState({newContent: "", newAttachment: null, newTitle: "", userEditing: false})
-    }
-
-    handleFileChange = event => {
-      this.file = event.target.files[0];
-    }
-
-    submitEditChanges(){
-      const init = {
-        header: {
-          "Content-Type": "application/json"
-        },
-        body: {
-          "content": this.state.newContent,
-          "attachment": this.state.newAttachment,
-          "title": this.state.newTitle
-        },
-        }
-      Auth.currentAuthenticatedUser().then(user => {
-        API.put('api', '/discussion/' + this.props.postData.discussionId, init)
-        .then(response => {
-          this.cancelPostEdit()
-          window.location.reload()
-        })
-      })
-    }
-
     async getNewReplyData(){
       const replies = await this.updateReplyData();
             quickSort(replies, 0, replies.length-1)
+            replies.reverse();
             this.setState({
                 replies:replies,
               });
@@ -109,15 +60,13 @@ export class DiscussionPost extends Component {
     async componentDidMount() {
         this.setState({isLoading: true})
         try{
-          //TODO: Fix expandability code
-            // this.setState({expandable: this.myRef.current !== null ?
-            //         (this.myRef.current.offsetHeight !== this.myRef.current.scrollHeight): false});
+            this.setState({expandable: this.myRef.current !== null ?
+                    (this.myRef.current.offsetHeight !== this.myRef.current.scrollHeight): false});
 
             Auth.currentAuthenticatedUser().then(user =>{
-                var curUser = this.props.postData.userId === user.username;
-                this.setState({userEditable: (curUser || this.props.isAdmin)});
-                this.setState({username: user.username});
-            });
+                var curUser = this.props.postData.username === user.username;
+                this.setState({userEditable: (curUser | this.props.isAdmin)});
+            });  
 
             let attachmentURL;
             if(this.props.postData.attachment){
@@ -142,7 +91,7 @@ export class DiscussionPost extends Component {
 
     handleDelete = event => {
         event.preventDefault()
-
+    
         try {
           this.deletePost();
           this.closeDeleteMessage();
@@ -172,7 +121,7 @@ export class DiscussionPost extends Component {
           this.setState({newReplyValue: ""})
           return
         })
-      });
+      }); 
     }
 
     handleHover() {
@@ -184,7 +133,7 @@ export class DiscussionPost extends Component {
     openDeleteMessage = event => {
         this.setState({deleteMessage:true});
     }
-
+    
     closeDeleteMessage = event => {
         this.setState({deleteMessage:false});
     }
@@ -225,8 +174,8 @@ export class DiscussionPost extends Component {
           this.setState({expanded:true})
         }
       }
-
-      render(){
+    
+      render(){ 
         const hoverable = this.state.hovered ? "post-container-hovered" : "post-container";
         return(
           <div onClick={this.expandText} className={hoverable} onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
@@ -298,11 +247,7 @@ export class DiscussionPost extends Component {
                     this.state.replies.map((index, i) => {
                       if(this.state.replies[i]) {
                         return(
-<<<<<<< HEAD
-                          <div className={this.state.replies[i].userId == this.state.username? "user-reply reply-full":"reply-full"} key={i}>
-=======
                           <div key={i}>
->>>>>>> Fixed admin not cancelling on logout bug
                             <Reply
                               replyData={this.state.replies[i]}
                               isAdmin={this.props.isAdmin}
@@ -334,6 +279,75 @@ export class DiscussionPost extends Component {
                 </p>
               </div>
             </div>}
+          </div>
+            <div className="post-header">
+            <p className="post-title">
+              {this.props.postData.title}
+            </p>
+              {this.state.userEditable &&
+              <p>
+                  <Button bsSize="xsmall" bsStyle="primary">Edit</Button>
+                  <Button bsSize="xsmall" bsStyle="danger" onClick={this.openDeleteMessage}>X </Button>
+              </p>}
+    
+            </div>
+    
+            <p ref={this.myRef} className={this.state.expanded ? "post-content-expanded" : "post-content"}>
+              {this.props.postData.content}
+            </p>
+            <p className={this.state.expandable && !this.state.expanded ? "expand-sign" : "no-expand"}>...</p>
+    
+            {this.props.postData.attachment &&
+              <div className="post-attachments">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={this.state.attachmentURL}
+                >
+                  <u>{this.formatFilename(this.props.postData.attachment)}</u>
+                </a>
+              </div>
+            }
+            <hr className="section-seperator"/>
+            <div className="reply-section">
+            <div className="form">
+            <form>
+            <FormGroup controlId="formControlsTextarea">
+            <FormControl componentClass="textarea" placeholder="Enter reply here..." value={this.state.newReplyValue} onChange={this.handleReplyUpdate} />
+            </FormGroup>
+              
+            <Button disabled={this.state.newReplyValue === ""} onClick={this.createReply}>Reply</Button>
+            </form>
+            </div>
+            {this.state.isLoading
+              ? <ReactLoading className="loader" type={'spinningBubbles'} color={'white'} />
+              : <div>
+                {
+                  this.state.replies.map((index, i) => {
+                    if(this.state.replies[i]) {
+                      return(
+                        <div key={i}>
+                          <Reply
+                            replyData={this.state.replies[i]}
+                            isAdmin={this.props.isAdmin}
+                          />
+                        </div>
+                      )
+                    }else return(null);
+                  })
+                }
+              </div>
+            }
+            </div>
+            <hr className="section-seperator"/>
+            <div className="post-footer">
+             <p className="post-date">
+                      {new Date(this.props.postData.postedAt).toLocaleDateString("en-US", dateOptions)}
+              </p>
+             <p className="post-owner">
+                {this.props.postData.author}
+              </p>
+            </div>
           </div>
         );
       }

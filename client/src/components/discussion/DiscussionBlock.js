@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {API} from 'aws-amplify';
+import {Auth, API} from 'aws-amplify';
+import {Discussion} from './Discussion';
 import { DiscussionPost } from './DiscussionPost';
-import { DiscussionPostForm } from './DiscussionPostForm';
 
 import './DiscussionBlock.css';
 
@@ -17,27 +17,13 @@ export default class DiscussionBlock extends Component {
     constructor(props){
         super(props);
         this.state = {
-            discussionCreator: false,
             isLoading: false,
             posts:[],
             allPosts:[],
             moreToLoad:true
         };
-
         this.openDiscussionCreator = this.openDiscussionCreator.bind(this);
         this.closeDiscussionCreator = this.closeDiscussionCreator.bind(this)
-      }
-
-    openDiscussionCreator(){
-      this.setState({discussionCreator: true})
-    }
-
-    closeDiscussionCreator(){
-      this.setState({discussionCreator: false})
-    }
-
-    async componentDidMount() {
-        this.setState({isLoading: true})
         try{
           const posts = await this.updateData();
           quickSort(posts, 0, posts.length-1)
@@ -82,10 +68,6 @@ export default class DiscussionBlock extends Component {
     render(){
         return(
           <div>
-            <div className="center">
-              <Button className="btn btn-success newbtn" onClick={this.openDiscussionCreator}>Create new discussion</Button>
-              <DiscussionPostForm closeDiscussionCreator={this.closeDiscussionCreator} discussionCreator={this.state.discussionCreator}/>
-            </div>
             {this.state.isLoading
               ? <ReactLoading className="loader" type={'spinningBubbles'} color={'white'} />
               : <Fade big cascade><div>
