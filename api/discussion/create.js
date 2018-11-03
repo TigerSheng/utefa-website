@@ -15,6 +15,7 @@ export async function main(event, context, callback) {
       author: data.author,
       pinned: data.pinned,
       title: data.title,
+      reply: []
     }
   };
 

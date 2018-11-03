@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
-import {Auth, API} from 'aws-amplify';
-import './Reply.css';
+import {Auth, API, Storage} from 'aws-amplify';
 
 import {Button, Modal, FormControl} from "react-bootstrap";
 
-var dateOptions = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric'};
-
-export class Reply extends Component {
+export class  Reply extends Component {
   constructor(props){
     super(props);
-
+  
     this.state = {
       deleted: false,
       editingMode: false,
       newComment: "",
-      curComment: this.props.replyData.content,
-      userEditableComment: false,
-      deleteWindow: false
+      curComment: this.props.replyData.content
     }
 
     this.deleteComment = this.deleteComment.bind(this)
@@ -24,15 +19,6 @@ export class Reply extends Component {
     this.openCommentEditor = this.openCommentEditor.bind(this)
     this.closeCommentEditor = this.closeCommentEditor.bind(this)
     this.updateNewComment = this.updateNewComment.bind(this)
-    this.openDeleteWindow = this.openDeleteWindow.bind(this)
-    this.closeDeleteWindow = this.closeDeleteWindow.bind(this)
-  }
-
-  componentDidMount(){
-    Auth.currentAuthenticatedUser().then(user =>{
-      var curUser = this.props.replyData.userId === user.username;
-      this.setState({userEditableComment: (curUser || this.props.isAdmin)});
-  });
   }
 
   openCommentEditor(){
@@ -49,7 +35,7 @@ export class Reply extends Component {
     this.setState({newComment: e.target.value})
   }
 
-
+  
   editComment(){
     try{
       const init = {
@@ -91,25 +77,15 @@ export class Reply extends Component {
         API.del('api', '/reply/' + this.props.replyData.replyId, init)
         .then(response => {
           this.setState({deleted:true});
-          this.closeDeleteWindow();
         })
     })
-  }
-
-  openDeleteWindow(){
-    this.setState({deleteWindow: true})
-  }
-
-  closeDeleteWindow(){
-    this.setState({deleteWindow: false})
   }
 
 
   render(){
       return(
-      !this.state.deleted &&
-      <div className="replyalign outer">
-      <div className="reply-container">
+      !this.state.deleted?       
+      <div>
         <Modal bsSize="small"
         show={this.state.editingMode}>
           <Modal.Header className="edit-modal-title">
@@ -124,34 +100,14 @@ export class Reply extends Component {
           </Modal.Footer>
         </Modal>
 
-        <Modal bsSize="small"
-        show={this.state.deleteWindow}>
-          <Modal.Header className="edit-modal-title">
-            <Modal.Title>Delete Comment?</Modal.Title>
-          </Modal.Header>
-          <Modal.Footer className="edit-modal-buttons">
-          <Button onClick={this.deleteComment} bsStyle="primary">Confirm</Button>
-          <Button onClick={this.closeDeleteWindow} bsStyle="danger">Cancel</Button>
-          </Modal.Footer>
-        </Modal>
+        {this.state.curComment + "     "}
+        {"author: " + this.props.replyData.author}
+        <Button onClick={this.openCommentEditor} bsStyle="primary" bsSize="xsmall">Edit</Button>
+        <Button onClick={this.deleteComment} bsStyle="danger" bsSize="xsmall">x</Button>
+      </div> 
+      
+      : null
+     );
 
-        <p className="reply-text">{this.state.curComment}</p>
-        <hr className="section-seperator"/>
-        <div className="post-footer">
-        <p className="post-date">
-                  {new Date(this.props.replyData.postedAt).toLocaleDateString("en-US", dateOptions)}
-          </p>
-        <p className="post-owner">
-            {this.props.replyData.author}
-          </p>
-        </div>
-      </div>
-      {this.state.userEditableComment &&
-      <div className="btn-container middle">
-      <Button onClick={this.openCommentEditor} bsStyle="primary" bsSize="xsmall">Edit</Button>
-      <Button onClick={this.openDeleteWindow} bsStyle="danger" bsSize="xsmall">X</Button>
-      </div>}
-      </div>
-    );
   }
 }
