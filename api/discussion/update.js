@@ -6,6 +6,10 @@ export async function main(event, context, callback) {
   const params = {
     TableName: "discussion",
     // 'Key' defines the partition key and sort key of the item to be updated
+<<<<<<< HEAD
+=======
+    // - 'noteId': path parameter
+>>>>>>> Discussion and reply now functioning
     Key: {
       discussionId: event.pathParameters.id
     },
@@ -16,6 +20,10 @@ export async function main(event, context, callback) {
       ":attachment": data.attachment ? data.attachment : null,
       ":content": data.content ? data.content : null,
       ":title": data.title ? data.title : null,
+<<<<<<< HEAD
+=======
+      ":reply" : data.reply ? data.reply : null
+>>>>>>> Discussion and reply now functioning
     },
     ReturnValues: "ALL_NEW"
   };
