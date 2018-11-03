@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {Auth, API} from 'aws-amplify';
-import {Discussion} from './Discussion';
+import {API} from 'aws-amplify';
 import { DiscussionPost } from './DiscussionPost';
 
 import './DiscussionBlock.css';

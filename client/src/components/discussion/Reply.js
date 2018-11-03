@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Auth, API, Storage} from 'aws-amplify';
+import {Auth, API} from 'aws-amplify';
 
 import {Button, Modal, FormControl} from "react-bootstrap";
 
