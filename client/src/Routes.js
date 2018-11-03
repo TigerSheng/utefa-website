@@ -13,6 +13,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import Post from './components/post/Post';
 import Vote from './components/vote/Vote';
 import LearningContent from './components/learningcontent/LearningContent';
+import Discussion from './components/discussion/Discussion';
 
 export default ({childProps, auth}) =>
   <Switch>
@@ -27,6 +28,8 @@ export default ({childProps, auth}) =>
     <PrivateRoute path='/vote' exact component={Vote}
     props={childProps} auth={auth}/>
     <PrivateRoute path='/sessionmaterial' exact component={LearningContent}
+    props={childProps} auth={auth}/>
+    <PrivateRoute path='/discussion' exact component={Discussion}
     props={childProps} auth={auth}/>
     <Route component={NotFound} />
   </Switch>

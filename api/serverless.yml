@@ -150,3 +150,87 @@ functions:
           method: delete
           cors: true
           authorizer: aws_iam
+
+  # /discussion
+
+  # - method: POST request
+  create-discussion:
+    handler: discussion/create.main
+    events:
+      - http:
+          path: discussion
+          method: post
+          cors: true
+          authorizer: aws_iam
+  
+  list-discussion:
+    # - method: GET request
+    handler: discussion/list.main
+    events:
+      - http:
+          path: discussion
+          method: get
+          cors: true
+          authorizer: aws_iam
+  
+  update-discussion:
+    # - method: PUT request
+    handler: discussion/update.main
+    events:
+      - http:
+          path: discussion/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+  
+  delete-discussion:
+    # - method: DELETE request
+    handler: discussion/delete.main
+    events:
+      - http:
+          path: discussion/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+  
+  # /discussion replies
+
+  # - method: POST request
+  create-reply:
+    handler: reply/create.main
+    events:
+      - http:
+          path: reply
+          method: post
+          cors: true
+          authorizer: aws_iam
+  
+  list-reply:
+    # - method: GET request
+    handler: reply/list.main
+    events:
+      - http:
+          path: reply
+          method: get
+          cors: true
+          authorizer: aws_iam
+  
+  update-reply:
+    # - method: PUT request
+    handler: reply/update.main
+    events:
+      - http:
+          path: reply/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+  
+  delete-reply:
+    # - method: DELETE request
+    handler: reply/delete.main
+    events:
+      - http:
+          path: reply/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam

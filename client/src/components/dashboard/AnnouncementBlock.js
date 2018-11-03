@@ -84,7 +84,6 @@ export default class AnnouncementBlock extends Component {
               this.state.announcements.map((index, i) => {
                 if(this.state.announcements[i]) {
                   return(
-
                     <div key={i}>
                       <Announcement
                         announcementData={this.state.announcements[i]}
