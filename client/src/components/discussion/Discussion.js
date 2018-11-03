@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {LeftNav} from '../LeftNav'
-import {Auth, API} from 'aws-amplify';
 import './Discussion.css'
 
 import DiscussionBlock from './DiscussionBlock';
