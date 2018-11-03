@@ -41,6 +41,12 @@ export class  LeftNav extends Component {
             </NavItem>
           </LinkContainer>
 
+          <LinkContainer to='/discussion'>
+            <NavItem className="LeftNav-Item"> 
+            <Glyphicon className="left-nav-icon" glyph="transfer" /><p className="left-nav-text">Discussion</p>
+            </NavItem>
+          </LinkContainer>
+
           {this.props.isAdmin &&  <LinkContainer to='/post'>
             <NavItem className="LeftNav-Item"> 
             <Glyphicon className="left-nav-icon" glyph="bullhorn" /><p className="left-nav-text">Post</p>
