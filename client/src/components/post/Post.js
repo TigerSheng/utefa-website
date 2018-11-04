@@ -8,7 +8,6 @@ import {LeftNav} from '../LeftNav'
 import {AnnouncementPostForm} from './AnnouncementPostForm'
 import {LearningContentPostForm} from './LearningContentPostForm'
 import {VotePostForm} from './VotePostForm'
-import {DiscussionPostForm} from './DiscussionPostForm'
 
 export default class  Post extends Component {
   render() {
@@ -30,11 +29,6 @@ export default class  Post extends Component {
             <Tab eventKey={3} title="Post Material">
               <div className="learning-content-post-container">
                 <LearningContentPostForm/>
-              </div>
-            </Tab>
-            <Tab eventKey={4} title="Post Discussion">
-              <div className="discussion-post-container">
-                <DiscussionPostForm/>
               </div>
             </Tab>
           </Tabs>
