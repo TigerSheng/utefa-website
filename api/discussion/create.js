@@ -15,10 +15,7 @@ export async function main(event, context, callback) {
       author: data.author,
       pinned: data.pinned,
       title: data.title,
-<<<<<<< HEAD
-=======
       reply: []
->>>>>>> Discussion and reply now functioning
     }
   };
 

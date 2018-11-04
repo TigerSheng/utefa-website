@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {API} from 'aws-amplify';
 import { DiscussionPost } from './DiscussionPost';
+import { DiscussionPostForm } from './DiscussionPostForm';
 
 import './DiscussionBlock.css';
 
@@ -16,11 +17,23 @@ export default class DiscussionBlock extends Component {
     constructor(props){
         super(props);
         this.state = {
+            discussionCreator: false,
             isLoading: false,
             posts:[],
             allPosts:[],
             moreToLoad:true
         };
+
+        this.openDiscussionCreator = this.openDiscussionCreator.bind(this);
+        this.closeDiscussionCreator = this.closeDiscussionCreator.bind(this)
+      }
+
+    openDiscussionCreator(){
+      this.setState({discussionCreator: true})
+    }
+
+    closeDiscussionCreator(){
+      this.setState({discussionCreator: false})
     }
 
     async componentDidMount() {
@@ -69,6 +82,10 @@ export default class DiscussionBlock extends Component {
     render(){
         return(
           <div>
+            <div>
+              <Button onClick={this.openDiscussionCreator}>Create new discussion</Button>
+              <DiscussionPostForm closeDiscussionCreator={this.closeDiscussionCreator} discussionCreator={this.state.discussionCreator}/>
+            </div>
             {this.state.isLoading
               ? <ReactLoading className="loader" type={'spinningBubbles'} color={'white'} />
               : <Fade big cascade><div>
