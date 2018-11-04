@@ -3,7 +3,7 @@ import {Auth, API} from 'aws-amplify';
 
 import {Button, Modal, FormControl} from "react-bootstrap";
 
-export class  Reply extends Component {
+export class Reply extends Component {
   constructor(props){
     super(props);
   
@@ -11,7 +11,8 @@ export class  Reply extends Component {
       deleted: false,
       editingMode: false,
       newComment: "",
-      curComment: this.props.replyData.content
+      curComment: this.props.replyData.content,
+      userEditableComment: false
     }
 
     this.deleteComment = this.deleteComment.bind(this)
@@ -19,6 +20,13 @@ export class  Reply extends Component {
     this.openCommentEditor = this.openCommentEditor.bind(this)
     this.closeCommentEditor = this.closeCommentEditor.bind(this)
     this.updateNewComment = this.updateNewComment.bind(this)
+  }
+
+  componentDidMount(){
+    Auth.currentAuthenticatedUser().then(user =>{
+      var curUser = this.props.replyData.username === user.username;
+      this.setState({userEditableComment: (curUser | this.props.isAdmin)});
+  });  
   }
 
   openCommentEditor(){
@@ -83,6 +91,7 @@ export class  Reply extends Component {
 
 
   render(){
+
       return(
       !this.state.deleted?       
       <div>
@@ -102,8 +111,11 @@ export class  Reply extends Component {
 
         {this.state.curComment + "     "}
         {"author: " + this.props.replyData.author}
+
+        {this.state.userEditableComment && <div>
         <Button onClick={this.openCommentEditor} bsStyle="primary" bsSize="xsmall">Edit</Button>
         <Button onClick={this.deleteComment} bsStyle="danger" bsSize="xsmall">x</Button>
+        </div>}
       </div> 
       
       : null
