@@ -1,0 +1,23 @@
+.btn-container{
+padding-left: 10px;
+width:75px;
+}
+.reply-container{
+}
+.replyalign{
+  display: flex;
+}
+.outer {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.reply-text{
+  padding:8px
+}

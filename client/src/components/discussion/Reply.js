@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import {Auth, API} from 'aws-amplify';
+import './Reply.css';
 
 import {Button, Modal, FormControl} from "react-bootstrap";
+
+var dateOptions = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric'};
 
 export class Reply extends Component {
   constructor(props){
     super(props);
-  
+
     this.state = {
       deleted: false,
       editingMode: false,
@@ -26,7 +29,7 @@ export class Reply extends Component {
     Auth.currentAuthenticatedUser().then(user =>{
       var curUser = this.props.replyData.username === user.username;
       this.setState({userEditableComment: (curUser | this.props.isAdmin)});
-  });  
+  });
   }
 
   openCommentEditor(){
@@ -43,7 +46,7 @@ export class Reply extends Component {
     this.setState({newComment: e.target.value})
   }
 
-  
+
   editComment(){
     try{
       const init = {
@@ -93,8 +96,9 @@ export class Reply extends Component {
   render(){
 
       return(
-      !this.state.deleted?       
-      <div>
+      !this.state.deleted?
+      <div className="replyalign outer">
+      <div className="reply-container">
         <Modal bsSize="small"
         show={this.state.editingMode}>
           <Modal.Header className="edit-modal-title">
@@ -108,16 +112,24 @@ export class Reply extends Component {
           <Button onClick={this.closeCommentEditor} bsStyle="danger">Cancel</Button>
           </Modal.Footer>
         </Modal>
+        <p className="reply-text">{this.state.curComment}</p>
+        <hr className="section-seperator"/>
+        <div className="post-footer">
+        <p className="post-date">
+                  {new Date(this.props.replyData.postedAt).toLocaleDateString("en-US", dateOptions)}
+          </p>
+        <p className="post-owner">
+            {this.props.replyData.author}
+          </p>
+        </div>
+      </div>
+      {this.state.userEditableComment &&
+      <div className="btn-container middle">
+      <Button onClick={this.openCommentEditor} bsStyle="primary" bsSize="xsmall">Edit</Button>
+      <Button onClick={this.deleteComment} bsStyle="danger" bsSize="xsmall">X</Button>
+      </div>}
+      </div>
 
-        {this.state.curComment + "     "}
-        {"author: " + this.props.replyData.author}
-
-        {this.state.userEditableComment && <div>
-        <Button onClick={this.openCommentEditor} bsStyle="primary" bsSize="xsmall">Edit</Button>
-        <Button onClick={this.deleteComment} bsStyle="danger" bsSize="xsmall">x</Button>
-        </div>}
-      </div> 
-      
       : null
      );
 
