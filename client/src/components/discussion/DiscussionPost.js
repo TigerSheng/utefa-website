@@ -14,7 +14,7 @@ export class DiscussionPost extends Component {
         super(props);
         this.file = null;
         this.myRef = React.createRef();
-    
+
         this.state = {
           attachmentURL: null,
           deletePostMessage: false,
@@ -25,7 +25,7 @@ export class DiscussionPost extends Component {
           userEditing: false,
           replies: [],
           newReplyValue: "",
-          
+
           newAttachment: null,
           newContent: "",
           newTitle: ""
@@ -45,7 +45,7 @@ export class DiscussionPost extends Component {
         this.updateNewContent = this.updateNewContent.bind(this)
         this.updateNewTitle = this.updateNewTitle.bind(this)
       }
-    
+
     updateReplyData(){
         const init = {
         'queryStringParameters': {
@@ -116,7 +116,7 @@ export class DiscussionPost extends Component {
             Auth.currentAuthenticatedUser().then(user =>{
                 var curUser = this.props.postData.username === user.username;
                 this.setState({userEditable: (curUser | this.props.isAdmin)});
-            });  
+            });
 
             let attachmentURL;
             if(this.props.postData.attachment){
@@ -141,7 +141,7 @@ export class DiscussionPost extends Component {
 
     handleDelete = event => {
         event.preventDefault()
-    
+
         try {
           this.deletePost();
           this.closeDeleteMessage();
@@ -171,7 +171,7 @@ export class DiscussionPost extends Component {
           this.setState({newReplyValue: ""})
           return
         })
-      }); 
+      });
     }
 
     handleHover() {
@@ -183,7 +183,7 @@ export class DiscussionPost extends Component {
     openDeleteMessage = event => {
         this.setState({deleteMessage:true});
     }
-    
+
     closeDeleteMessage = event => {
         this.setState({deleteMessage:false});
     }
@@ -224,8 +224,8 @@ export class DiscussionPost extends Component {
           this.setState({expanded:true})
         }
       }
-    
-      render(){ 
+
+      render(){
         const hoverable = this.state.hovered ? "post-container-hovered" : "post-container";
         return(
           <div onClick={this.expandText} className={hoverable} onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
@@ -241,41 +241,41 @@ export class DiscussionPost extends Component {
               </Modal.Footer>
             </Modal>
             <div className="post-header">
-            {this.state.userEditing ?  
-              <FormControl type="text" defaultValue={this.props.postData.title}  onChange={this.updateNewTitle}/> :  
+            {this.state.userEditing ?
+              <FormControl type="text" defaultValue={this.props.postData.title}  onChange={this.updateNewTitle}/> :
               <p className="post-title">
                 {this.props.postData.title}
               </p>}
-            {this.state.userEditable && !this.state.userEditing && 
+            {this.state.userEditable && !this.state.userEditing &&
               <p><Button bsSize="xsmall" bsStyle="primary" onClick={this.editPost}>Edit</Button>
-                <Button bsSize="xsmall" bsStyle="danger" onClick={this.openDeleteMessage}>X </Button></p>}
+                <Button bsSize="xsmall" bsStyle="danger" onClick={this.openDeleteMessage}>X</Button></p>}
             </div>
-            {!this.state.userEditing? 
+            {!this.state.userEditing?
             <div>
              <p ref={this.myRef} className={this.state.expanded ? "post-content-expanded" : "post-content"}>
                {this.props.postData.content}
              </p>
              <p className={this.state.expandable && !this.state.expanded ? "expand-sign" : "no-expand"}>...</p>
             </div>:
-            
+
             <div>
               <FormControl componentClass="textarea" defaultValue={this.props.postData.content}  onChange={this.updateNewContent}/>
             </div>}
 
-            {this.state.userEditing && 
+            {this.state.userEditing &&
             <FormControl
             type="file"
             onChange={this.handleFileChange}
-            />}  
+            />}
 
-            {this.state.userEditing && 
+            {this.state.userEditing &&
               <p>
                 <Button bsSize="medium" bsStyle="primary" onClick={this.submitEditChanges}>Confirm</Button>
                 <Button bsSize="medium" bsStyle="primary" onClick={this.cancelPostEdit}>Cancel</Button>
               </p>
             }
 
-            {!this.state.userEditing && 
+            {!this.state.userEditing &&
               <div>
               {this.props.postData.attachment &&
                 <div className="post-attachments">
@@ -290,15 +290,6 @@ export class DiscussionPost extends Component {
               }
               <hr className="section-seperator"/>
               <div className="reply-section">
-              <div className="form">
-              <form>
-              <FormGroup controlId="formControlsTextarea">
-              <FormControl componentClass="textarea" placeholder="Enter reply here..." value={this.state.newReplyValue} onChange={this.handleReplyUpdate} />
-              </FormGroup>
-                
-              <Button disabled={this.state.newReplyValue === ""} onClick={this.createReply}>Reply</Button>
-              </form>
-              </div>
               {this.state.isLoading
                 ? <ReactLoading className="loader" type={'spinningBubbles'} color={'white'} />
                 : <div>
@@ -306,7 +297,7 @@ export class DiscussionPost extends Component {
                     this.state.replies.map((index, i) => {
                       if(this.state.replies[i]) {
                         return(
-                          <div key={i}>
+                          <div className="reply-full" key={i}>
                             <Reply
                               replyData={this.state.replies[i]}
                               isAdmin={this.props.isAdmin}
@@ -318,6 +309,15 @@ export class DiscussionPost extends Component {
                   }
                 </div>
               }
+              </div>
+              <div className="form r-form">
+              <form>
+              <FormGroup  controlId="formControlsTextarea">
+              <FormControl componentClass="textarea" placeholder="Enter reply here..." value={this.state.newReplyValue} onChange={this.handleReplyUpdate} />
+              </FormGroup>
+
+              <Button disabled={this.state.newReplyValue === ""} onClick={this.createReply}>Reply</Button>
+              </form>
               </div>
               <hr className="section-seperator"/>
               <div className="post-footer">
