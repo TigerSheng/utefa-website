@@ -101,7 +101,6 @@ export class DiscussionPost extends Component {
     async getNewReplyData(){
       const replies = await this.updateReplyData();
             quickSort(replies, 0, replies.length-1)
-            replies.reverse();
             this.setState({
                 replies:replies,
               });
@@ -316,7 +315,7 @@ export class DiscussionPost extends Component {
               <FormControl componentClass="textarea" placeholder="Enter reply here..." value={this.state.newReplyValue} onChange={this.handleReplyUpdate} />
               </FormGroup>
 
-              <Button disabled={this.state.newReplyValue === ""} onClick={this.createReply}>Reply</Button>
+              <Button className={"btn-success"} disabled={this.state.newReplyValue === ""} onClick={this.createReply}>Reply</Button>
               </form>
               </div>
               <hr className="section-seperator"/>
