@@ -315,7 +315,7 @@ export class DiscussionPost extends Component {
               <FormControl componentClass="textarea" placeholder="Enter reply here..." value={this.state.newReplyValue} onChange={this.handleReplyUpdate} />
               </FormGroup>
 
-              <Button className={"btn-success"} disabled={this.state.newReplyValue === ""} onClick={this.createReply}>Reply</Button>
+              <Button className={this.state.newReplyValue === ""? "btn":"btn-success"} disabled={this.state.newReplyValue === ""} onClick={this.createReply}>Reply</Button>
               </form>
               </div>
               <hr className="section-seperator"/>
