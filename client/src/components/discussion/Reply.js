@@ -15,7 +15,8 @@ export class Reply extends Component {
       editingMode: false,
       newComment: "",
       curComment: this.props.replyData.content,
-      userEditableComment: false
+      userEditableComment: false,
+      deleteWindow: false
     }
 
     this.deleteComment = this.deleteComment.bind(this)
@@ -23,6 +24,8 @@ export class Reply extends Component {
     this.openCommentEditor = this.openCommentEditor.bind(this)
     this.closeCommentEditor = this.closeCommentEditor.bind(this)
     this.updateNewComment = this.updateNewComment.bind(this)
+    this.openDeleteWindow = this.openDeleteWindow.bind(this)
+    this.closeDeleteWindow = this.closeDeleteWindow.bind(this)
   }
 
   componentDidMount(){
@@ -88,8 +91,17 @@ export class Reply extends Component {
         API.del('api', '/reply/' + this.props.replyData.replyId, init)
         .then(response => {
           this.setState({deleted:true});
+          this.closeDeleteWindow();
         })
     })
+  }
+
+  openDeleteWindow(){
+    this.setState({deleteWindow: true})
+  }
+
+  closeDeleteWindow(){
+    this.setState({deleteWindow: false})
   }
 
 
@@ -112,6 +124,18 @@ export class Reply extends Component {
           <Button onClick={this.closeCommentEditor} bsStyle="danger">Cancel</Button>
           </Modal.Footer>
         </Modal>
+
+        <Modal bsSize="small"
+        show={this.state.deleteWindow}>
+          <Modal.Header className="edit-modal-title">
+            <Modal.Title>Delete Comment?</Modal.Title>
+          </Modal.Header>
+          <Modal.Footer className="edit-modal-buttons">
+          <Button onClick={this.deleteComment} bsStyle="primary">Confirm</Button>
+          <Button onClick={this.closeDeleteWindow} bsStyle="danger">Cancel</Button>
+          </Modal.Footer>
+        </Modal>
+
         <p className="reply-text">{this.state.curComment}</p>
         <hr className="section-seperator"/>
         <div className="post-footer">
@@ -126,7 +150,7 @@ export class Reply extends Component {
       {this.state.userEditableComment &&
       <div className="btn-container middle">
       <Button onClick={this.openCommentEditor} bsStyle="primary" bsSize="xsmall">Edit</Button>
-      <Button onClick={this.deleteComment} bsStyle="danger" bsSize="xsmall">X</Button>
+      <Button onClick={this.openDeleteWindow} bsStyle="danger" bsSize="xsmall">X</Button>
       </div>}
       </div>
 
