@@ -13,6 +13,7 @@ import {Auth, API} from 'aws-amplify';
 import LoaderButton from '../LoaderButton';
 import "./AnnouncementPostForm.css";
 import { s3Upload } from "../../libs/awsLib";
+import './DiscussionPostForm.css'
 
 const postPolicy = (
   <Popover id="post-policy">
@@ -109,9 +110,11 @@ export class AnnouncementPostForm extends Component {
   }
 
   render() {
-    return(      
+    return(
       <Modal bsSize="large" show={this.props.discussionCreator}>
-      <ModalHeader><Button bsStyle="danger" onClick={this.props.closeDiscussionCreator}>x</Button></ModalHeader>
+      <ModalHeader className="m-header">
+      <button className="close" onClick={this.props.closeDiscussionCreator}>X</button>
+        </ModalHeader>
       <div>
         {this.state.postSuccess
           && <Alert className="Alert" bsStyle='success'>
@@ -123,7 +126,7 @@ export class AnnouncementPostForm extends Component {
               Something went wrong. Please try again,
             </Alert>
         }
-        <form onSubmit={this.handleSubmit}>
+        <form className="m-content" onSubmit={this.handleSubmit}>
           <FormGroup controlId="title" bsSize="large">
             <ControlLabel>Title</ControlLabel>
             <FormControl
