@@ -86,14 +86,10 @@ export default class Vote extends Component {
             }else return(null);
           })
         }
-        {this.state.historicalVotes && this.state.historicalVotes.length !== 0 &&
         <div className="banner" onClick={this.toggleHistoricalVotes.bind(this)}>
-         Voting History
+         Historical Votes
        </div>
-     }
-        {this.state.historicalVotes && this.state.historicalVotes.length !== 0 &&
-
-           this.state.historicalVotes.map((index, i) => {
+        {this.state.historicalVotes && this.state.historicalVotes.length !== 0 && this.state.historicalVotes.map((index, i) => {
             if(this.state.historicalVotes[i] && this.state.historicalVotes[i].name !== "") {
               return(
                 <div className={this.state.showAll? "":"hide"} key={i}>
