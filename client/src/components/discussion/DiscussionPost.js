@@ -113,9 +113,10 @@ export class DiscussionPost extends Component {
                     (this.myRef.current.offsetHeight !== this.myRef.current.scrollHeight): false});
 
             Auth.currentAuthenticatedUser().then(user =>{
-                var curUser = this.props.postData.username === user.username;
-                this.setState({userEditable: (curUser | this.props.isAdmin)});
+                var curUser = this.props.postData.userId === user.username;
+                this.setState({userEditable: (curUser || this.props.isAdmin)});
             });
+            console.log(this.props.postData);
 
             let attachmentURL;
             if(this.props.postData.attachment){
