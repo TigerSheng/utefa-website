@@ -30,8 +30,8 @@ export class Reply extends Component {
 
   componentDidMount(){
     Auth.currentAuthenticatedUser().then(user =>{
-      var curUser = this.props.replyData.username === user.username;
-      this.setState({userEditableComment: (curUser | this.props.isAdmin)});
+      var curUser = this.props.replyData.userId === user.username;
+      this.setState({userEditableComment: (curUser || this.props.isAdmin)});
   });
   }
 
