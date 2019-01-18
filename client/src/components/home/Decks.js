@@ -27,6 +27,9 @@ export default class Decks extends Component {
             <div className="emphasis">
               <a className="emphasis" href="https://s3.us-east-2.amazonaws.com/utefa-client/04_UTEFA-Stock-Selection-Guide.pdf" rel="noopener noreferrer" target="_blank" title="04 - UTEFA Stock Selection Guide">04 - UTEFA Stock Selection Guide</a>
             </div>
+            <div className="emphasis">
+              <a className="emphasis" href="https://s3.us-east-2.amazonaws.com/utefa-client/Sample-Pitch-DXC-Technology.pdf" rel="noopener noreferrer" target="_blank" title="Sample-Pitch-DXC-Technology">Sample Pitch-DXC Technology</a>
+            </div>
           </div>
         </div>
       </div>
