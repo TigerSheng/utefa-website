@@ -1,0 +1,28 @@
+.profile{
+  margin: 20px;
+}
+
+@media (max-width:850px){
+.profile{
+	width: 33% !important;
+  margin: 10px 0;
+}
+}
+@media (max-width:700px){
+.profile{
+	width: 49% !important;
+	margin:10px 0 !important;
+}
+}
+@media (max-width:550px){
+.profile-pic{
+	width:65%;
+	margin-left:17.5%;
+}
+}
+@media (max-width:375px){
+.profile{
+	width: 100% !important;
+	margin: 10px 0 !important;
+}
+}

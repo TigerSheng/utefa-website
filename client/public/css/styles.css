@@ -441,7 +441,7 @@ html,body{
 	padding:25px;
 }
 .t-cont{
-	width:98%;
+	width:100%;
 	max-width:1000px;
 	margin:0 auto;
 	background-color:#072060;
@@ -466,7 +466,7 @@ html,body{
 	font-size:13pt;
 	font-weight:400;
 	color:#ffffff;
-	margin-bottom:8px;
+	padding-bottom: 8px;
 }
 .title{
 
@@ -482,9 +482,9 @@ html,body{
 .team-line{
 	border-top: solid 1px #ffffff;
 	width:50px;
-	margin: 0 auto;
-	margin-top:15px;
-	margin-bottom:5px;
+	margin: 4px auto;
+	/* margin-top:15px;
+	margin-bottom:5px; */
 }
 
 

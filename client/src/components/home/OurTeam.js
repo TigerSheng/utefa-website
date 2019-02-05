@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Profile} from './Profile';
-
+import "./OurTeam.css";
 const imgDir = "./images/";
 
 const pictures = {
@@ -33,22 +33,14 @@ export class OurTeam extends Component {
           <div className="heading-w">Our Team</div>
           <div className="emphasis-b">Meet our team of executives for 2018-2019.</div>
           <div className="t-cont">
-            <Profile src={pictures.stefan} title={titles.stefan}>
-              Stefan Momic
-            </Profile>
+            <Profile src={pictures.yuri} title={titles.yuri}>Prof. Lawryshyn</Profile>
+            <Profile src={pictures.stefan} title={titles.stefan}>Stefan Momic</Profile>
             <Profile src={pictures.ameer} title={titles.ameer}>Ameer Shaikh</Profile>
-            <Profile src={pictures.eric} title={titles.eric}>
-              Eric Boszin
-            </Profile>
-            <Profile title={titles.michael}>Michael Travis</Profile>
-            <Profile src={pictures.tiger} title={titles.tiger}>
-              Tiger Sheng
-            </Profile>
-            <Profile title={titles.ita}>Ita Zaporozhets</Profile>
             <Profile src={pictures.tom} title={titles.tom}>Tom Qi</Profile>
-            <Profile src={pictures.yuri} title={titles.yuri}>
-              Prof. Lawryshyn
-            </Profile>
+            <Profile src={pictures.eric} title={titles.eric}>Eric Boszin</Profile>
+            <Profile src={pictures.tiger} title={titles.tiger}>Tiger Sheng</Profile>
+            <Profile title={titles.michael}>Michael Travis</Profile>
+            <Profile title={titles.ita}>Ita Zaporozhets</Profile>
           </div>
         </div>
       </div>
