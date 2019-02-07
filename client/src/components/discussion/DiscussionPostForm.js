@@ -148,6 +148,7 @@ export class DiscussionPostForm extends Component {
             ? <LoaderButton
               block
               bsSize="large"
+              className="btn-primary"
               type="submit"
               isLoading={this.state.isLoading}
               text="Post"
