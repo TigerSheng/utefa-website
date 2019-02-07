@@ -158,6 +158,7 @@ export class AnnouncementPostForm extends Component {
             ? <LoaderButton
               block
               bsSize="large"
+              className="btn-primary"
               type="submit"
               isLoading={this.state.isLoading}
               text="Post"
