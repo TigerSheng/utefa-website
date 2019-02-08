@@ -7,7 +7,7 @@ export default class Dashboard extends Component {
   render(){
     return(
       <div  className="background">
-        <LeftNav isAdmin={this.props.isAdmin} userHasAuthenticated={this.props.userHasAuthenticated}/>
+        <LeftNav userIsAdmin={this.props.userIsAdmin} isAdmin={this.props.isAdmin} userHasAuthenticated={this.props.userHasAuthenticated}/>
           <div className="main-view">
             <AnnouncementBlock
             history={this.props.history}

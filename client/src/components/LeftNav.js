@@ -15,6 +15,7 @@ export class  LeftNav extends Component {
   handleLogout = async (event) => {
     await Auth.signOut();
     this.props.userHasAuthenticated(false);
+    this.props.userIsAdmin(false);
   }
 
   render() {

@@ -82,7 +82,7 @@ export default class DiscussionBlock extends Component {
     render(){
         return(
           <div>
-            <div class="center">
+            <div className="center">
               <Button className="btn btn-success newbtn" onClick={this.openDiscussionCreator}>Create new discussion</Button>
               <DiscussionPostForm closeDiscussionCreator={this.closeDiscussionCreator} discussionCreator={this.state.discussionCreator}/>
             </div>
