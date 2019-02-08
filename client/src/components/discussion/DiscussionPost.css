@@ -19,6 +19,8 @@
     background-color: #54C7FC !important;
   }
 .reply-full{
+  /* float: left; */
+  display: inline-block;
   min-width: 200px;
   margin: 10px;
   width: 90%;
