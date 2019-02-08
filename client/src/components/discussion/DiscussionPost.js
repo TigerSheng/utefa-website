@@ -109,14 +109,14 @@ export class DiscussionPost extends Component {
     async componentDidMount() {
         this.setState({isLoading: true})
         try{
-            this.setState({expandable: this.myRef.current !== null ?
-                    (this.myRef.current.offsetHeight !== this.myRef.current.scrollHeight): false});
+          //TODO: Fix expandability code
+            // this.setState({expandable: this.myRef.current !== null ?
+            //         (this.myRef.current.offsetHeight !== this.myRef.current.scrollHeight): false});
 
             Auth.currentAuthenticatedUser().then(user =>{
                 var curUser = this.props.postData.userId === user.username;
                 this.setState({userEditable: (curUser || this.props.isAdmin)});
             });
-            console.log(this.props.postData);
 
             let attachmentURL;
             if(this.props.postData.attachment){
@@ -297,7 +297,7 @@ export class DiscussionPost extends Component {
                     this.state.replies.map((index, i) => {
                       if(this.state.replies[i]) {
                         return(
-                          <div className="reply-full" key={i}>
+                          <div key={i}>
                             <Reply
                               replyData={this.state.replies[i]}
                               isAdmin={this.props.isAdmin}

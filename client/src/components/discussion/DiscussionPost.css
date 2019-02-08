@@ -46,9 +46,11 @@ text-align: center;
     background-color: white;
     min-width: 200px;
     max-width: 700px;
-    padding: 0px 0px 3px 0px;
+    /* padding: 0px 0px 3px 0px; */
+    padding: 15px;
     margin: 10px auto;
     border-radius: 3px;
+    white-space: pre-wrap;
 
     box-shadow: inset 0 0 0 5px #2098D1, 0 0 1px rgba(0, 0, 0, 0);
     cursor: pointer;
