@@ -109,15 +109,15 @@ export class DiscussionPost extends Component {
     async componentDidMount() {
         this.setState({isLoading: true})
         try{
-            this.setState({expandable: this.myRef.current !== null ?
-                    (this.myRef.current.offsetHeight !== this.myRef.current.scrollHeight): false});
+          //TODO: Fix expandability code
+            // this.setState({expandable: this.myRef.current !== null ?
+            //         (this.myRef.current.offsetHeight !== this.myRef.current.scrollHeight): false});
 
             Auth.currentAuthenticatedUser().then(user =>{
                 var curUser = this.props.postData.userId === user.username;
                 this.setState({userEditable: (curUser || this.props.isAdmin)});
                 this.setState({username: user.username});
             });
-            console.log(this.props.postData);
 
             let attachmentURL;
             if(this.props.postData.attachment){
@@ -298,7 +298,11 @@ export class DiscussionPost extends Component {
                     this.state.replies.map((index, i) => {
                       if(this.state.replies[i]) {
                         return(
+<<<<<<< HEAD
                           <div className={this.state.replies[i].userId == this.state.username? "user-reply reply-full":"reply-full"} key={i}>
+=======
+                          <div key={i}>
+>>>>>>> Fixed admin not cancelling on logout bug
                             <Reply
                               replyData={this.state.replies[i]}
                               isAdmin={this.props.isAdmin}
