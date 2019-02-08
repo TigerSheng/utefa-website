@@ -107,9 +107,7 @@ export class Reply extends Component {
 
   render(){
       return(
-        <div>
-      {!this.state.deleted &&
-      <div className="reply-full">
+      !this.state.deleted &&
       <div className="replyalign outer">
       <div className="reply-container">
         <Modal bsSize="small"
@@ -152,8 +150,6 @@ export class Reply extends Component {
       <div className="btn-container middle">
       <Button onClick={this.openCommentEditor} bsStyle="primary" bsSize="xsmall">Edit</Button>
       <Button onClick={this.openDeleteWindow} bsStyle="danger" bsSize="xsmall">X</Button>
-      </div>}
-      </div>
       </div>}
       </div>
     );
