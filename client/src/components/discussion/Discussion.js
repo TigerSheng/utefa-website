@@ -15,7 +15,7 @@ export default class Discussion extends Component {
   render(){
     return(
       <div className="background">
-        <LeftNav isAdmin={this.props.isAdmin} userHasAuthenticated={this.props.userHasAuthenticated}/>
+        <LeftNav userIsAdmin={this.props.userIsAdmin} isAdmin={this.props.isAdmin} userHasAuthenticated={this.props.userHasAuthenticated}/>
           <div className="main-view">
           <DiscussionBlock
             history={this.props.history}
