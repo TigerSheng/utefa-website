@@ -14,8 +14,8 @@ export class AboutUs extends Component {
             The University of Toronto Engineering Finance Association (UTEFA) is an educational organization that aims to provide students with extensive knowledge about the financial industry by engaging them in investing activities. Since our inception in 2009-10 UTEFA has grown to more than 60 active and invested members with over $14,500 CAD in cash and equity.
             <br/>
             <br/>
-            <div class="mission_statement">
-              <div class="mission">Our Mission</div>"
+            <div className="mission_statement">
+              <div className="mission">Our Mission</div>"
                 Provide an opportunity for students to study and understand various sectors of the market through
                 engaging in investing activities."
             </div>

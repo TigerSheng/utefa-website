@@ -25,5 +25,11 @@
     "deploy": "aws s3 sync build/ s3://utefa-client --cache-control max-age=86400 --delete",
     "postdeploy": "aws configure set preview.cloudfront true && aws cloudfront create-invalidation --distribution-id EIJ0Q81ENE6DG --paths /*",
     "eject": "react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

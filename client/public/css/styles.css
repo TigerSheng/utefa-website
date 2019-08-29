@@ -455,7 +455,7 @@ html,body{
 
 }
 .profile{
-	float:left;
+	display: inline-block;
 	width: 20%;
 	margin-left:0;
 	margin-bottom:30px;
