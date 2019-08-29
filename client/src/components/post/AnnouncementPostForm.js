@@ -110,8 +110,6 @@ export class AnnouncementPostForm extends Component {
 
   render() {
     return(      
-      <Modal bsSize="large" show={this.props.discussionCreator}>
-      <ModalHeader><Button bsStyle="danger" onClick={this.props.closeDiscussionCreator}>x</Button></ModalHeader>
       <div>
         {this.state.postSuccess
           && <Alert className="Alert" bsStyle='success'>
@@ -186,7 +184,6 @@ export class AnnouncementPostForm extends Component {
             }
         </form>
       </div>
-      </Modal>
     );
   }
 }

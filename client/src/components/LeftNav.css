@@ -83,53 +83,5 @@ a {
   text-decoration: none !important;
 }
 
-/*OLD LeftNav CSS styling */
-
-.side-logo-container{
-=======
-/* .side-logo-container{
->>>>>>> More responsive improvements for leftnav
-=======
-/* .side-logo-container{
->>>>>>> More responsive improvements for leftnav
-  margin: 0 auto;
-display: block;
-width: 125px;
-position: relative;
-}
-
-.LeftNav {
-  position: fixed;
-  display: block;
-  width: 15em;
-  height: 100%;
-  background-color: rgb(230,230,230);
-}
-
-.LeftNav-Title {
-  padding-top: 1em;
-  text-align: center;
-  font-family: 'Lato-Regular'
-}
-
-.LeftNav-Container {
-  width: 100%;
-  text-align: center;
-  vertical-align: middle;
-  font-family: 'Roboto-Condensed'
-}
-
-.LeftNav-Container button {
-  background: none;
-  border: none;
-  width: 100%;
-  cursor: pointer; */
-/* } */
-
-/* .LeftNav-Item img {
-  width: 2em;
-  padding-bottom: 0.5em;
-} */
-
 
 
