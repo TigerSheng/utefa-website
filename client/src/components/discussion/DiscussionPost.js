@@ -298,7 +298,7 @@ export class DiscussionPost extends Component {
                     this.state.replies.map((index, i) => {
                       if(this.state.replies[i]) {
                         return(
-                          <div className={this.state.replies[i].userId == this.state.username? "user-reply reply-full":"reply-full"} key={i}>
+                          <div className={this.state.replies[i].userId === this.state.username? "user-reply reply-full":"reply-full"} key={i}>
                             <Reply
                               replyData={this.state.replies[i]}
                               isAdmin={this.props.isAdmin}
