@@ -14,6 +14,7 @@ export default class  Post extends Component {
     return(
       <div>
         <LeftNav userIsAdmin={this.props.userIsAdmin} isAdmin={this.props.isAdmin} userHasAuthenticated={this.props.userHasAuthenticated}/>
+        <div className="background">
         <div className="post-view">
           <Tabs defaultActiveKey={1} id="post-forms">
             <Tab eventKey={1} title="Post Announcement">
@@ -33,6 +34,7 @@ export default class  Post extends Component {
             </Tab>
           </Tabs>
         </div>
+      </div>
       </div>
     );
   }

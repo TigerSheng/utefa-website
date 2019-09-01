@@ -23,7 +23,7 @@ export default class Vote extends Component {
     super(props);
     this.state={
       voteData:[],
-      isLoading: false
+      isLoading: false,
     }
   }
 
@@ -48,7 +48,7 @@ export default class Vote extends Component {
         voteData: votes,
         historicalVotes:historicalVotes,
         recentVotes:recentVotes,
-        showAll:false
+        // showAll:false
       })
     }catch(e){
       console.log(e)
@@ -60,12 +60,12 @@ export default class Vote extends Component {
   getVotes(){
     return API.get('api', '/votes')
   }
-  toggleHistoricalVotes = async event => {
-    //potentially call the updateData function to refresh the data incase of changes (empty->not empty)
-    this.setState({
-      showAll: !this.state.showAll
-    });
-  }
+  // toggleHistoricalVotes = async event => {
+  //   //potentially call the updateData function to refresh the data incase of changes (empty->not empty)
+  //   this.setState({
+  //     showAll: !this.state.showAll
+  //   });
+  // }
 
 
   render(){
@@ -86,17 +86,17 @@ export default class Vote extends Component {
             }else return(null);
           })
         }
-        {this.state.historicalVotes && this.state.historicalVotes.length !== 0 &&
+        {/* {this.state.historicalVotes && this.state.historicalVotes.length !== 0 &&
         <div className="banner" onClick={this.toggleHistoricalVotes.bind(this)}>
          Voting History
        </div>
-     }
+     } */}
         {this.state.historicalVotes && this.state.historicalVotes.length !== 0 &&
 
            this.state.historicalVotes.map((index, i) => {
             if(this.state.historicalVotes[i] && this.state.historicalVotes[i].name !== "") {
               return(
-                <div className={this.state.showAll? "":"hide"} key={i}>
+                <div key={i}>
                   <VotePost votePostData={this.state.historicalVotes[i]}
                   isAdmin={this.props.isAdmin}/>
                 </div>

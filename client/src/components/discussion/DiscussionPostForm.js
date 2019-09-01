@@ -116,7 +116,7 @@ export class DiscussionPostForm extends Component {
               Something went wrong. Please try again,
             </Alert>
         }
-        <form className="m-content" onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="title" bsSize="large">
             <ControlLabel>Title</ControlLabel>
             <FormControl
