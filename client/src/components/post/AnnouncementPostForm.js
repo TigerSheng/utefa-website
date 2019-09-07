@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {withRouter} from 'react-router-dom';
+
 import {
   Alert,
   FormGroup,
@@ -20,7 +22,7 @@ const postPolicy = (
   </Popover>
 )
 
-export class AnnouncementPostForm extends Component {
+class AnnouncementPostForm extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -101,7 +103,8 @@ export class AnnouncementPostForm extends Component {
           content: "",
           postSuccess: true
         })
-        this.props.closeDiscussionCreator()
+        // this.props.closeDiscussionCreator()
+        this.props.history.push('/dashboard');
         window.location.reload()
         return
       })
@@ -187,3 +190,4 @@ export class AnnouncementPostForm extends Component {
     );
   }
 }
+export default withRouter(AnnouncementPostForm);

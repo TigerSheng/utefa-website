@@ -5,7 +5,7 @@ import {
   Tab
 } from 'react-bootstrap'
 import {LeftNav} from '../LeftNav'
-import {AnnouncementPostForm} from './AnnouncementPostForm'
+import AnnouncementPostForm from './AnnouncementPostForm'
 import {LearningContentPostForm} from './LearningContentPostForm'
 import {VotePostForm} from './VotePostForm'
 

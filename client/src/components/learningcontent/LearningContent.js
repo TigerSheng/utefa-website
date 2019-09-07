@@ -10,14 +10,15 @@ export default class LearningContent extends Component {
   constructor(props){
     super(props);
     this.state={
-      files:[{
-        file:{
-          name: 'Loading...',
-          url: null,
-          deleteMessage: false,
-          contentToDelete: ""
-        }
-      }]
+      // files:[{
+      //   file:{
+      //     name: 'Loading...',
+      //     url: null,
+      //     deleteMessage: false,
+      //     contentToDelete: ""
+      //   }
+      // }]
+      files: []
     }
   }
 
