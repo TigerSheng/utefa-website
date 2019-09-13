@@ -13,30 +13,12 @@ export default class Decks extends Component {
           <div className="heading">Session Materials</div>
           <div className="decks">
             <div className="emphasis">
-              <div className="emphasis">Coming Soon!</div>
+            <a className="emphasis" href="https://s3.us-east-2.amazonaws.com/utefa-client/01_UTEFA Info-Session.pdf" rel="noopener noreferrer" target="_blank" title="01 - Info Session">Meeting 1 - Info Session</a>
             </div>
           </div>
           {/* <div className="decks">
             <div className="emphasis">
               <a className="emphasis" href="https://s3.us-east-2.amazonaws.com/utefa-client/01_UTEFA-Info-Session.pdf" rel="noopener noreferrer" target="_blank" title="01 - Info Session">01 - Info Session</a>
-            </div>
-            <div className="emphasis">
-              <a className="emphasis" href="https://s3.us-east-2.amazonaws.com/utefa-client/02_UTEFA-Learning-Session-1.pdf" target="_blank" rel="noopener noreferrer" title="02 - Learning Session Part 1">02 - Learning Session Part 1</a>
-            </div>
-            <div className="emphasis">
-              <a className="emphasis" href="https://s3.us-east-2.amazonaws.com/utefa-client/02_UTEFA-Learning-Session-1-Accounting-Solutions.pdf" rel="noopener noreferrer" target="_blank" title="02 - Learning Session 1: Accounting-Solutions">02 - Learning Session 1: Accounting-Solutions</a>
-            </div>
-            <div className="emphasis">
-              <a className="emphasis" href="https://s3.us-east-2.amazonaws.com/utefa-client/03_UTEFA-Learning-Session-2.pdf" rel="noopener noreferrer" target="_blank" title="03 - Learning Session Part 2">03 - Learning Session Part 2</a>
-            </div>
-            <div className="emphasis">
-              <a className="emphasis" href="decks/02_UTEFA-Learning-Session-1.pdf" ref="noopener noreferrer" target="_blank" title="02 - Learning Session Part 1">02 - Learning Session Part 1</a>
-            </div>
-            <div className="emphasis">
-              <a className="emphasis" href="decks/02_UTEFA-Learning-Session-1-Accounting-Solutions.pdf" ref="noopener noreferrer" target="_blank" title="02 - Learning Session 1: Accounting-Solutions">02 - Learning Session 1: Accounting-Solutions</a>
-            </div>
-            <div className="emphasis">
-              <a className="emphasis" href="decks/03_UTEFA-Learning-Session-2.pdf" ref="noopener noreferrer" target="_blank" title="03 - Learning Session Part 2">03 - Learning Session Part 2</a>
             </div>
           </div> */}
         </div>
