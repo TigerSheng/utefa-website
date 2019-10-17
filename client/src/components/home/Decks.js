@@ -13,7 +13,16 @@ export default class Decks extends Component {
           <div className="heading">Session Materials</div>
           <div className="decks">
             <div className="emphasis">
-            <a className="emphasis" href="https://s3.us-east-2.amazonaws.com/utefa-client/01_UTEFA Info-Session.pdf" rel="noopener noreferrer" target="_blank" title="01 - Info Session">Meeting 1 - Info Session</a>
+            <a className="emphasis" href="https://s3.us-east-2.amazonaws.com/utefa-client/01_UTEFA Info Session.pdf" rel="noopener noreferrer" target="_blank" title="01 - Info Session">Meeting 1 - Info Session</a>
+            </div>
+            <div className="emphasis">
+            <a className="emphasis" href="https://s3.us-east-2.amazonaws.com/utefa-client/02_Finance-Basics.pdf" rel="noopener noreferrer" target="_blank" title="02 - Learning Session #1">Meeting 2 - Learning Session #1</a>
+            </div>
+            <div className="emphasis">
+            <a className="emphasis" href="https://s3.us-east-2.amazonaws.com/utefa-client/03_UTEFA Accounting.pdf" rel="noopener noreferrer" target="_blank" title="03 - Learning Session #2a">Meeting 3 - Learning Session #2 - Accounting</a>
+            </div>
+            <div className="emphasis">
+            <a className="emphasis" href="https://s3.us-east-2.amazonaws.com/utefa-client/03_UTEFA Valuation.pdf" rel="noopener noreferrer" target="_blank" title="03 - Learning Session #2b">Meeting 3 - Learning Session #2 - Valuation</a>
             </div>
           </div>
           {/* <div className="decks">
